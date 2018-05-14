@@ -82,7 +82,7 @@ namespace Base {
 			// 
 			// button_Access_Enter
 			// 
-			this->button_Access_Enter->Location = System::Drawing::Point(133, 124);
+			this->button_Access_Enter->Location = System::Drawing::Point(131, 116);
 			this->button_Access_Enter->Name = L"button_Access_Enter";
 			this->button_Access_Enter->Size = System::Drawing::Size(75, 23);
 			this->button_Access_Enter->TabIndex = 1;
