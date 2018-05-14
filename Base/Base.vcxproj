@@ -133,14 +133,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Access.cpp" />
     <ClCompile Include="MyForm.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Access.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="MainFrame.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Access.resx">
+      <DependentUpon>Access.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainFrame.resx">
       <DependentUpon>MainFrame.h</DependentUpon>
     </EmbeddedResource>

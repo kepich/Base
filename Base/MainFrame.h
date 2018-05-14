@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Access.h"
+
 namespace Base {
 
 	using namespace System;
