@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 namespace Base {
 
 	using namespace System;
@@ -88,6 +90,7 @@ namespace Base {
 			this->button_Access_Enter->TabIndex = 1;
 			this->button_Access_Enter->Text = L"Войти";
 			this->button_Access_Enter->UseVisualStyleBackColor = true;
+			this->button_Access_Enter->Click += gcnew System::EventHandler(this, &Access::button_Access_Enter_Click);
 			// 
 			// label1_Access_Login
 			// 
@@ -134,5 +137,16 @@ namespace Base {
 
 		}
 #pragma endregion
-	};
+		/*
+			- Проверка логина и пароля
+			- Если такого нет, то вывод сообщения об ошибке		
+			- Иначе реализация доступа для администратора и для рядового пользователя
+			- 
+		*/
+	private: System::Void button_Access_Enter_Click(System::Object^  sender, System::EventArgs^  e) {
+		FILE *passwords = fopen("passw.dat", "r");
+
+
+	}
+};
 }
