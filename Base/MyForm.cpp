@@ -10,3 +10,4 @@ void Main(array<String^>^ args) {
 	Base::MainFrame form;
 	Application::Run(%form);
 }
++++
