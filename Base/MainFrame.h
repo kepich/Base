@@ -2,6 +2,7 @@
 
 #include "Access.h"
 #include "Request.h"
+#include "AddingForm.h"
 
 namespace Base {
 
@@ -64,6 +65,7 @@ namespace Base {
 	private: System::Windows::Forms::ToolStripMenuItem^  îÏğîãğàììåToolStripMenuItem1;
 	private: System::Windows::Forms::ToolStripMenuItem^  äîáàâòüÇàïèñüToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  ğåäàêòèğîâàòüToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^  ñáğîñèòüÇàïğîñToolStripMenuItem;
 	protected:
 
 
@@ -96,13 +98,14 @@ namespace Base {
 			this->çàïğîñToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->ñîçäàòüÇàïğîñToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->ğåäàêòèğîâàíèåToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->óäàëèòüToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->äîáàâòüÇàïèñüToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->ğåäàêòèğîâàòüToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->óäàëèòüToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->èãğàToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->èãğàòüToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->îÏğîãğàììåToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->îÏğîãğàììåToolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->ñáğîñèòüÇàïğîñToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
@@ -203,7 +206,10 @@ namespace Base {
 			// 
 			// çàïğîñToolStripMenuItem
 			// 
-			this->çàïğîñToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->ñîçäàòüÇàïğîñToolStripMenuItem });
+			this->çàïğîñToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
+				this->ñîçäàòüÇàïğîñToolStripMenuItem,
+					this->ñáğîñèòüÇàïğîñToolStripMenuItem
+			});
 			this->çàïğîñToolStripMenuItem->Name = L"çàïğîñToolStripMenuItem";
 			this->çàïğîñToolStripMenuItem->Size = System::Drawing::Size(59, 20);
 			this->çàïğîñToolStripMenuItem->Text = L"Çàïğîñ";
@@ -211,37 +217,38 @@ namespace Base {
 			// ñîçäàòüÇàïğîñToolStripMenuItem
 			// 
 			this->ñîçäàòüÇàïğîñToolStripMenuItem->Name = L"ñîçäàòüÇàïğîñToolStripMenuItem";
-			this->ñîçäàòüÇàïğîñToolStripMenuItem->Size = System::Drawing::Size(158, 22);
+			this->ñîçäàòüÇàïğîñToolStripMenuItem->Size = System::Drawing::Size(168, 22);
 			this->ñîçäàòüÇàïğîñToolStripMenuItem->Text = L"Ñîçäàòü çàïğîñ";
 			this->ñîçäàòüÇàïğîñToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainFrame::ñîçäàòüÇàïğîñToolStripMenuItem_Click);
 			// 
 			// ğåäàêòèğîâàíèåToolStripMenuItem
 			// 
 			this->ğåäàêòèğîâàíèåToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
-				this->óäàëèòüToolStripMenuItem,
-					this->äîáàâòüÇàïèñüToolStripMenuItem, this->ğåäàêòèğîâàòüToolStripMenuItem
+				this->äîáàâòüÇàïèñüToolStripMenuItem,
+					this->ğåäàêòèğîâàòüToolStripMenuItem, this->óäàëèòüToolStripMenuItem
 			});
 			this->ğåäàêòèğîâàíèåToolStripMenuItem->Name = L"ğåäàêòèğîâàíèåToolStripMenuItem";
 			this->ğåäàêòèğîâàíèåToolStripMenuItem->Size = System::Drawing::Size(108, 20);
 			this->ğåäàêòèğîâàíèåToolStripMenuItem->Text = L"Ğåäàêòèğîâàíèå";
-			// 
-			// óäàëèòüToolStripMenuItem
-			// 
-			this->óäàëèòüToolStripMenuItem->Name = L"óäàëèòüToolStripMenuItem";
-			this->óäàëèòüToolStripMenuItem->Size = System::Drawing::Size(159, 22);
-			this->óäàëèòüToolStripMenuItem->Text = L"Óäàëèòü";
 			// 
 			// äîáàâòüÇàïèñüToolStripMenuItem
 			// 
 			this->äîáàâòüÇàïèñüToolStripMenuItem->Name = L"äîáàâòüÇàïèñüToolStripMenuItem";
 			this->äîáàâòüÇàïèñüToolStripMenuItem->Size = System::Drawing::Size(159, 22);
 			this->äîáàâòüÇàïèñüToolStripMenuItem->Text = L"Äîáàâòü çàïèñü";
+			this->äîáàâòüÇàïèñüToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainFrame::äîáàâòüÇàïèñüToolStripMenuItem_Click);
 			// 
 			// ğåäàêòèğîâàòüToolStripMenuItem
 			// 
 			this->ğåäàêòèğîâàòüToolStripMenuItem->Name = L"ğåäàêòèğîâàòüToolStripMenuItem";
 			this->ğåäàêòèğîâàòüToolStripMenuItem->Size = System::Drawing::Size(159, 22);
 			this->ğåäàêòèğîâàòüToolStripMenuItem->Text = L"Ğåäàêòèğîâàòü";
+			// 
+			// óäàëèòüToolStripMenuItem
+			// 
+			this->óäàëèòüToolStripMenuItem->Name = L"óäàëèòüToolStripMenuItem";
+			this->óäàëèòüToolStripMenuItem->Size = System::Drawing::Size(159, 22);
+			this->óäàëèòüToolStripMenuItem->Text = L"Óäàëèòü";
 			// 
 			// èãğàToolStripMenuItem
 			// 
@@ -266,8 +273,14 @@ namespace Base {
 			// îÏğîãğàììåToolStripMenuItem1
 			// 
 			this->îÏğîãğàììåToolStripMenuItem1->Name = L"îÏğîãğàììåToolStripMenuItem1";
-			this->îÏğîãğàììåToolStripMenuItem1->Size = System::Drawing::Size(149, 22);
+			this->îÏğîãğàììåToolStripMenuItem1->Size = System::Drawing::Size(152, 22);
 			this->îÏğîãğàììåToolStripMenuItem1->Text = L"Î ïğîãğàììå";
+			// 
+			// ñáğîñèòüÇàïğîñToolStripMenuItem
+			// 
+			this->ñáğîñèòüÇàïğîñToolStripMenuItem->Name = L"ñáğîñèòüÇàïğîñToolStripMenuItem";
+			this->ñáğîñèòüÇàïğîñToolStripMenuItem->Size = System::Drawing::Size(168, 22);
+			this->ñáğîñèòüÇàïğîñToolStripMenuItem->Text = L"Ñáğîñèòü çàïğîñ";
 			// 
 			// MainFrame
 			// 
@@ -292,11 +305,16 @@ private: System::Void ñìåíèòüÓ÷åòíşÇàïèñüToolStripMenuItem_Click(System::Object^
 	Access ^changeAccount = gcnew Access;
 	Hide();
 	changeAccount->ShowDialog();
+	Show();
 }
 private: System::Void ñîçäàòüÇàïğîñToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 
 	Request ^newRequest = gcnew Request;
 	newRequest->ShowDialog();
+}
+private: System::Void äîáàâòüÇàïèñüToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	AddingForm ^addNew = gcnew AddingForm;
+	addNew->ShowDialog();
 }
 };
 }
