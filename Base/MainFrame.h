@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Access.h"
+#include "Request.h"
 
 namespace Base {
 
@@ -212,6 +213,7 @@ namespace Base {
 			this->ñîçäàòüÇàïðîñToolStripMenuItem->Name = L"ñîçäàòüÇàïðîñToolStripMenuItem";
 			this->ñîçäàòüÇàïðîñToolStripMenuItem->Size = System::Drawing::Size(158, 22);
 			this->ñîçäàòüÇàïðîñToolStripMenuItem->Text = L"Ñîçäàòü çàïðîñ";
+			this->ñîçäàòüÇàïðîñToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainFrame::ñîçäàòüÇàïðîñToolStripMenuItem_Click);
 			// 
 			// ðåäàêòèðîâàíèåToolStripMenuItem
 			// 
@@ -251,7 +253,7 @@ namespace Base {
 			// èãðàòüToolStripMenuItem
 			// 
 			this->èãðàòüToolStripMenuItem->Name = L"èãðàòüToolStripMenuItem";
-			this->èãðàòüToolStripMenuItem->Size = System::Drawing::Size(112, 22);
+			this->èãðàòüToolStripMenuItem->Size = System::Drawing::Size(152, 22);
 			this->èãðàòüToolStripMenuItem->Text = L"Èãðàòü";
 			// 
 			// îÏðîãðàììåToolStripMenuItem
@@ -290,6 +292,11 @@ private: System::Void ñìåíèòüÓ÷åòíþÇàïèñüToolStripMenuItem_Click(System::Object^
 	Access ^changeAccount = gcnew Access;
 	Hide();
 	changeAccount->ShowDialog();
+}
+private: System::Void ñîçäàòüÇàïðîñToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+
+	Request ^newRequest = gcnew Request;
+	newRequest->ShowDialog();
 }
 };
 }
