@@ -20,6 +20,8 @@ namespace Base {
 		Access(void)
 		{
 			InitializeComponent();
+
+			
 			//
 			//TODO: добавьте код конструктора
 			//
