@@ -12,6 +12,7 @@ namespace Base {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::IO;
 
 	/// <summary>
 	/// Ñâîäêà äëÿ MyForm
@@ -26,6 +27,11 @@ namespace Base {
 			Access ^access_Window = gcnew Access;
 			Hide();
 			access_Window->ShowDialog();
+
+/*			Char a = '5';
+
+			dataGridView1->Rows[0]->Cells[0]->Value = a.ToString();*/
+
 			//
 			//TODO: äîáàâüòå êîä êîíñòðóêòîðà
 			//
@@ -66,6 +72,9 @@ namespace Base {
 	private: System::Windows::Forms::ToolStripMenuItem^  äîáàâòüÇàïèñüToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  ðåäàêòèðîâàòüToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  ñáðîñèòüÇàïðîñToolStripMenuItem;
+	private: System::Windows::Forms::Label^  TypeOfAccount;
+	private: System::Windows::Forms::Label^  User;
+	private: System::Windows::Forms::Label^  label1;
 	protected:
 
 
@@ -97,6 +106,7 @@ namespace Base {
 			this->âûõîäToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->çàïðîñToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->ñîçäàòüÇàïðîñToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->ñáðîñèòüÇàïðîñToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->ðåäàêòèðîâàíèåToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->äîáàâòüÇàïèñüToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->ðåäàêòèðîâàòüToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -105,13 +115,16 @@ namespace Base {
 			this->èãðàòüToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->îÏðîãðàììåToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->îÏðîãðàììåToolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->ñáðîñèòüÇàïðîñToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->TypeOfAccount = (gcnew System::Windows::Forms::Label());
+			this->User = (gcnew System::Windows::Forms::Label());
+			this->label1 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// dataGridView1
 			// 
+			this->dataGridView1->AllowUserToOrderColumns = true;
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
 			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
 				this->fio, this->PhoneNumber,
@@ -119,7 +132,7 @@ namespace Base {
 			});
 			this->dataGridView1->Location = System::Drawing::Point(24, 37);
 			this->dataGridView1->Name = L"dataGridView1";
-			this->dataGridView1->Size = System::Drawing::Size(594, 290);
+			this->dataGridView1->Size = System::Drawing::Size(595, 290);
 			this->dataGridView1->TabIndex = 0;
 			// 
 			// fio
@@ -159,7 +172,7 @@ namespace Base {
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(651, 24);
+			this->menuStrip1->Size = System::Drawing::Size(655, 24);
 			this->menuStrip1->TabIndex = 1;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
@@ -184,6 +197,7 @@ namespace Base {
 			this->îòêðûòüToolStripMenuItem->Name = L"îòêðûòüToolStripMenuItem";
 			this->îòêðûòüToolStripMenuItem->Size = System::Drawing::Size(206, 22);
 			this->îòêðûòüToolStripMenuItem->Text = L"Îòêðûòü";
+			this->îòêðûòüToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainFrame::îòêðûòüToolStripMenuItem_Click);
 			// 
 			// ñîõðàíèòüÂÔàéëToolStripMenuItem
 			// 
@@ -220,6 +234,12 @@ namespace Base {
 			this->ñîçäàòüÇàïðîñToolStripMenuItem->Size = System::Drawing::Size(168, 22);
 			this->ñîçäàòüÇàïðîñToolStripMenuItem->Text = L"Ñîçäàòü çàïðîñ";
 			this->ñîçäàòüÇàïðîñToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainFrame::ñîçäàòüÇàïðîñToolStripMenuItem_Click);
+			// 
+			// ñáðîñèòüÇàïðîñToolStripMenuItem
+			// 
+			this->ñáðîñèòüÇàïðîñToolStripMenuItem->Name = L"ñáðîñèòüÇàïðîñToolStripMenuItem";
+			this->ñáðîñèòüÇàïðîñToolStripMenuItem->Size = System::Drawing::Size(168, 22);
+			this->ñáðîñèòüÇàïðîñToolStripMenuItem->Text = L"Ñáðîñèòü çàïðîñ";
 			// 
 			// ðåäàêòèðîâàíèåToolStripMenuItem
 			// 
@@ -260,7 +280,7 @@ namespace Base {
 			// èãðàòüToolStripMenuItem
 			// 
 			this->èãðàòüToolStripMenuItem->Name = L"èãðàòüToolStripMenuItem";
-			this->èãðàòüToolStripMenuItem->Size = System::Drawing::Size(152, 22);
+			this->èãðàòüToolStripMenuItem->Size = System::Drawing::Size(112, 22);
 			this->èãðàòüToolStripMenuItem->Text = L"Èãðàòü";
 			// 
 			// îÏðîãðàììåToolStripMenuItem
@@ -273,20 +293,48 @@ namespace Base {
 			// îÏðîãðàììåToolStripMenuItem1
 			// 
 			this->îÏðîãðàììåToolStripMenuItem1->Name = L"îÏðîãðàììåToolStripMenuItem1";
-			this->îÏðîãðàììåToolStripMenuItem1->Size = System::Drawing::Size(152, 22);
+			this->îÏðîãðàììåToolStripMenuItem1->Size = System::Drawing::Size(149, 22);
 			this->îÏðîãðàììåToolStripMenuItem1->Text = L"Î ïðîãðàììå";
 			// 
-			// ñáðîñèòüÇàïðîñToolStripMenuItem
+			// TypeOfAccount
 			// 
-			this->ñáðîñèòüÇàïðîñToolStripMenuItem->Name = L"ñáðîñèòüÇàïðîñToolStripMenuItem";
-			this->ñáðîñèòüÇàïðîñToolStripMenuItem->Size = System::Drawing::Size(168, 22);
-			this->ñáðîñèòüÇàïðîñToolStripMenuItem->Text = L"Ñáðîñèòü çàïðîñ";
+			this->TypeOfAccount->AutoSize = true;
+			this->TypeOfAccount->ForeColor = System::Drawing::SystemColors::MenuHighlight;
+			this->TypeOfAccount->Location = System::Drawing::Point(421, 7);
+			this->TypeOfAccount->Name = L"TypeOfAccount";
+			this->TypeOfAccount->Size = System::Drawing::Size(103, 13);
+			this->TypeOfAccount->TabIndex = 2;
+			this->TypeOfAccount->Text = L"Òèï ïîëüçîâàòåëÿ:";
+			// 
+			// User
+			// 
+			this->User->AutoSize = true;
+			this->User->ForeColor = System::Drawing::SystemColors::HotTrack;
+			this->User->Location = System::Drawing::Point(530, 7);
+			this->User->Name = L"User";
+			this->User->Size = System::Drawing::Size(36, 13);
+			this->User->TabIndex = 2;
+			this->User->Text = L"Ãîñòü";
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->ForeColor = System::Drawing::SystemColors::HotTrack;
+			this->label1->Location = System::Drawing::Point(533, 7);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(86, 13);
+			this->label1->TabIndex = 3;
+			this->label1->Text = L"Àäìèíèñòðàòîð";
+			this->label1->Visible = false;
 			// 
 			// MainFrame
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(651, 351);
+			this->ClientSize = System::Drawing::Size(655, 351);
+			this->Controls->Add(this->label1);
+			this->Controls->Add(this->User);
+			this->Controls->Add(this->TypeOfAccount);
 			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->menuStrip1);
 			this->MainMenuStrip = this->menuStrip1;
@@ -315,6 +363,28 @@ private: System::Void ñîçäàòüÇàïðîñToolStripMenuItem_Click(System::Object^  send
 private: System::Void äîáàâòüÇàïèñüToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 	AddingForm ^addNew = gcnew AddingForm;
 	addNew->ShowDialog();
+}
+private: System::Void îòêðûòüToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+
+	OpenFileDialog ^openedFile = gcnew OpenFileDialog;
+	openedFile->Filter = "Text files(*.txt)|* txt|All files(*.*)|*.*";
+
+	if (openedFile->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
+		String ^fileName = openedFile->FileName;
+		StreamReader ^rd = gcnew StreamReader(fileName);
+
+		String ^row;
+
+		try	{
+			while (rd->Peek() >= 0) {
+				row = rd->ReadLine();
+				array <String^>^ cells = row->Split(' ');
+
+				dataGridView1->Rows->Add(cells);
+			}
+		}
+		catch (...){   }
+	}
 }
 };
 }
