@@ -27,14 +27,6 @@ namespace Base {
 			Access ^access_Window = gcnew Access;
 			Hide();
 			access_Window->ShowDialog();
-
-/*			Char a = '5';
-
-			dataGridView1->Rows[0]->Cells[0]->Value = a.ToString();*/
-
-			//
-			//TODO: äîáàâüòå êîä êîíñòðóêòîðà
-			//
 		}
 
 	protected:
@@ -383,13 +375,12 @@ private: System::Void äîáàâòüÇàïèñüToolStripMenuItem_Click(System::Object^  send
 	addNew->ShowDialog();
 }
 private: System::Void îòêðûòüToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	OpenFileDialog ^openedFile = gcnew OpenFileDialog;
+	openedFile->Filter = "Text files(*.txt)|* txt|All files(*.*)|*.*";
 
 	if(dataGridView1->RowCount > 1){
 		if (MessageBox::Show("Âû âåðåíû, ÷òî õîòèòå çàêðûòü òåêóùåå ðàñïèñàíèå?", "Base",
 			MessageBoxButtons::YesNo, MessageBoxIcon::Warning) == System::Windows::Forms::DialogResult::Yes) {
-			
-			OpenFileDialog ^openedFile = gcnew OpenFileDialog;
-			openedFile->Filter = "Text files(*.txt)|* txt|All files(*.*)|*.*";
 
 			if (openedFile->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
 				dataGridView1->Rows->Clear();
@@ -412,8 +403,6 @@ private: System::Void îòêðûòüToolStripMenuItem_Click(System::Object^  sender, Sy
 		}
 	}
 	else {
-		OpenFileDialog ^openedFile = gcnew OpenFileDialog;
-		openedFile->Filter = "Text files(*.txt)|* txt|All files(*.*)|*.*";
 
 		if (openedFile->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
 			dataGridView1->Rows->Clear();
@@ -442,10 +431,24 @@ private: System::Void ñîçäàòüToolStripMenuItem_Click(System::Object^  sender, Sy
 	SaveFileDialog ^creatingFile = gcnew SaveFileDialog;
 	creatingFile->Filter = "Text files(*.txt) | *txt";
 
-	if (creatingFile->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
-		NameOfFile = creatingFile->FileName;
-		FileStream ^newFile = File::Create(NameOfFile);
-		newFile->Close();
+	if (dataGridView1->RowCount > 1) {
+		if (MessageBox::Show("Âû âåðåíû, ÷òî õîòèòå çàêðûòü òåêóùåå ðàñïèñàíèå?", "Base",
+			MessageBoxButtons::YesNo, MessageBoxIcon::Warning) == System::Windows::Forms::DialogResult::Yes) {
+			if (creatingFile->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
+				dataGridView1->Rows->Clear();
+				NameOfFile = creatingFile->FileName;
+				FileStream ^newFile = File::Create(NameOfFile);
+				newFile->Close();
+			}
+		}
+	}
+	else {
+		if (creatingFile->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
+			dataGridView1->Rows->Clear();
+			NameOfFile = creatingFile->FileName;
+			FileStream ^newFile = File::Create(NameOfFile);
+			newFile->Close();
+		}
 	}
 }
 };
