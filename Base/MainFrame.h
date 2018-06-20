@@ -75,6 +75,7 @@ namespace Base {
 	private: System::Windows::Forms::Label^  TypeOfAccount;
 	private: System::Windows::Forms::Label^  User;
 	private: System::Windows::Forms::Label^  label1;
+	private: System::Windows::Forms::ToolStripMenuItem^  ñîõðàíèòüToolStripMenuItem;
 	protected:
 
 
@@ -101,6 +102,7 @@ namespace Base {
 			this->ôàéëToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->ñîçäàòüToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->îòêðûòüToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->ñîõðàíèòüToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->ñîõðàíèòüÂÔàéëToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->ñìåíèòüÓ÷åòíþÇàïèñüToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->âûõîäToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -132,6 +134,7 @@ namespace Base {
 			});
 			this->dataGridView1->Location = System::Drawing::Point(24, 37);
 			this->dataGridView1->Name = L"dataGridView1";
+			this->dataGridView1->ReadOnly = true;
 			this->dataGridView1->Size = System::Drawing::Size(595, 290);
 			this->dataGridView1->TabIndex = 0;
 			// 
@@ -139,29 +142,34 @@ namespace Base {
 			// 
 			this->fio->HeaderText = L"ÔÈÎ";
 			this->fio->Name = L"fio";
+			this->fio->ReadOnly = true;
 			this->fio->Width = 150;
 			// 
 			// PhoneNumber
 			// 
 			this->PhoneNumber->HeaderText = L"Íîìåð òåëåôîíà";
 			this->PhoneNumber->Name = L"PhoneNumber";
+			this->PhoneNumber->ReadOnly = true;
 			// 
 			// Year
 			// 
 			this->Year->HeaderText = L"Ãîä";
 			this->Year->Name = L"Year";
+			this->Year->ReadOnly = true;
 			this->Year->Width = 50;
 			// 
 			// TypeOfPaying
 			// 
 			this->TypeOfPaying->HeaderText = L"Òèï îïëàòû";
 			this->TypeOfPaying->Name = L"TypeOfPaying";
+			this->TypeOfPaying->ReadOnly = true;
 			this->TypeOfPaying->Width = 50;
 			// 
 			// Adress
 			// 
 			this->Adress->HeaderText = L"Àäðåñ";
 			this->Adress->Name = L"Adress";
+			this->Adress->ReadOnly = true;
 			this->Adress->Width = 200;
 			// 
 			// menuStrip1
@@ -178,9 +186,10 @@ namespace Base {
 			// 
 			// ôàéëToolStripMenuItem
 			// 
-			this->ôàéëToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(5) {
+			this->ôàéëToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(6) {
 				this->ñîçäàòüToolStripMenuItem,
-					this->îòêðûòüToolStripMenuItem, this->ñîõðàíèòüÂÔàéëToolStripMenuItem, this->ñìåíèòüÓ÷åòíþÇàïèñüToolStripMenuItem, this->âûõîäToolStripMenuItem
+					this->îòêðûòüToolStripMenuItem, this->ñîõðàíèòüToolStripMenuItem, this->ñîõðàíèòüÂÔàéëToolStripMenuItem, this->ñìåíèòüÓ÷åòíþÇàïèñüToolStripMenuItem,
+					this->âûõîäToolStripMenuItem
 			});
 			this->ôàéëToolStripMenuItem->Name = L"ôàéëToolStripMenuItem";
 			this->ôàéëToolStripMenuItem->Size = System::Drawing::Size(48, 20);
@@ -191,6 +200,7 @@ namespace Base {
 			this->ñîçäàòüToolStripMenuItem->Name = L"ñîçäàòüToolStripMenuItem";
 			this->ñîçäàòüToolStripMenuItem->Size = System::Drawing::Size(206, 22);
 			this->ñîçäàòüToolStripMenuItem->Text = L"Ñîçäàòü";
+			this->ñîçäàòüToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainFrame::ñîçäàòüToolStripMenuItem_Click);
 			// 
 			// îòêðûòüToolStripMenuItem
 			// 
@@ -199,11 +209,17 @@ namespace Base {
 			this->îòêðûòüToolStripMenuItem->Text = L"Îòêðûòü";
 			this->îòêðûòüToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainFrame::îòêðûòüToolStripMenuItem_Click);
 			// 
+			// ñîõðàíèòüToolStripMenuItem
+			// 
+			this->ñîõðàíèòüToolStripMenuItem->Name = L"ñîõðàíèòüToolStripMenuItem";
+			this->ñîõðàíèòüToolStripMenuItem->Size = System::Drawing::Size(206, 22);
+			this->ñîõðàíèòüToolStripMenuItem->Text = L"Ñîõðàíèòü";
+			// 
 			// ñîõðàíèòüÂÔàéëToolStripMenuItem
 			// 
 			this->ñîõðàíèòüÂÔàéëToolStripMenuItem->Name = L"ñîõðàíèòüÂÔàéëToolStripMenuItem";
 			this->ñîõðàíèòüÂÔàéëToolStripMenuItem->Size = System::Drawing::Size(206, 22);
-			this->ñîõðàíèòüÂÔàéëToolStripMenuItem->Text = L"Ñîõðàíèòü â ôàéë";
+			this->ñîõðàíèòüÂÔàéëToolStripMenuItem->Text = L"Ñîõðàíèòü êàê";
 			// 
 			// ñìåíèòüÓ÷åòíþÇàïèñüToolStripMenuItem
 			// 
@@ -348,6 +364,8 @@ namespace Base {
 
 		}
 #pragma endregion
+
+		String ^NameOfFile;																							// Èìÿ ôàéëà
 	
 private: System::Void ñìåíèòüÓ÷åòíþÇàïèñüToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 	Access ^changeAccount = gcnew Access;
@@ -366,24 +384,68 @@ private: System::Void äîáàâòüÇàïèñüToolStripMenuItem_Click(System::Object^  send
 }
 private: System::Void îòêðûòüToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 
-	OpenFileDialog ^openedFile = gcnew OpenFileDialog;
-	openedFile->Filter = "Text files(*.txt)|* txt|All files(*.*)|*.*";
+	if(dataGridView1->RowCount > 1){
+		if (MessageBox::Show("Âû âåðåíû, ÷òî õîòèòå çàêðûòü òåêóùåå ðàñïèñàíèå?", "Base",
+			MessageBoxButtons::YesNo, MessageBoxIcon::Warning) == System::Windows::Forms::DialogResult::Yes) {
+			
+			OpenFileDialog ^openedFile = gcnew OpenFileDialog;
+			openedFile->Filter = "Text files(*.txt)|* txt|All files(*.*)|*.*";
 
-	if (openedFile->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
-		String ^fileName = openedFile->FileName;
-		StreamReader ^rd = gcnew StreamReader(fileName);
+			if (openedFile->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
+				dataGridView1->Rows->Clear();
 
-		String ^row;
+				NameOfFile = openedFile->FileName;
+				StreamReader ^tempFile = gcnew StreamReader(NameOfFile);
 
-		try	{
-			while (rd->Peek() >= 0) {
-				row = rd->ReadLine();
-				array <String^>^ cells = row->Split(' ');
+				String ^row;
 
-				dataGridView1->Rows->Add(cells);
+				try {
+					while (tempFile->Peek() >= 0) {
+						row = tempFile->ReadLine();
+						array <String^>^ cells = row->Split(' ');
+
+						dataGridView1->Rows->Add(cells);
+					}
+				}
+				catch (...) {}
 			}
 		}
-		catch (...){   }
+	}
+	else {
+		OpenFileDialog ^openedFile = gcnew OpenFileDialog;
+		openedFile->Filter = "Text files(*.txt)|* txt|All files(*.*)|*.*";
+
+		if (openedFile->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
+			dataGridView1->Rows->Clear();
+
+			NameOfFile = openedFile->FileName;
+			StreamReader ^tempFile = gcnew StreamReader(NameOfFile);
+
+			String ^row;
+
+			try {
+				while (tempFile->Peek() >= 0) {
+					row = tempFile->ReadLine();
+					array <String^>^ cells = row->Split(' ');
+
+					dataGridView1->Rows->Add(cells);
+				}
+			}
+			catch (...) {}
+
+			tempFile->Close();
+		}
+
+	}
+}
+private: System::Void ñîçäàòüToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	SaveFileDialog ^creatingFile = gcnew SaveFileDialog;
+	creatingFile->Filter = "Text files(*.txt) | *txt";
+
+	if (creatingFile->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
+		NameOfFile = creatingFile->FileName;
+		FileStream ^newFile = File::Create(NameOfFile);
+		newFile->Close();
 	}
 }
 };
