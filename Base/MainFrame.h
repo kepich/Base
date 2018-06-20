@@ -206,6 +206,7 @@ namespace Base {
 			this->ñîõðàíèòüToolStripMenuItem->Name = L"ñîõðàíèòüToolStripMenuItem";
 			this->ñîõðàíèòüToolStripMenuItem->Size = System::Drawing::Size(206, 22);
 			this->ñîõðàíèòüToolStripMenuItem->Text = L"Ñîõðàíèòü";
+			this->ñîõðàíèòüToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainFrame::ñîõðàíèòüToolStripMenuItem_Click);
 			// 
 			// ñîõðàíèòüÂÔàéëToolStripMenuItem
 			// 
@@ -450,6 +451,21 @@ private: System::Void ñîçäàòüToolStripMenuItem_Click(System::Object^  sender, Sy
 			newFile->Close();
 		}
 	}
+}
+private: System::Void ñîõðàíèòüToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+
+	FileStream ^RewritedFile = File::Create(NameOfFile);
+	RewritedFile->Close();
+	StreamWriter ^Writer = gcnew StreamWriter(NameOfFile);
+
+	for (int i = 0; i < dataGridView1->RowCount; i++) {
+		for (int j = 0; j < 5; j++) {
+			Writer->Write(dataGridView1->Rows[i]->Cells[j]->Value);
+			Writer->Write(" ");
+		}
+		Writer->WriteLine();
+	}
+	Writer->Close();
 }
 };
 }
