@@ -11,6 +11,12 @@ void Main(array<String^>^ args) {
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
 	Base::MainFrame form;
-	Application::Run(%form);
+//	try {
+		Application::Run(%form);
+/*	}
+	catch (...) {
+
+	}*/
+	
 		
 }

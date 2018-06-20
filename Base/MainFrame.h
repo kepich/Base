@@ -26,7 +26,8 @@ namespace Base {
 
 			Access ^access_Window = gcnew Access;
 			Hide();
-			access_Window->ShowDialog();
+			/*			if(*/access_Window->ShowDialog();/* == System::Windows::Forms::DialogResult::Cancel)*/
+//				MainFrame::Close();
 		}
 
 	protected:
@@ -227,6 +228,7 @@ namespace Base {
 			this->âûõîäToolStripMenuItem->Name = L"âûõîäToolStripMenuItem";
 			this->âûõîäToolStripMenuItem->Size = System::Drawing::Size(206, 22);
 			this->âûõîäToolStripMenuItem->Text = L"Âûõîä";
+			this->âûõîäToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainFrame::âûõîäToolStripMenuItem_Click);
 			// 
 			// çàïğîñToolStripMenuItem
 			// 
@@ -487,6 +489,9 @@ private: System::Void ñîõğàíèòüÂÔàéëToolStripMenuItem_Click(System::Object^  sen
 		}
 		Writer->Close();
 	}
+}
+private: System::Void âûõîäToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	MainFrame::Close();
 }
 };
 }
