@@ -12,5 +12,4 @@ void Main(array<String^>^ args) {
 	Application::SetCompatibleTextRenderingDefault(false);
 	Base::MainFrame form;
 	Application::Run(%form);
-		
 }
