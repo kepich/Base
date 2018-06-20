@@ -213,6 +213,7 @@ namespace Base {
 			this->ñîõðàíèòüÂÔàéëToolStripMenuItem->Name = L"ñîõðàíèòüÂÔàéëToolStripMenuItem";
 			this->ñîõðàíèòüÂÔàéëToolStripMenuItem->Size = System::Drawing::Size(206, 22);
 			this->ñîõðàíèòüÂÔàéëToolStripMenuItem->Text = L"Ñîõðàíèòü êàê";
+			this->ñîõðàíèòüÂÔàéëToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainFrame::ñîõðàíèòüÂÔàéëToolStripMenuItem_Click);
 			// 
 			// ñìåíèòüÓ÷åòíþÇàïèñüToolStripMenuItem
 			// 
@@ -458,7 +459,7 @@ private: System::Void ñîõðàíèòüToolStripMenuItem_Click(System::Object^  sender, 
 	RewritedFile->Close();
 	StreamWriter ^Writer = gcnew StreamWriter(NameOfFile);
 
-	for (int i = 0; i < dataGridView1->RowCount; i++) {
+	for (int i = 0; i < dataGridView1->RowCount - 1; i++) {
 		for (int j = 0; j < 5; j++) {
 			Writer->Write(dataGridView1->Rows[i]->Cells[j]->Value);
 			Writer->Write(" ");
@@ -466,6 +467,26 @@ private: System::Void ñîõðàíèòüToolStripMenuItem_Click(System::Object^  sender, 
 		Writer->WriteLine();
 	}
 	Writer->Close();
+}
+private: System::Void ñîõðàíèòüÂÔàéëToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	SaveFileDialog ^creatingFile = gcnew SaveFileDialog;
+	creatingFile->Filter = "Text files(*.txt) | *txt";
+
+	if (creatingFile->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
+		NameOfFile = creatingFile->FileName;
+		FileStream ^RewritedFile = File::Create(NameOfFile);
+		RewritedFile->Close();
+		StreamWriter ^Writer = gcnew StreamWriter(NameOfFile);
+
+		for (int i = 0; i < dataGridView1->RowCount - 1; i++) {
+			for (int j = 0; j < 5; j++) {
+				Writer->Write(dataGridView1->Rows[i]->Cells[j]->Value);
+				Writer->Write(" ");
+			}
+			Writer->WriteLine();
+		}
+		Writer->Close();
+	}
 }
 };
 }
