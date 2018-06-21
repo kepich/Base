@@ -64,7 +64,7 @@ namespace Base {
 	private: System::Windows::Forms::ToolStripMenuItem^  îÏğîãğàììåToolStripMenuItem1;
 	private: System::Windows::Forms::ToolStripMenuItem^  äîáàâòüÇàïèñüToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  ğåäàêòèğîâàòüToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^  ñáğîñèòüÇàïğîñToolStripMenuItem;
+
 	private: System::Windows::Forms::Label^  TypeOfAccount;
 	private: System::Windows::Forms::Label^  User;
 	private: System::Windows::Forms::Label^  label1;
@@ -101,7 +101,6 @@ namespace Base {
 			this->âûõîäToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->çàïğîñToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->ñîçäàòüÇàïğîñToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->ñáğîñèòüÇàïğîñToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->ğåäàêòèğîâàíèåToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->äîáàâòüÇàïèñüToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->ğåäàêòèğîâàòüToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -232,10 +231,7 @@ namespace Base {
 			// 
 			// çàïğîñToolStripMenuItem
 			// 
-			this->çàïğîñToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
-				this->ñîçäàòüÇàïğîñToolStripMenuItem,
-					this->ñáğîñèòüÇàïğîñToolStripMenuItem
-			});
+			this->çàïğîñToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->ñîçäàòüÇàïğîñToolStripMenuItem });
 			this->çàïğîñToolStripMenuItem->Name = L"çàïğîñToolStripMenuItem";
 			this->çàïğîñToolStripMenuItem->Size = System::Drawing::Size(59, 20);
 			this->çàïğîñToolStripMenuItem->Text = L"Çàïğîñ";
@@ -243,15 +239,9 @@ namespace Base {
 			// ñîçäàòüÇàïğîñToolStripMenuItem
 			// 
 			this->ñîçäàòüÇàïğîñToolStripMenuItem->Name = L"ñîçäàòüÇàïğîñToolStripMenuItem";
-			this->ñîçäàòüÇàïğîñToolStripMenuItem->Size = System::Drawing::Size(168, 22);
+			this->ñîçäàòüÇàïğîñToolStripMenuItem->Size = System::Drawing::Size(158, 22);
 			this->ñîçäàòüÇàïğîñToolStripMenuItem->Text = L"Ñîçäàòü çàïğîñ";
 			this->ñîçäàòüÇàïğîñToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainFrame::ñîçäàòüÇàïğîñToolStripMenuItem_Click);
-			// 
-			// ñáğîñèòüÇàïğîñToolStripMenuItem
-			// 
-			this->ñáğîñèòüÇàïğîñToolStripMenuItem->Name = L"ñáğîñèòüÇàïğîñToolStripMenuItem";
-			this->ñáğîñèòüÇàïğîñToolStripMenuItem->Size = System::Drawing::Size(168, 22);
-			this->ñáğîñèòüÇàïğîñToolStripMenuItem->Text = L"Ñáğîñèòü çàïğîñ";
 			// 
 			// ğåäàêòèğîâàíèåToolStripMenuItem
 			// 
@@ -266,20 +256,20 @@ namespace Base {
 			// äîáàâòüÇàïèñüToolStripMenuItem
 			// 
 			this->äîáàâòüÇàïèñüToolStripMenuItem->Name = L"äîáàâòüÇàïèñüToolStripMenuItem";
-			this->äîáàâòüÇàïèñüToolStripMenuItem->Size = System::Drawing::Size(159, 22);
-			this->äîáàâòüÇàïèñüToolStripMenuItem->Text = L"Äîáàâòü çàïèñü";
+			this->äîáàâòüÇàïèñüToolStripMenuItem->Size = System::Drawing::Size(166, 22);
+			this->äîáàâòüÇàïèñüToolStripMenuItem->Text = L"Äîáàâèòü çàïèñü";
 			this->äîáàâòüÇàïèñüToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainFrame::äîáàâòüÇàïèñüToolStripMenuItem_Click);
 			// 
 			// ğåäàêòèğîâàòüToolStripMenuItem
 			// 
 			this->ğåäàêòèğîâàòüToolStripMenuItem->Name = L"ğåäàêòèğîâàòüToolStripMenuItem";
-			this->ğåäàêòèğîâàòüToolStripMenuItem->Size = System::Drawing::Size(159, 22);
+			this->ğåäàêòèğîâàòüToolStripMenuItem->Size = System::Drawing::Size(166, 22);
 			this->ğåäàêòèğîâàòüToolStripMenuItem->Text = L"Ğåäàêòèğîâàòü";
 			// 
 			// óäàëèòüToolStripMenuItem
 			// 
 			this->óäàëèòüToolStripMenuItem->Name = L"óäàëèòüToolStripMenuItem";
-			this->óäàëèòüToolStripMenuItem->Size = System::Drawing::Size(159, 22);
+			this->óäàëèòüToolStripMenuItem->Size = System::Drawing::Size(166, 22);
 			this->óäàëèòüToolStripMenuItem->Text = L"Óäàëèòü";
 			// 
 			// èãğàToolStripMenuItem
@@ -292,7 +282,7 @@ namespace Base {
 			// èãğàòüToolStripMenuItem
 			// 
 			this->èãğàòüToolStripMenuItem->Name = L"èãğàòüToolStripMenuItem";
-			this->èãğàòüToolStripMenuItem->Size = System::Drawing::Size(112, 22);
+			this->èãğàòüToolStripMenuItem->Size = System::Drawing::Size(152, 22);
 			this->èãğàòüToolStripMenuItem->Text = L"Èãğàòü";
 			// 
 			// îÏğîãğàììåToolStripMenuItem
@@ -305,7 +295,7 @@ namespace Base {
 			// îÏğîãğàììåToolStripMenuItem1
 			// 
 			this->îÏğîãğàììåToolStripMenuItem1->Name = L"îÏğîãğàììåToolStripMenuItem1";
-			this->îÏğîãğàììåToolStripMenuItem1->Size = System::Drawing::Size(149, 22);
+			this->îÏğîãğàììåToolStripMenuItem1->Size = System::Drawing::Size(152, 22);
 			this->îÏğîãğàììåToolStripMenuItem1->Text = L"Î ïğîãğàììå";
 			// 
 			// TypeOfAccount

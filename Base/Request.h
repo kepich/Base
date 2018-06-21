@@ -8,6 +8,7 @@ namespace Base {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::IO;
 
 	/// <summary>
 	/// Сводка для Request
@@ -20,6 +21,16 @@ namespace Base {
 			InitializeComponent();
 
 			this->nameOfFile = NameOfFile_Old;
+
+			StreamReader ^tempFile = gcnew StreamReader(nameOfFile);
+
+			try {
+				while (tempFile->Peek() >= 0) {
+					array <String^>^ cells = (tempFile->ReadLine())->Split(' ');
+					dataGridView1->Rows->Add(cells);
+				}
+			}
+			catch (...) {}
 			
 			//
 			//TODO: добавьте код конструктора
@@ -66,7 +77,8 @@ namespace Base {
 	private: System::Windows::Forms::CheckBox^  checkBox5_Address;
 	private: System::Windows::Forms::MaskedTextBox^  maskedTextBox1_Phone;
 	private: System::Windows::Forms::MaskedTextBox^  maskedTextBox2_Year;
-	private: System::Windows::Forms::ListBox^  listBox1;
+	private: System::Windows::Forms::ComboBox^  comboBox1;
+
 
 
 
@@ -114,7 +126,7 @@ namespace Base {
 			this->checkBox5_Address = (gcnew System::Windows::Forms::CheckBox());
 			this->maskedTextBox1_Phone = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->maskedTextBox2_Year = (gcnew System::Windows::Forms::MaskedTextBox());
-			this->listBox1 = (gcnew System::Windows::Forms::ListBox());
+			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -215,6 +227,7 @@ namespace Base {
 			this->CreateRequest->TabIndex = 2;
 			this->CreateRequest->Text = L"Выполнить запрос";
 			this->CreateRequest->UseVisualStyleBackColor = true;
+			this->CreateRequest->Click += gcnew System::EventHandler(this, &Request::CreateRequest_Click);
 			// 
 			// dataGridView1
 			// 
@@ -272,6 +285,7 @@ namespace Base {
 			this->ResetRequest->TabIndex = 2;
 			this->ResetRequest->Text = L"Сбросить запрос";
 			this->ResetRequest->UseVisualStyleBackColor = true;
+			this->ResetRequest->Click += gcnew System::EventHandler(this, &Request::ResetRequest_Click);
 			// 
 			// checkBox1_FIO
 			// 
@@ -342,26 +356,22 @@ namespace Base {
 			this->maskedTextBox2_Year->TabIndex = 5;
 			this->maskedTextBox2_Year->ValidatingType = System::DateTime::typeid;
 			// 
-			// listBox1
+			// comboBox1
 			// 
-			this->listBox1->Enabled = false;
-			this->listBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->listBox1->FormattingEnabled = true;
-			this->listBox1->IntegralHeight = false;
-			this->listBox1->ItemHeight = 15;
-			this->listBox1->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"НАЛ", L"КАРТА" });
-			this->listBox1->Location = System::Drawing::Point(389, 65);
-			this->listBox1->Name = L"listBox1";
-			this->listBox1->Size = System::Drawing::Size(58, 20);
-			this->listBox1->TabIndex = 7;
+			this->comboBox1->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->comboBox1->FormattingEnabled = true;
+			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"NAL", L"CAR" });
+			this->comboBox1->Location = System::Drawing::Point(389, 65);
+			this->comboBox1->Name = L"comboBox1";
+			this->comboBox1->Size = System::Drawing::Size(57, 21);
+			this->comboBox1->TabIndex = 6;
 			// 
 			// Request
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(657, 476);
-			this->Controls->Add(this->listBox1);
+			this->Controls->Add(this->comboBox1);
 			this->Controls->Add(this->maskedTextBox2_Year);
 			this->Controls->Add(this->maskedTextBox1_Phone);
 			this->Controls->Add(this->checkBox5_Address);
@@ -404,12 +414,79 @@ private: System::Void checkBox3_Year_CheckedChanged(System::Object^  sender, Sys
 	else maskedTextBox2_Year->Enabled = false;
 }
 private: System::Void checkBox4_Type_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
-	if (checkBox4_Type->Checked) listBox1->Enabled = true;
-	else listBox1->Enabled = false;
+	if (checkBox4_Type->Checked) comboBox1->Enabled = true;
+	else comboBox1->Enabled = false;
 }
 private: System::Void checkBox5_Address_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
 	if (checkBox5_Address->Checked) Address->Enabled = true;
 	else Address->Enabled = false;
+}
+private: System::Void CreateRequest_Click(System::Object^  sender, System::EventArgs^  e) {
+	StreamReader ^tempFile = gcnew StreamReader(nameOfFile);
+	dataGridView1->Rows->Clear();
+
+	try {
+		while (tempFile->Peek() >= 0) {
+			array <String^>^ cells = (tempFile->ReadLine())->Split(' ');
+
+//Реализация запроса******************************************************
+
+			int isRight = 1;
+
+			if (checkBox1_FIO->Checked) {
+				if (FullName->Text->CompareTo(cells[0])) {
+					isRight = 0;
+					continue;
+				}
+			}
+
+			if (checkBox2_Phone->Checked) {
+				if (maskedTextBox1_Phone->Text->CompareTo(cells[1])) {
+					isRight = 0;
+					continue;
+				}
+			}
+
+			if (checkBox3_Year->Checked) {
+				if (maskedTextBox2_Year->Text->CompareTo(cells[2])) {
+					isRight = 0;
+					continue;
+				}
+			}
+
+			if (checkBox4_Type->Checked) {													// Проблемы с combobox ом
+				if ((comboBox1->SelectedItem->ToString())->CompareTo(cells[3])) {
+					isRight = 0;
+					continue;
+				}
+			}
+
+			if (checkBox5_Address->Checked) {
+				if (Address->Text->CompareTo(cells[4])) {
+					isRight = 0;
+					continue;
+				}
+			}
+
+			if (isRight) dataGridView1->Rows->Add(cells);
+//************************************************************************
+
+		}
+	}
+	catch(...){}
+
+}
+private: System::Void ResetRequest_Click(System::Object^  sender, System::EventArgs^  e) {
+	dataGridView1->Rows->Clear();
+
+	StreamReader ^tempFile = gcnew StreamReader(nameOfFile);
+	try {
+		while (tempFile->Peek() >= 0) {
+			array <String^>^ cells = (tempFile->ReadLine())->Split(' ');
+			dataGridView1->Rows->Add(cells);
+		}
+	}
+	catch (...) {}
 }
 };
 }
