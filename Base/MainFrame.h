@@ -3,6 +3,7 @@
 #include "Access.h"
 #include "Request.h"
 #include "AddingForm.h"
+#include "EditingForm.h"
 
 namespace Base {
 
@@ -124,9 +125,11 @@ namespace Base {
 				this->fio, this->PhoneNumber,
 					this->Year, this->TypeOfPaying, this->Adress
 			});
+			this->dataGridView1->ImeMode = System::Windows::Forms::ImeMode::NoControl;
 			this->dataGridView1->Location = System::Drawing::Point(24, 37);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->ReadOnly = true;
+			this->dataGridView1->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
 			this->dataGridView1->Size = System::Drawing::Size(595, 290);
 			this->dataGridView1->TabIndex = 0;
 			// 
@@ -265,6 +268,7 @@ namespace Base {
 			this->ğåäàêòèğîâàòüToolStripMenuItem->Name = L"ğåäàêòèğîâàòüToolStripMenuItem";
 			this->ğåäàêòèğîâàòüToolStripMenuItem->Size = System::Drawing::Size(166, 22);
 			this->ğåäàêòèğîâàòüToolStripMenuItem->Text = L"Ğåäàêòèğîâàòü";
+			this->ğåäàêòèğîâàòüToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainFrame::ğåäàêòèğîâàòüToolStripMenuItem_Click);
 			// 
 			// óäàëèòüToolStripMenuItem
 			// 
@@ -282,7 +286,7 @@ namespace Base {
 			// èãğàòüToolStripMenuItem
 			// 
 			this->èãğàòüToolStripMenuItem->Name = L"èãğàòüToolStripMenuItem";
-			this->èãğàòüToolStripMenuItem->Size = System::Drawing::Size(152, 22);
+			this->èãğàòüToolStripMenuItem->Size = System::Drawing::Size(112, 22);
 			this->èãğàòüToolStripMenuItem->Text = L"Èãğàòü";
 			// 
 			// îÏğîãğàììåToolStripMenuItem
@@ -295,7 +299,7 @@ namespace Base {
 			// îÏğîãğàììåToolStripMenuItem1
 			// 
 			this->îÏğîãğàììåToolStripMenuItem1->Name = L"îÏğîãğàììåToolStripMenuItem1";
-			this->îÏğîãğàììåToolStripMenuItem1->Size = System::Drawing::Size(152, 22);
+			this->îÏğîãğàììåToolStripMenuItem1->Size = System::Drawing::Size(149, 22);
 			this->îÏğîãğàììåToolStripMenuItem1->Text = L"Î ïğîãğàììå";
 			// 
 			// TypeOfAccount
@@ -369,7 +373,7 @@ private: System::Void äîáàâòüÇàïèñüToolStripMenuItem_Click(System::Object^  send
 	newLine->ShowDialog();
 
 	if (newLine->DialogResult == System::Windows::Forms::DialogResult::OK) {
-		dataGridView1->Rows->Add(newLine->returnData());
+		dataGridView1->Rows->Add((newLine->returnData())->Split(' '));
 	}
 }
 private: System::Void îòêğûòüToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -424,6 +428,8 @@ private: System::Void îòêğûòüToolStripMenuItem_Click(System::Object^  sender, Sy
 		}
 
 	}
+
+	this->Text = "MainFrame" + ": " + NameOfFile;
 }
 private: System::Void ñîçäàòüToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 	SaveFileDialog ^creatingFile = gcnew SaveFileDialog;
@@ -483,9 +489,33 @@ private: System::Void ñîõğàíèòüÂÔàéëToolStripMenuItem_Click(System::Object^  sen
 		}
 		Writer->Close();
 	}
+	this->Text = "MainFrame" + ": " + NameOfFile;
 }
 private: System::Void âûõîäToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 	MainFrame::Close();
+}
+private: System::Void ğåäàêòèğîâàòüToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	array <String^>^ EditedRow;
+
+	EditedRow[0] = (dataGridView1->Rows[dataGridView1->CurrentCell->RowIndex]->Cells[0]->Value)->ToString();
+	EditedRow[1] = (dataGridView1->Rows[dataGridView1->CurrentCell->RowIndex]->Cells[1]->Value)->ToString();
+	EditedRow[2] = (dataGridView1->Rows[dataGridView1->CurrentCell->RowIndex]->Cells[2]->Value)->ToString();
+	EditedRow[3] = (dataGridView1->Rows[dataGridView1->CurrentCell->RowIndex]->Cells[3]->Value)->ToString();
+	EditedRow[4] = (dataGridView1->Rows[dataGridView1->CurrentCell->RowIndex]->Cells[4]->Value)->ToString();
+
+	EditingForm ^edit = gcnew EditingForm(EditedRow);
+	edit->ShowDialog();
+
+	if (edit->DialogResult == System::Windows::Forms::DialogResult::OK) {
+		EditedRow = edit->returnData();
+	}
+
+	dataGridView1->Rows[dataGridView1->CurrentCell->RowIndex]->Cells[0]->Value = EditedRow[0];
+	dataGridView1->Rows[dataGridView1->CurrentCell->RowIndex]->Cells[1]->Value = EditedRow[1];
+	dataGridView1->Rows[dataGridView1->CurrentCell->RowIndex]->Cells[2]->Value = EditedRow[2];
+	dataGridView1->Rows[dataGridView1->CurrentCell->RowIndex]->Cells[3]->Value = EditedRow[3];
+	dataGridView1->Rows[dataGridView1->CurrentCell->RowIndex]->Cells[4]->Value = EditedRow[4];
+
 }
 };
 }
