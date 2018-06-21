@@ -41,7 +41,7 @@ namespace Base {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::DataGridView^  dataGridView1;
+	public: System::Windows::Forms::DataGridView^  dataGridView1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  fio;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  PhoneNumber;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Year;
@@ -351,7 +351,7 @@ namespace Base {
 		}
 #pragma endregion
 
-	String ^NameOfFile;																							// Èìÿ ôàéëà
+public:	String ^NameOfFile;																							// Èìÿ ôàéëà
 	
 private: System::Void ñìåíèòüÓ÷åòíşÇàïèñüToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 	Access ^changeAccount = gcnew Access;
@@ -362,12 +362,15 @@ private: System::Void ñìåíèòüÓ÷åòíşÇàïèñüToolStripMenuItem_Click(System::Object^
 private: System::Void ñîçäàòüÇàïğîñToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 
 	Request ^newRequest = gcnew Request(NameOfFile);
-	newRequest->Owner = this;
 	newRequest->ShowDialog();
 }
 private: System::Void äîáàâòüÇàïèñüToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-	AddingForm ^addNew = gcnew AddingForm;
-	addNew->ShowDialog();
+	AddingForm ^newLine = gcnew AddingForm();
+	newLine->ShowDialog();
+
+	if (newLine->DialogResult == System::Windows::Forms::DialogResult::OK) {
+		dataGridView1->Rows->Add(newLine->returnData());
+	}
 }
 private: System::Void îòêğûòüToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 	OpenFileDialog ^openedFile = gcnew OpenFileDialog;

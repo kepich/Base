@@ -15,13 +15,16 @@ namespace Base {
 	public ref class AddingForm : public System::Windows::Forms::Form
 	{
 	public:
-		AddingForm(void)
+		AddingForm()
 		{
 			InitializeComponent();
 			//
 			//TODO: добавьте код конструктора
 			//
 		}
+	public: String^ returnData() {
+		return newLine;
+	}
 
 	protected:
 		/// <summary>
@@ -36,10 +39,9 @@ namespace Base {
 		}
 	private: System::Windows::Forms::Label^  Info;
 	private: System::Windows::Forms::Button^  AddNew;
-
-	private: System::Windows::Forms::TextBox^  PaymentType;
-	private: System::Windows::Forms::TextBox^  Year;
-	private: System::Windows::Forms::TextBox^  Phone;
+	private: System::Windows::Forms::ComboBox^  comboBox1;
+	private: System::Windows::Forms::MaskedTextBox^  maskedTextBox2_Year;
+	private: System::Windows::Forms::MaskedTextBox^  maskedTextBox1_Phone;
 	private: System::Windows::Forms::TextBox^  Address;
 	private: System::Windows::Forms::TextBox^  FullName;
 	private: System::Windows::Forms::Label^  label6;
@@ -48,9 +50,6 @@ namespace Base {
 	private: System::Windows::Forms::Label^  label3;
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::Label^  label1;
-	protected:
-
-	protected:
 
 	private:
 		/// <summary>
@@ -67,9 +66,9 @@ namespace Base {
 		{
 			this->Info = (gcnew System::Windows::Forms::Label());
 			this->AddNew = (gcnew System::Windows::Forms::Button());
-			this->PaymentType = (gcnew System::Windows::Forms::TextBox());
-			this->Year = (gcnew System::Windows::Forms::TextBox());
-			this->Phone = (gcnew System::Windows::Forms::TextBox());
+			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
+			this->maskedTextBox2_Year = (gcnew System::Windows::Forms::MaskedTextBox());
+			this->maskedTextBox1_Phone = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->Address = (gcnew System::Windows::Forms::TextBox());
 			this->FullName = (gcnew System::Windows::Forms::TextBox());
 			this->label6 = (gcnew System::Windows::Forms::Label());
@@ -97,94 +96,101 @@ namespace Base {
 			this->AddNew->TabIndex = 15;
 			this->AddNew->Text = L"Добавить запись";
 			this->AddNew->UseVisualStyleBackColor = true;
+			this->AddNew->Click += gcnew System::EventHandler(this, &AddingForm::AddNew_Click);
 			// 
-			// PaymentType
+			// comboBox1
 			// 
-			this->PaymentType->Location = System::Drawing::Point(391, 50);
-			this->PaymentType->Name = L"PaymentType";
-			this->PaymentType->Size = System::Drawing::Size(57, 20);
-			this->PaymentType->TabIndex = 10;
+			this->comboBox1->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->comboBox1->FormattingEnabled = true;
+			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"NAL", L"CAR" });
+			this->comboBox1->Location = System::Drawing::Point(391, 47);
+			this->comboBox1->Name = L"comboBox1";
+			this->comboBox1->Size = System::Drawing::Size(57, 21);
+			this->comboBox1->TabIndex = 26;
 			// 
-			// Year
+			// maskedTextBox2_Year
 			// 
-			this->Year->Location = System::Drawing::Point(328, 50);
-			this->Year->Name = L"Year";
-			this->Year->Size = System::Drawing::Size(57, 20);
-			this->Year->TabIndex = 11;
+			this->maskedTextBox2_Year->Location = System::Drawing::Point(328, 47);
+			this->maskedTextBox2_Year->Mask = L"9999";
+			this->maskedTextBox2_Year->Name = L"maskedTextBox2_Year";
+			this->maskedTextBox2_Year->Size = System::Drawing::Size(57, 20);
+			this->maskedTextBox2_Year->TabIndex = 24;
+			this->maskedTextBox2_Year->ValidatingType = System::DateTime::typeid;
 			// 
-			// Phone
+			// maskedTextBox1_Phone
 			// 
-			this->Phone->Location = System::Drawing::Point(209, 50);
-			this->Phone->Name = L"Phone";
-			this->Phone->Size = System::Drawing::Size(113, 20);
-			this->Phone->TabIndex = 12;
+			this->maskedTextBox1_Phone->Location = System::Drawing::Point(209, 47);
+			this->maskedTextBox1_Phone->Mask = L"(99)-99-99";
+			this->maskedTextBox1_Phone->Name = L"maskedTextBox1_Phone";
+			this->maskedTextBox1_Phone->Size = System::Drawing::Size(113, 20);
+			this->maskedTextBox1_Phone->TabIndex = 25;
 			// 
 			// Address
 			// 
-			this->Address->Location = System::Drawing::Point(454, 50);
+			this->Address->Location = System::Drawing::Point(454, 47);
 			this->Address->Name = L"Address";
 			this->Address->Size = System::Drawing::Size(175, 20);
-			this->Address->TabIndex = 13;
+			this->Address->TabIndex = 22;
 			// 
 			// FullName
 			// 
-			this->FullName->Location = System::Drawing::Point(28, 50);
+			this->FullName->Location = System::Drawing::Point(28, 47);
 			this->FullName->Name = L"FullName";
 			this->FullName->Size = System::Drawing::Size(175, 20);
-			this->FullName->TabIndex = 14;
+			this->FullName->TabIndex = 23;
 			// 
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(451, 34);
+			this->label6->Location = System::Drawing::Point(451, 31);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(95, 13);
-			this->label6->TabIndex = 3;
+			this->label6->TabIndex = 16;
 			this->label6->Text = L"Домашний адрес";
 			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(388, 34);
+			this->label4->Location = System::Drawing::Point(388, 31);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(66, 13);
-			this->label4->TabIndex = 4;
+			this->label4->TabIndex = 17;
 			this->label4->Text = L"Тип оплаты";
 			// 
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(325, 34);
+			this->label5->Location = System::Drawing::Point(325, 31);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(25, 13);
-			this->label5->TabIndex = 5;
+			this->label5->TabIndex = 18;
 			this->label5->Text = L"Год";
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(325, 34);
+			this->label3->Location = System::Drawing::Point(325, 31);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(25, 13);
-			this->label3->TabIndex = 6;
+			this->label3->TabIndex = 19;
 			this->label3->Text = L"Год";
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(206, 34);
+			this->label2->Location = System::Drawing::Point(206, 31);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(107, 13);
-			this->label2->TabIndex = 7;
+			this->label2->TabIndex = 20;
 			this->label2->Text = L"Телефонный номер";
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(25, 34);
+			this->label1->Location = System::Drawing::Point(25, 31);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(34, 13);
-			this->label1->TabIndex = 8;
+			this->label1->TabIndex = 21;
 			this->label1->Text = L"ФИО";
 			// 
 			// AddingForm
@@ -192,10 +198,9 @@ namespace Base {
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(656, 127);
-			this->Controls->Add(this->AddNew);
-			this->Controls->Add(this->PaymentType);
-			this->Controls->Add(this->Year);
-			this->Controls->Add(this->Phone);
+			this->Controls->Add(this->comboBox1);
+			this->Controls->Add(this->maskedTextBox2_Year);
+			this->Controls->Add(this->maskedTextBox1_Phone);
 			this->Controls->Add(this->Address);
 			this->Controls->Add(this->FullName);
 			this->Controls->Add(this->label6);
@@ -204,6 +209,7 @@ namespace Base {
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
+			this->Controls->Add(this->AddNew);
 			this->Controls->Add(this->Info);
 			this->Name = L"AddingForm";
 			this->Text = L"Добавление новой записи";
@@ -212,6 +218,11 @@ namespace Base {
 
 		}
 #pragma endregion
+	String ^newLine;
 
+private: System::Void AddNew_Click(System::Object^  sender, System::EventArgs^  e) {
+	newLine = FullName->Text + " " + maskedTextBox1_Phone->Text + " " + maskedTextBox2_Year->Text + " " + comboBox1->SelectedItem->ToString() + " " + Address->Text + "\n";
+	this->DialogResult = System::Windows::Forms::DialogResult::OK;
+}
 };
 }

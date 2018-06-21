@@ -1,5 +1,6 @@
 #include "Access.h"
 #include "MainFrame.h"
+#include "AddingForm.h"
 
 using namespace System;
 using namespace System::Windows::Forms;
@@ -16,6 +17,4 @@ void Main(array<String^>^ args) {
 	catch (...) {
 
 	}*/
-	
-		
 }

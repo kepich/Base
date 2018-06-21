@@ -1,7 +1,5 @@
 #pragma once
 
-#include <iostream>
-
 namespace Base {
 
 	using namespace System;
@@ -145,7 +143,7 @@ namespace Base {
 			- 
 		*/
 	private: System::Void button_Access_Enter_Click(System::Object^  sender, System::EventArgs^  e) {
-		FILE *passwords = fopen("passw.dat", "r");
+
 	}
 };
 }
