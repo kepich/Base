@@ -21,7 +21,6 @@ namespace Base {
 		{
 			InitializeComponent();
 
-			
 			//
 			//TODO: добавьте код конструктора
 			//

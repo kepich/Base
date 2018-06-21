@@ -361,7 +361,7 @@ namespace Base {
 		}
 #pragma endregion
 
-		String ^NameOfFile;																							// »м€ файла
+	String ^NameOfFile;																							// »м€ файла
 	
 private: System::Void сменить”четню«аписьToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 	Access ^changeAccount = gcnew Access;
@@ -371,7 +371,8 @@ private: System::Void сменить”четню«аписьToolStripMenuItem_Click(System::Object^
 }
 private: System::Void создать«апросToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 
-	Request ^newRequest = gcnew Request;
+	Request ^newRequest = gcnew Request(NameOfFile);
+	newRequest->Owner = this;
 	newRequest->ShowDialog();
 }
 private: System::Void добавть«аписьToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
