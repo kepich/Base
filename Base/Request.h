@@ -88,7 +88,7 @@ namespace Base {
 	}
 	private: Void Changing_Type() {
 		if(checkBox4_Type->Checked)
-		if (comboBox1->Text->CompareTo("")) {
+		if (!comboBox1->Text->CompareTo("")) {
 			if (!Error->Text->CompareTo(""))
 				Error->Text = "Тип оплаты не выбран!";
 			CreateRequest->Enabled = false;
@@ -100,7 +100,7 @@ namespace Base {
 	}
 	private: Void Changing_Address(){
 		if(checkBox5_Address->Checked)
-		if (Address->Text->CompareTo("")) {
+		if (!Address->Text->CompareTo("")) {
 			if (!Error->Text->CompareTo(""))
 				Error->Text = "Поле \"Адрес\" не может быть пустым";
 			CreateRequest->Enabled = false;
@@ -495,8 +495,8 @@ private: System::Void checkBox1_FIO_CheckedChanged(System::Object^  sender, Syst
 
 		FullName->Enabled = false;
 		FullName->Text = "";
-		if(!(checkBox1_FIO->Enabled || checkBox2_Phone->Enabled || checkBox3_Year->Enabled ||
-			checkBox4_Type->Enabled || checkBox5_Address->Enabled))	FullName->Enabled = false;
+		if (!(checkBox1_FIO->Checked || checkBox2_Phone->Checked || checkBox3_Year->Checked ||
+			checkBox4_Type->Checked || checkBox5_Address->Checked)) CreateRequest->Enabled = false;
 	}
 }
 private: System::Void checkBox2_Phone_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
@@ -515,8 +515,8 @@ private: System::Void checkBox2_Phone_CheckedChanged(System::Object^  sender, Sy
 		maskedTextBox1_Phone->Enabled = false;
 		maskedTextBox1_Phone->Text = "";
 		
-		if (!(checkBox1_FIO->Enabled || checkBox2_Phone->Enabled || checkBox3_Year->Enabled ||
-			checkBox4_Type->Enabled || checkBox5_Address->Enabled))	FullName->Enabled = false;
+		if (!(checkBox1_FIO->Checked || checkBox2_Phone->Checked || checkBox3_Year->Checked ||
+			checkBox4_Type->Checked || checkBox5_Address->Checked)) CreateRequest->Enabled = false;
 	}
 }
 private: System::Void checkBox3_Year_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
@@ -535,8 +535,8 @@ private: System::Void checkBox3_Year_CheckedChanged(System::Object^  sender, Sys
 		maskedTextBox2_Year->Enabled = false;
 		maskedTextBox2_Year->Text = "";
 		
-		if (!(checkBox1_FIO->Enabled || checkBox2_Phone->Enabled || checkBox3_Year->Enabled ||
-			checkBox4_Type->Enabled || checkBox5_Address->Enabled))	FullName->Enabled = false;
+		if (!(checkBox1_FIO->Checked || checkBox2_Phone->Checked || checkBox3_Year->Checked ||
+			checkBox4_Type->Checked || checkBox5_Address->Checked)) CreateRequest->Enabled = false;
 	}
 }
 private: System::Void checkBox4_Type_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
@@ -555,8 +555,8 @@ private: System::Void checkBox4_Type_CheckedChanged(System::Object^  sender, Sys
 		comboBox1->Enabled = false;
 		comboBox1->Text = "";
 		
-		if (!(checkBox1_FIO->Enabled || checkBox2_Phone->Enabled || checkBox3_Year->Enabled ||
-			checkBox4_Type->Enabled || checkBox5_Address->Enabled))	FullName->Enabled = false;
+		if (!(checkBox1_FIO->Checked || checkBox2_Phone->Checked || checkBox3_Year->Checked ||
+			checkBox4_Type->Checked || checkBox5_Address->Checked)) CreateRequest->Enabled = false;
 	}
 }
 private: System::Void checkBox5_Address_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
@@ -575,8 +575,8 @@ private: System::Void checkBox5_Address_CheckedChanged(System::Object^  sender, 
 		Address->Enabled = false; 
 		Address->Text = "";
 		
-		if (!(checkBox1_FIO->Enabled || checkBox2_Phone->Enabled || checkBox3_Year->Enabled ||
-			checkBox4_Type->Enabled || checkBox5_Address->Enabled))	FullName->Enabled = false;
+		if (!(checkBox1_FIO->Checked || checkBox2_Phone->Checked || checkBox3_Year->Checked ||
+			checkBox4_Type->Checked || checkBox5_Address->Checked)) CreateRequest->Enabled = false;
 	}
 }
 
@@ -589,60 +589,62 @@ private: System::Void CreateRequest_Click(System::Object^  sender, System::Event
 		while (tempFile->Peek() >= 0) {
 			array <String^>^ cells = (tempFile->ReadLine())->Split(' ');
 
-			//Реализация запроса******************************************************
+			if (cells[0]->CompareTo("")) {
+				//Реализация запроса******************************************************
 
-			int isRight = 1;
+				int isRight = 1;
 
-			if (checkBox1_FIO->Checked) {
-				if (FullName->Text->CompareTo(cells[0])) {
-					isRight = 0;
-					continue;
+				if (checkBox1_FIO->Checked) {
+					if (FullName->Text->CompareTo(cells[0])) {
+						isRight = 0;
+						continue;
+					}
 				}
-			}
 
-			if (checkBox2_Phone->Checked) {
-				if (maskedTextBox1_Phone->Text->CompareTo(cells[1])) {
-					isRight = 0;
-					continue;
+				if (checkBox2_Phone->Checked) {
+					if (maskedTextBox1_Phone->Text->CompareTo(cells[1])) {
+						isRight = 0;
+						continue;
+					}
 				}
-			}
 
-			if (checkBox3_Year->Checked) {
-				if (maskedTextBox2_Year->Text->CompareTo(cells[2])) {
-					isRight = 0;
-					continue;
+				if (checkBox3_Year->Checked) {
+					if (maskedTextBox2_Year->Text->CompareTo(cells[2])) {
+						isRight = 0;
+						continue;
+					}
 				}
-			}
 
-			if (checkBox4_Type->Checked) {													// Проблемы с combobox ом
-				if ((comboBox1->SelectedItem->ToString())->CompareTo(cells[3])) {
-					isRight = 0;
-					continue;
+				if (checkBox4_Type->Checked) {													// Проблемы с combobox ом
+					if ((comboBox1->SelectedItem->ToString())->CompareTo(cells[3])) {
+						isRight = 0;
+						continue;
+					}
 				}
-			}
 
-			if (checkBox5_Address->Checked) {
-				if (Address->Text->CompareTo(cells[4])) {
-					isRight = 0;
-					continue;
+				if (checkBox5_Address->Checked) {
+					if (Address->Text->CompareTo(cells[4])) {
+						isRight = 0;
+						continue;
+					}
 				}
-			}
 
-			if (isRight) dataGridView1->Rows->Add(cells);
-			//************************************************************************
+				if (isRight) dataGridView1->Rows->Add(cells);
+				//************************************************************************
+			}
 	}
 }
 private: System::Void ResetRequest_Click(System::Object^  sender, System::EventArgs^  e) {
 	dataGridView1->Rows->Clear();
 
 	StreamReader ^tempFile = gcnew StreamReader(nameOfFile);
-	try {
-		while (tempFile->Peek() >= 0) {
-			array <String^>^ cells = (tempFile->ReadLine())->Split(' ');
+	while (tempFile->Peek() >= 0) {
+		array <String^>^ cells = (tempFile->ReadLine())->Split(' ','\0');
+		if (cells[0]->CompareTo("")) {
 			dataGridView1->Rows->Add(cells);
 		}
 	}
-	catch (...) {}
+
 }
 
 private: System::Void FullName_TextChanged(System::Object^  sender, System::EventArgs^  e) {
