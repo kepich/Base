@@ -483,6 +483,7 @@ namespace Base {
 private: System::Void checkBox1_FIO_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
 	if (checkBox1_FIO->Checked) {
 		FullName->Enabled =  true;
+		CreateRequest->Enabled = false;
 	}
 	else {
 		Error->Text = "";
@@ -501,6 +502,7 @@ private: System::Void checkBox1_FIO_CheckedChanged(System::Object^  sender, Syst
 private: System::Void checkBox2_Phone_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
 	if (checkBox2_Phone->Checked) {
 		maskedTextBox1_Phone->Enabled = true;
+		CreateRequest->Enabled = false;
 	}
 	else {
 		Error->Text = "";
@@ -520,6 +522,7 @@ private: System::Void checkBox2_Phone_CheckedChanged(System::Object^  sender, Sy
 private: System::Void checkBox3_Year_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
 	if (checkBox3_Year->Checked) {
 		maskedTextBox2_Year->Enabled = true;
+		CreateRequest->Enabled = false;
 	}
 	else {
 		Error->Text = "";
@@ -539,6 +542,7 @@ private: System::Void checkBox3_Year_CheckedChanged(System::Object^  sender, Sys
 private: System::Void checkBox4_Type_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
 	if (checkBox4_Type->Checked) {
 		comboBox1->Enabled = true;
+		CreateRequest->Enabled = false;
 	}
 	else {
 		Error->Text = "";
@@ -558,6 +562,7 @@ private: System::Void checkBox4_Type_CheckedChanged(System::Object^  sender, Sys
 private: System::Void checkBox5_Address_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
 	if (checkBox5_Address->Checked) {
 		Address->Enabled = true;
+		CreateRequest->Enabled = false;
 	}
 	else {
 		Error->Text = "";
