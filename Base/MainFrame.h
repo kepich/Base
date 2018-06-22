@@ -275,6 +275,7 @@ namespace Base {
 			this->óäàëèòüToolStripMenuItem->Name = L"óäàëèòüToolStripMenuItem";
 			this->óäàëèòüToolStripMenuItem->Size = System::Drawing::Size(166, 22);
 			this->óäàëèòüToolStripMenuItem->Text = L"Óäàëèòü";
+			this->óäàëèòüToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainFrame::óäàëèòüToolStripMenuItem_Click);
 			// 
 			// èãğàToolStripMenuItem
 			// 
@@ -495,27 +496,33 @@ private: System::Void âûõîäToolStripMenuItem_Click(System::Object^  sender, Syst
 	MainFrame::Close();
 }
 private: System::Void ğåäàêòèğîâàòüToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-	array <String^>^ EditedRow;
+	array <String^>^ tempRow = { (dataGridView1->Rows[dataGridView1->CurrentRow->Index]->Cells[0]->Value)->ToString(),
+								 (dataGridView1->Rows[dataGridView1->CurrentRow->Index]->Cells[1]->Value)->ToString(),
+								 (dataGridView1->Rows[dataGridView1->CurrentRow->Index]->Cells[2]->Value)->ToString(),
+								 (dataGridView1->Rows[dataGridView1->CurrentRow->Index]->Cells[3]->Value)->ToString(),
+								 (dataGridView1->Rows[dataGridView1->CurrentRow->Index]->Cells[4]->Value)->ToString() };
+	
 
-	EditedRow[0] = (dataGridView1->Rows[dataGridView1->CurrentCell->RowIndex]->Cells[0]->Value)->ToString();
-	EditedRow[1] = (dataGridView1->Rows[dataGridView1->CurrentCell->RowIndex]->Cells[1]->Value)->ToString();
-	EditedRow[2] = (dataGridView1->Rows[dataGridView1->CurrentCell->RowIndex]->Cells[2]->Value)->ToString();
-	EditedRow[3] = (dataGridView1->Rows[dataGridView1->CurrentCell->RowIndex]->Cells[3]->Value)->ToString();
-	EditedRow[4] = (dataGridView1->Rows[dataGridView1->CurrentCell->RowIndex]->Cells[4]->Value)->ToString();
+	EditingForm ^addNew = gcnew EditingForm(tempRow);
+	addNew->ShowDialog();
 
-	EditingForm ^edit = gcnew EditingForm(EditedRow);
-	edit->ShowDialog();
-
-	if (edit->DialogResult == System::Windows::Forms::DialogResult::OK) {
-		EditedRow = edit->returnData();
+	if (addNew->DialogResult == System::Windows::Forms::DialogResult::OK) {
+		tempRow = addNew->returnData();
 	}
 
-	dataGridView1->Rows[dataGridView1->CurrentCell->RowIndex]->Cells[0]->Value = EditedRow[0];
-	dataGridView1->Rows[dataGridView1->CurrentCell->RowIndex]->Cells[1]->Value = EditedRow[1];
-	dataGridView1->Rows[dataGridView1->CurrentCell->RowIndex]->Cells[2]->Value = EditedRow[2];
-	dataGridView1->Rows[dataGridView1->CurrentCell->RowIndex]->Cells[3]->Value = EditedRow[3];
-	dataGridView1->Rows[dataGridView1->CurrentCell->RowIndex]->Cells[4]->Value = EditedRow[4];
-
+	dataGridView1->Rows[dataGridView1->CurrentRow->Index]->Cells[0]->Value = tempRow[0];
+	dataGridView1->Rows[dataGridView1->CurrentRow->Index]->Cells[1]->Value = tempRow[1];
+	dataGridView1->Rows[dataGridView1->CurrentRow->Index]->Cells[2]->Value = tempRow[2];
+	dataGridView1->Rows[dataGridView1->CurrentRow->Index]->Cells[3]->Value = tempRow[3];
+	dataGridView1->Rows[dataGridView1->CurrentRow->Index]->Cells[4]->Value = tempRow[4];
+}
+private: System::Void óäàëèòüToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	
+	if (MessageBox::Show("Âû âåğåíû, ÷òî õîòèòå óäàëèòü ıòó çàïèñü?", "Base",
+		MessageBoxButtons::YesNo, MessageBoxIcon::Warning) == System::Windows::Forms::DialogResult::Yes) {
+		dataGridView1->Rows->RemoveAt(dataGridView1->CurrentRow->Index);
+		dataGridView1->Refresh();
+	}
 }
 };
 }

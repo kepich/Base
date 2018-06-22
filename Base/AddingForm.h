@@ -18,6 +18,7 @@ namespace Base {
 		AddingForm()
 		{
 			InitializeComponent();
+
 			//
 			//TODO: добавьте код конструктора
 			//
