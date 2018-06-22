@@ -24,18 +24,18 @@ namespace Base {
 
 			StreamReader ^tempFile = gcnew StreamReader(nameOfFile);
 
-			try {
-				while (tempFile->Peek() >= 0) {
-					array <String^>^ cells = (tempFile->ReadLine())->Split(' ');
+			while (tempFile->Peek() >= 0) {
+				array <String^>^ cells = (tempFile->ReadLine())->Split(' ','\0');
+				if(cells[0]->CompareTo(""))
 					dataGridView1->Rows->Add(cells);
-				}
 			}
-			catch (...) {}
+
 			
 			//
 			//TODO: добавьте код конструктора
 			//
 		}
+
 
 	protected:
 		/// <summary>
@@ -48,10 +48,71 @@ namespace Base {
 				delete components;
 			}
 		}
+	private: Void Changing_FullName() {
+		if(checkBox1_FIO->Checked)
+		if (!(FullName->Text->CompareTo(""))) {
+			CreateRequest->Enabled = false;
+			if (!Error->Text->CompareTo(""))
+				Error->Text = "Поле \"ФИО\" не может быть пустым!";
+		}
+		else {
+			CreateRequest->Enabled = true;
+			Error->Text = "";
+		}
+	}
+	private: Void Changing_Number() {
+		if(checkBox2_Phone->Checked)
+		if (maskedTextBox1_Phone->Text->Length != 10) {
+			if (!Error->Text->CompareTo(""))
+				Error->Text = "В поле \"Телефонный номер\" номер введен не полностью!";
+			CreateRequest->Enabled = false;
+		}
+		else {
+			Error->Text = "";
+			CreateRequest->Enabled = true;
+		}
+	}
+	private: Void Changing_Year() {
+		if (checkBox3_Year->Checked) {
+			if ((Int32::Parse(maskedTextBox2_Year->Text) > DateTime::Now.Year) ||
+				(Int32::Parse(maskedTextBox2_Year->Text) < (DateTime::Now.Year - 150))) {
+				if (!Error->Text->CompareTo(""))
+					Error->Text = "В поле \"Год\" год введен неверно!";
+				CreateRequest->Enabled = false;
+			}
+			else {
+				Error->Text = "!";
+				CreateRequest->Enabled = true;
+			}
+		}
+	}
+	private: Void Changing_Type() {
+		if(checkBox4_Type->Checked)
+		if (comboBox1->Text->CompareTo("")) {
+			if (!Error->Text->CompareTo(""))
+				Error->Text = "Тип оплаты не выбран!";
+			CreateRequest->Enabled = false;
+		}
+		else {
+			Error->Text = "";
+			CreateRequest->Enabled = true;
+		}
+	}
+	private: Void Changing_Address(){
+		if(checkBox5_Address->Checked)
+		if (Address->Text->CompareTo("")) {
+			if (!Error->Text->CompareTo(""))
+				Error->Text = "Поле \"Адрес\" не может быть пустым";
+			CreateRequest->Enabled = false;
+		}
+		else {
+			Error->Text = "";
+			CreateRequest->Enabled = true;
+		}
+	}
+
 	private: System::Windows::Forms::Label^  Rules;
 	private: System::Windows::Forms::TextBox^  FullName;
-
-
 
 	private: System::Windows::Forms::TextBox^  Address;
 	private: System::Windows::Forms::Label^  label1;
@@ -78,6 +139,7 @@ namespace Base {
 	private: System::Windows::Forms::MaskedTextBox^  maskedTextBox1_Phone;
 	private: System::Windows::Forms::MaskedTextBox^  maskedTextBox2_Year;
 	private: System::Windows::Forms::ComboBox^  comboBox1;
+	private: System::Windows::Forms::Label^  Error;
 
 
 
@@ -127,6 +189,7 @@ namespace Base {
 			this->maskedTextBox1_Phone = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->maskedTextBox2_Year = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
+			this->Error = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -146,6 +209,7 @@ namespace Base {
 			this->FullName->Name = L"FullName";
 			this->FullName->Size = System::Drawing::Size(175, 20);
 			this->FullName->TabIndex = 1;
+			this->FullName->TextChanged += gcnew System::EventHandler(this, &Request::FullName_TextChanged);
 			// 
 			// Address
 			// 
@@ -154,6 +218,7 @@ namespace Base {
 			this->Address->Name = L"Address";
 			this->Address->Size = System::Drawing::Size(175, 20);
 			this->Address->TabIndex = 1;
+			this->Address->TextChanged += gcnew System::EventHandler(this, &Request::Address_TextChanged);
 			// 
 			// label1
 			// 
@@ -212,8 +277,8 @@ namespace Base {
 			// Errors
 			// 
 			this->Errors->AutoSize = true;
-			this->Errors->ForeColor = System::Drawing::Color::Red;
-			this->Errors->Location = System::Drawing::Point(23, 124);
+			this->Errors->ForeColor = System::Drawing::SystemColors::HotTrack;
+			this->Errors->Location = System::Drawing::Point(23, 139);
 			this->Errors->Name = L"Errors";
 			this->Errors->Size = System::Drawing::Size(302, 13);
 			this->Errors->TabIndex = 0;
@@ -221,6 +286,7 @@ namespace Base {
 			// 
 			// CreateRequest
 			// 
+			this->CreateRequest->Enabled = false;
 			this->CreateRequest->Location = System::Drawing::Point(507, 114);
 			this->CreateRequest->Name = L"CreateRequest";
 			this->CreateRequest->Size = System::Drawing::Size(120, 23);
@@ -320,7 +386,7 @@ namespace Base {
 			// checkBox4_Type
 			// 
 			this->checkBox4_Type->AutoSize = true;
-			this->checkBox4_Type->Location = System::Drawing::Point(411, 92);
+			this->checkBox4_Type->Location = System::Drawing::Point(411, 91);
 			this->checkBox4_Type->Name = L"checkBox4_Type";
 			this->checkBox4_Type->Size = System::Drawing::Size(15, 14);
 			this->checkBox4_Type->TabIndex = 4;
@@ -345,6 +411,7 @@ namespace Base {
 			this->maskedTextBox1_Phone->Name = L"maskedTextBox1_Phone";
 			this->maskedTextBox1_Phone->Size = System::Drawing::Size(113, 20);
 			this->maskedTextBox1_Phone->TabIndex = 5;
+			this->maskedTextBox1_Phone->TextChanged += gcnew System::EventHandler(this, &Request::maskedTextBox1_Phone_TextChanged);
 			// 
 			// maskedTextBox2_Year
 			// 
@@ -355,6 +422,7 @@ namespace Base {
 			this->maskedTextBox2_Year->Size = System::Drawing::Size(57, 20);
 			this->maskedTextBox2_Year->TabIndex = 5;
 			this->maskedTextBox2_Year->ValidatingType = System::DateTime::typeid;
+			this->maskedTextBox2_Year->TextChanged += gcnew System::EventHandler(this, &Request::maskedTextBox2_Year_TextChanged);
 			// 
 			// comboBox1
 			// 
@@ -365,6 +433,16 @@ namespace Base {
 			this->comboBox1->Name = L"comboBox1";
 			this->comboBox1->Size = System::Drawing::Size(57, 21);
 			this->comboBox1->TabIndex = 6;
+			this->comboBox1->TextChanged += gcnew System::EventHandler(this, &Request::comboBox1_TextChanged);
+			// 
+			// Error
+			// 
+			this->Error->AutoSize = true;
+			this->Error->ForeColor = System::Drawing::Color::Red;
+			this->Error->Location = System::Drawing::Point(23, 119);
+			this->Error->Name = L"Error";
+			this->Error->Size = System::Drawing::Size(0, 13);
+			this->Error->TabIndex = 0;
 			// 
 			// Request
 			// 
@@ -390,6 +468,7 @@ namespace Base {
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
+			this->Controls->Add(this->Error);
 			this->Controls->Add(this->Errors);
 			this->Controls->Add(this->Rules);
 			this->Name = L"Request";
@@ -402,34 +481,110 @@ namespace Base {
 #pragma endregion
 		String ^nameOfFile;
 private: System::Void checkBox1_FIO_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
-	if (checkBox1_FIO->Checked) FullName->Enabled = true;
-	else FullName->Enabled = false;
+	if (checkBox1_FIO->Checked) {
+		FullName->Enabled =  true;
+	}
+	else {
+		Error->Text = "";
+
+		Changing_Number();
+		Changing_Type();
+		Changing_Year();
+		Changing_Address();
+
+		FullName->Enabled = false;
+		FullName->Text = "";
+		if(!(checkBox1_FIO->Enabled || checkBox2_Phone->Enabled || checkBox3_Year->Enabled ||
+			checkBox4_Type->Enabled || checkBox5_Address->Enabled))	FullName->Enabled = false;
+	}
 }
 private: System::Void checkBox2_Phone_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
-	if (checkBox2_Phone->Checked) maskedTextBox1_Phone->Enabled = true;
-	else maskedTextBox1_Phone->Enabled = false;
+	if (checkBox2_Phone->Checked) {
+		maskedTextBox1_Phone->Enabled = true;
+	}
+	else {
+		Error->Text = "";
+
+		Changing_FullName();
+		Changing_Type();
+		Changing_Year();
+		Changing_Address();
+
+		maskedTextBox1_Phone->Enabled = false;
+		maskedTextBox1_Phone->Text = "";
+		
+		if (!(checkBox1_FIO->Enabled || checkBox2_Phone->Enabled || checkBox3_Year->Enabled ||
+			checkBox4_Type->Enabled || checkBox5_Address->Enabled))	FullName->Enabled = false;
+	}
 }
 private: System::Void checkBox3_Year_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
-	if (checkBox3_Year->Checked) maskedTextBox2_Year->Enabled = true;
-	else maskedTextBox2_Year->Enabled = false;
+	if (checkBox3_Year->Checked) {
+		maskedTextBox2_Year->Enabled = true;
+	}
+	else {
+		Error->Text = "";
+
+		Changing_Number();
+		Changing_Type();
+		Changing_FullName();
+		Changing_Address();
+
+		maskedTextBox2_Year->Enabled = false;
+		maskedTextBox2_Year->Text = "";
+		
+		if (!(checkBox1_FIO->Enabled || checkBox2_Phone->Enabled || checkBox3_Year->Enabled ||
+			checkBox4_Type->Enabled || checkBox5_Address->Enabled))	FullName->Enabled = false;
+	}
 }
 private: System::Void checkBox4_Type_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
-	if (checkBox4_Type->Checked) comboBox1->Enabled = true;
-	else comboBox1->Enabled = false;
+	if (checkBox4_Type->Checked) {
+		comboBox1->Enabled = true;
+	}
+	else {
+		Error->Text = "";
+
+		Changing_Number();
+		Changing_FullName();
+		Changing_Year();
+		Changing_Address();
+
+		comboBox1->Enabled = false;
+		comboBox1->Text = "";
+		
+		if (!(checkBox1_FIO->Enabled || checkBox2_Phone->Enabled || checkBox3_Year->Enabled ||
+			checkBox4_Type->Enabled || checkBox5_Address->Enabled))	FullName->Enabled = false;
+	}
 }
 private: System::Void checkBox5_Address_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
-	if (checkBox5_Address->Checked) Address->Enabled = true;
-	else Address->Enabled = false;
-}
-private: System::Void CreateRequest_Click(System::Object^  sender, System::EventArgs^  e) {
-	StreamReader ^tempFile = gcnew StreamReader(nameOfFile);
-	dataGridView1->Rows->Clear();
+	if (checkBox5_Address->Checked) {
+		Address->Enabled = true;
+	}
+	else {
+		Error->Text = "";
+		
+		Changing_Number();
+		Changing_Type();
+		Changing_Year();
+		Changing_FullName();
 
-	try {
+		Address->Enabled = false; 
+		Address->Text = "";
+		
+		if (!(checkBox1_FIO->Enabled || checkBox2_Phone->Enabled || checkBox3_Year->Enabled ||
+			checkBox4_Type->Enabled || checkBox5_Address->Enabled))	FullName->Enabled = false;
+	}
+}
+
+private: System::Void CreateRequest_Click(System::Object^  sender, System::EventArgs^  e) {
+
+//Проверка корректности ввода
+		StreamReader ^tempFile = gcnew StreamReader(nameOfFile);
+		dataGridView1->Rows->Clear();
+
 		while (tempFile->Peek() >= 0) {
 			array <String^>^ cells = (tempFile->ReadLine())->Split(' ');
 
-//Реализация запроса******************************************************
+			//Реализация запроса******************************************************
 
 			int isRight = 1;
 
@@ -469,12 +624,8 @@ private: System::Void CreateRequest_Click(System::Object^  sender, System::Event
 			}
 
 			if (isRight) dataGridView1->Rows->Add(cells);
-//************************************************************************
-
-		}
+			//************************************************************************
 	}
-	catch(...){}
-
 }
 private: System::Void ResetRequest_Click(System::Object^  sender, System::EventArgs^  e) {
 	dataGridView1->Rows->Clear();
@@ -487,6 +638,22 @@ private: System::Void ResetRequest_Click(System::Object^  sender, System::EventA
 		}
 	}
 	catch (...) {}
+}
+
+private: System::Void FullName_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+	Changing_FullName();
+}
+public: System::Void maskedTextBox1_Phone_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+	Changing_Number();
+}
+private: System::Void maskedTextBox2_Year_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+	Changing_Year();
+}
+private: System::Void comboBox1_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+	Changing_Type();
+}
+private: System::Void Address_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+	Changing_Address();
 }
 };
 }

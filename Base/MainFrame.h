@@ -418,20 +418,21 @@ private: System::Void îòêğûòüToolStripMenuItem_Click(System::Object^  sender, Sy
 
 				String ^row;
 
-				try {
-					while (tempFile->Peek() >= 0) {
-						row = tempFile->ReadLine();
-						array <String^>^ cells = row->Split(' ');
+				while (tempFile->Peek() >= 0) {
+					row = tempFile->ReadLine();
+					array <String^>^ cells = row->Split(' ', '\0');
 
+					if (cells[0]->CompareTo(""))
 						dataGridView1->Rows->Add(cells);
-					}
 				}
-				catch (...) {}
 
 				this->SaveToolStripMenuItem->Enabled = true;
 				this->SaveAsToolStripMenuItem->Enabled = true;
 				this->RequestToolStripMenuItem->Enabled = true;
 				this->EditionToolStripMenuItem->Enabled = true;
+
+				tempFile->Close();
+				this->Text = "MainFrame" + ": " + NameOfFile;
 			}
 		}
 	}
@@ -445,15 +446,13 @@ private: System::Void îòêğûòüToolStripMenuItem_Click(System::Object^  sender, Sy
 
 			String ^row;
 
-			try {
-				while (tempFile->Peek() >= 0) {
-					row = tempFile->ReadLine();
-					array <String^>^ cells = row->Split(' ');
+			while (tempFile->Peek() >= 0) {
+				row = tempFile->ReadLine();
+				array <String^>^ cells = row->Split(' ','\0');
 
+				if(cells[0]->CompareTo(""))	
 					dataGridView1->Rows->Add(cells);
-				}
 			}
-			catch (...) {}
 
 			tempFile->Close();
 
@@ -461,11 +460,12 @@ private: System::Void îòêğûòüToolStripMenuItem_Click(System::Object^  sender, Sy
 			this->SaveAsToolStripMenuItem->Enabled = true;
 			this->RequestToolStripMenuItem->Enabled = true;
 			this->EditionToolStripMenuItem->Enabled = true;
-		}
 
+			tempFile->Close();
+			this->Text = "MainFrame" + ": " + NameOfFile;
+		}
 	}
 
-	this->Text = "MainFrame" + ": " + NameOfFile;
 }
 private: System::Void ñîçäàòüToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 	SaveFileDialog ^creatingFile = gcnew SaveFileDialog;
@@ -506,10 +506,15 @@ private: System::Void ñîõğàíèòüToolStripMenuItem_Click(System::Object^  sender, 
 	StreamWriter ^Writer = gcnew StreamWriter(NameOfFile);
 
 	for (int i = 0; i < dataGridView1->RowCount - 1; i++) {
-		for (int j = 0; j < 5; j++) {
-			Writer->Write(dataGridView1->Rows[i]->Cells[j]->Value);
-			Writer->Write(" ");
-		}
+		Writer->Write(dataGridView1->Rows[i]->Cells[0]->Value);
+		Writer->Write(" ");
+		Writer->Write(dataGridView1->Rows[i]->Cells[1]->Value);
+		Writer->Write(" ");
+		Writer->Write(dataGridView1->Rows[i]->Cells[2]->Value);
+		Writer->Write(" ");
+		Writer->Write(dataGridView1->Rows[i]->Cells[3]->Value);
+		Writer->Write(" ");
+		Writer->Write(dataGridView1->Rows[i]->Cells[4]->Value);
 		Writer->WriteLine();
 	}
 	Writer->Close();
@@ -525,10 +530,15 @@ private: System::Void ñîõğàíèòüÂÔàéëToolStripMenuItem_Click(System::Object^  sen
 		StreamWriter ^Writer = gcnew StreamWriter(NameOfFile);
 
 		for (int i = 0; i < dataGridView1->RowCount - 1; i++) {
-			for (int j = 0; j < 5; j++) {
-				Writer->Write(dataGridView1->Rows[i]->Cells[j]->Value);
-				Writer->Write(" ");
-			}
+			Writer->Write(dataGridView1->Rows[i]->Cells[0]->Value);
+			Writer->Write(" ");
+			Writer->Write(dataGridView1->Rows[i]->Cells[1]->Value);
+			Writer->Write(" ");
+			Writer->Write(dataGridView1->Rows[i]->Cells[2]->Value);
+			Writer->Write(" ");
+			Writer->Write(dataGridView1->Rows[i]->Cells[3]->Value);
+			Writer->Write(" ");
+			Writer->Write(dataGridView1->Rows[i]->Cells[4]->Value);
 			Writer->WriteLine();
 		}
 		Writer->Close();
