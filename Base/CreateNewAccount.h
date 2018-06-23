@@ -8,6 +8,7 @@ namespace Base {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::IO;
 
 	/// <summary>
 	/// Сводка для CreateNewAccount
@@ -18,6 +19,9 @@ namespace Base {
 		CreateNewAccount(void)
 		{
 			InitializeComponent();
+			ToolTip ^About = gcnew ToolTip;
+			About->SetToolTip(this->label5, "Логин и пароль могут содержать только цифры и буквы \nлатинского алфавита и быть длиной от 2 до 8 символов.\n ");
+			About->InitialDelay = 50;
 			//
 			//TODO: добавьте код конструктора
 			//
@@ -129,10 +133,12 @@ namespace Base {
 			this->textBox2_Password->Name = L"textBox2_Password";
 			this->textBox2_Password->Size = System::Drawing::Size(162, 20);
 			this->textBox2_Password->TabIndex = 2;
+			this->textBox2_Password->UseSystemPasswordChar = true;
 			// 
 			// ErrorLogin
 			// 
 			this->ErrorLogin->AutoSize = true;
+			this->ErrorLogin->ForeColor = System::Drawing::Color::Red;
 			this->ErrorLogin->Location = System::Drawing::Point(117, 73);
 			this->ErrorLogin->Name = L"ErrorLogin";
 			this->ErrorLogin->Size = System::Drawing::Size(0, 13);
@@ -141,6 +147,7 @@ namespace Base {
 			// ErrorPassword
 			// 
 			this->ErrorPassword->AutoSize = true;
+			this->ErrorPassword->ForeColor = System::Drawing::Color::Red;
 			this->ErrorPassword->Location = System::Drawing::Point(117, 112);
 			this->ErrorPassword->Name = L"ErrorPassword";
 			this->ErrorPassword->Size = System::Drawing::Size(0, 13);
@@ -226,23 +233,63 @@ namespace Base {
 		}
 #pragma endregion
 	private: System::Void CreateAccount_Click(System::Object^  sender, System::EventArgs^  e) {
-		array <Char>^ key = { 0,1,2,3,5,7,11,13,17 };
+		array <Char>^ key = { 1,2,3,4,5,6,7,8,9 };
 		array <Char>^ login = textBox1_Login->Text->ToCharArray();
 		array <Char>^ password = textBox2_Password->Text->ToCharArray();
 		array <Char>^ typeOfAcc = { ((radioButton1->Checked) ? 'U' : 'A') };
+		int isCorrect = 1;
 
-		StreamWriter ^write = gcnew StreamWriter("AccessAccounts.txt");
+		//Защиты*******
+		do {
+			if ((login->Length < 2) || (login->Length > 8)) {
+				ErrorLogin->Text = "*Слишком короткий/длинный логин";
+				isCorrect = 0;
+				break;
+			}
+			for (int i = 0; i < login->Length; i++) {
+				if (login[i] < '0' || login[i] > '9' || login[i] < 'A' || login[i] > 'Z' || login[i] < 'a' || login[i] > 'z') {
+					ErrorLogin->Text = "*Логин содержит недопустимые символы";
+					isCorrect = 0;
+					break;
+				}
+			}
+			if (!isCorrect) break;
+			else {
+				if ((password->Length < 2) || (password->Length > 8)) {
+					ErrorPassword->Text = "*Слишком короткий/длинный пароль";
+					isCorrect = 0;
+					break;
+				}
+				for (int i = 0; i < password->Length; i++) {
+					if (password[i] < '0' || password[i] > '9' || password[i] < 'A' || password[i] > 'Z' || password[i] < 'a' || password[i] > 'z') {
+						ErrorPassword->Text = "*Логин содержит недопустимые символы";
+						isCorrect = 0;
+						break;
+					}
+				}
+			}
+		} while (false);
 
-		for (int i = 0; i < login->Length; i++)
-			login[i] ^= key[i];
+		if (isCorrect) {
+			StreamWriter ^write = gcnew StreamWriter("AccessAccounts.txt", true);
 
-		for (int i = 0; i < password->Length; i++)
-			password[i] ^= key[8 - i];
+			for (int i = 0; i < login->Length; i++)
+				login[i] ^= key[i];
 
-		write->Write(login->ToString() + " " + password->ToString() + " " + typeOfAcc->ToString());
-		write->WriteLine();
+			for (int i = 0; i < password->Length; i++)
+				password[i] ^= key[8 - i];
 
-		this->DialogResult = System::Windows::Forms::DialogResult::OK;
+			write->Write(login);
+			write->Write(" ");
+			write->Write(password);
+			write->Write(" ");
+			write->Write(typeOfAcc);
+			write->WriteLine();
+
+			write->Close();
+
+			this->DialogResult = System::Windows::Forms::DialogResult::OK;
+		}
 	}
 };
 }

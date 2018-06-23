@@ -9,6 +9,7 @@ namespace Base {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::IO;
 
 	/// <summary>
 	/// —водка дл€ Access
@@ -25,12 +26,11 @@ namespace Base {
 			//
 		}
 	public:Int32 ReturnData() {
-		if (!type->CompareTo(""))
-			return 0;
-		if (!type->CompareTo("A"))
+		if (type == 'A')
 			return 1;
-		if (!type->CompareTo("U"))
+		if (type == 'U')
 			return 2;
+		return 0;
 	}
 
 	protected:
@@ -44,7 +44,7 @@ namespace Base {
 				delete components;
 			}
 		}
-	private: String ^type = "";
+	private: Char type;
 
 	private: System::Windows::Forms::TextBox^  textBox_Access_Login;
 	private: System::Windows::Forms::TextBox^  textBox_Access_Password;
@@ -167,19 +167,19 @@ namespace Base {
 			this->Controls->Add(this->textBox_Access_Password);
 			this->Controls->Add(this->textBox_Access_Login);
 			this->Name = L"Access";
-			this->Text = L"Access";
+			this->Text = L"¬ход в учетную запись";
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
 	private: System::Void button_Access_Enter_Click(System::Object^  sender, System::EventArgs^  e) {
-		array <Char>^ key = { 0,1,2,3,5,7,11,13,17 };
+		array <Char>^ key = { 1,2,3,4,5,6,7,8,9 };
 		array <Char>^ login = textBox_Access_Login->Text->ToCharArray();
 		array <Char>^ password = textBox_Access_Password->Text->ToCharArray();
 
-		if (textBox_Access_Login->Text->CompareTo("") || textBox_Access_Password->Text->CompareTo("")) {
-			if (textBox_Access_Login->Text->CompareTo(""))
+		if (!textBox_Access_Login->Text->CompareTo("") || !textBox_Access_Password->Text->CompareTo("")) {
+			if (!textBox_Access_Login->Text->CompareTo(""))
 				Error->Text = "¬ведите логин!";
 			else
 				Error->Text = "¬ведите пароль!";
@@ -191,25 +191,46 @@ namespace Base {
 			for (int i = 0; i < password->Length; i++)
 				password[i] ^= key[8 - i];
 
-			StreamReader ^accessFilee = gcnew StreamReader("AccessAccounts.txt");
+			StreamReader ^accessFile = gcnew StreamReader("AccessAccounts.txt");
 			String ^row;
-			int isPasswordAccepted = 0, isLoginAccepted = 0;
+			int isPasswordAccepted = 1, isLoginAccepted = 1, isHave = 0;
 
-			while (accessFilee->Peek() >= 0) {
-				row = accessFilee->ReadLine();
+			while (accessFile->Peek() >= 0) {
+				isPasswordAccepted = 1;
+				isLoginAccepted = 1;
+
+				row = accessFile->ReadLine();
 				array <String^>^ cells = row->Split(' ', '\0');
+				array <Char>^ loginNew = cells[0]->ToCharArray();
+				array <Char>^ passwordNew = cells[1]->ToCharArray();
 
-				if (!cells[0]->CompareTo(login)) {
-					isLoginAccepted = 1;
-					if (!cells[1]->CompareTo(password)) {
-						isPasswordAccepted = 1;
-						type = cells[3];
-					}
+				if (login->Length == loginNew->Length) {
+					for (int i = 0; i < login->Length; i++)
+						if (login[i] != loginNew[i]) {
+							isLoginAccepted = 0;
+							break;
+						}
+				}
+				else continue;
+				
+				if ((password->Length == passwordNew->Length) && isLoginAccepted) {
+					for (int i = 0; i < password->Length; i++)
+						if (password[i] != passwordNew[i]) {
+							isPasswordAccepted = 0;
+							break;
+						}
+				}
+				
+				if (isLoginAccepted && isPasswordAccepted) {
+					type = (cells[2]->ToCharArray())[0];
+					isHave = 1;
 					break;
 				}
 			}
 
-			if (isLoginAccepted && isPasswordAccepted) {
+			accessFile->Close();
+
+			if (isHave) {
 				//**************************¬ход в учетную запись********************************
 				this->DialogResult = System::Windows::Forms::DialogResult::OK;
 			}
@@ -226,6 +247,7 @@ private: System::Void textBox_Access_Password_TextChanged(System::Object^  sende
 }
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 	CreateNewAccount ^CreateNew = gcnew CreateNewAccount();
+	CreateNew->Enabled = true;
 	CreateNew->ShowDialog();
 }
 };

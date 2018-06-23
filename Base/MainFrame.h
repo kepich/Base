@@ -32,15 +32,27 @@ namespace Base {
 			this->SaveAsToolStripMenuItem->Enabled = false;
 			this->RequestToolStripMenuItem->Enabled = false;
 			this->EditionToolStripMenuItem->Enabled = false;
+			User->Text = "";
 
-			/*			if(*/access_Window->ShowDialog();/* == System::Windows::Forms::DialogResult::Cancel)*/
-//				MainFrame::Close();
+			if(access_Window->ShowDialog() == System::Windows::Forms::DialogResult::Cancel)
+				MainFrame::Close();
 			if (access_Window->DialogResult == System::Windows::Forms::DialogResult::OK) {
 				if (access_Window->ReturnData() == 2) {
 					this->CreateToolStripMenuItem->Visible = false;
 					this->SaveToolStripMenuItem->Visible = false;
 					this->SaveAsToolStripMenuItem->Visible = false;
 					this->EditionToolStripMenuItem->Visible = false;
+					User->Text = "Гость";
+					Show();
+				}
+				else
+				{
+					this->CreateToolStripMenuItem->Visible = true;
+					this->SaveToolStripMenuItem->Visible = true;
+					this->SaveAsToolStripMenuItem->Visible = true;
+					this->EditionToolStripMenuItem->Visible = true;
+					User->Text = "Администратор";
+					Show();
 				}
 			}
 		}
@@ -343,7 +355,7 @@ namespace Base {
 			this->Controls->Add(this->menuStrip1);
 			this->MainMenuStrip = this->menuStrip1;
 			this->Name = L"MainFrame";
-			this->Text = L"MainFrame";
+			this->Text = L"Абонентский менеджер";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
@@ -359,6 +371,26 @@ private: System::Void сменитьУчетнюЗаписьToolStripMenuItem_Click(System::Object^
 	Access ^changeAccount = gcnew Access;
 	Hide();
 	changeAccount->ShowDialog();
+
+	if (changeAccount->DialogResult == System::Windows::Forms::DialogResult::OK) {
+		dataGridView1->Rows->Clear();
+		if (changeAccount->ReturnData() == 2) {
+			this->CreateToolStripMenuItem->Visible = false;
+			this->SaveToolStripMenuItem->Visible = false;
+			this->SaveAsToolStripMenuItem->Visible = false;
+			this->EditionToolStripMenuItem->Visible = false;
+			User->Text = "Гость";
+		}
+		else
+		{
+			this->CreateToolStripMenuItem->Visible = true;
+			this->SaveToolStripMenuItem->Visible = true;
+			this->SaveAsToolStripMenuItem->Visible = true;
+			this->EditionToolStripMenuItem->Visible = true;
+			User->Text = "Администратор";
+		}
+	}
+
 	Show();
 }
 private: System::Void создатьЗапросToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -404,7 +436,7 @@ private: System::Void открытьToolStripMenuItem_Click(System::Object^  sender, Sy
 				this->EditionToolStripMenuItem->Enabled = true;
 
 				tempFile->Close();
-				this->Text = "MainFrame" + ": " + NameOfFile;
+				this->Text = "Абонентский менеджер" + ": " + NameOfFile;
 			}
 		}
 	}
