@@ -74,15 +74,22 @@ namespace Base {
 	}
 	private: Void Changing_Year() {
 		if (checkBox3_Year->Checked) {
-			if ((Int32::Parse(maskedTextBox2_Year->Text) > DateTime::Now.Year) ||
-				(Int32::Parse(maskedTextBox2_Year->Text) < (DateTime::Now.Year - 150))) {
+			if (maskedTextBox2_Year->Text->CompareTo("")) {
+				if ((Int32::Parse(maskedTextBox2_Year->Text) > DateTime::Now.Year) ||
+					(Int32::Parse(maskedTextBox2_Year->Text) < (DateTime::Now.Year - 150))) {
+					if (!Error->Text->CompareTo(""))
+						Error->Text = "В поле \"Год\" год введен неверно!";
+					CreateRequest->Enabled = false;
+				}
+				else {
+					Error->Text = "";
+					CreateRequest->Enabled = true;
+				}
+			}
+			else {
 				if (!Error->Text->CompareTo(""))
 					Error->Text = "В поле \"Год\" год введен неверно!";
 				CreateRequest->Enabled = false;
-			}
-			else {
-				Error->Text = "!";
-				CreateRequest->Enabled = true;
 			}
 		}
 	}
@@ -649,18 +656,38 @@ private: System::Void ResetRequest_Click(System::Object^  sender, System::EventA
 
 private: System::Void FullName_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 	Changing_FullName();
+	Changing_Number();
+	Changing_Type();
+	Changing_Year();
+	Changing_Address();
 }
 public: System::Void maskedTextBox1_Phone_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 	Changing_Number();
+	Changing_FullName();
+	Changing_Type();
+	Changing_Year();
+	Changing_Address();
 }
 private: System::Void maskedTextBox2_Year_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 	Changing_Year();
+	Changing_Number();
+	Changing_Type();
+	Changing_FullName();
+	Changing_Address();
 }
 private: System::Void comboBox1_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 	Changing_Type();
+	Changing_Number();
+	Changing_FullName();
+	Changing_Year();
+	Changing_Address();
 }
 private: System::Void Address_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 	Changing_Address();
+	Changing_Number();
+	Changing_Type();
+	Changing_Year();
+	Changing_FullName();
 }
 };
 }

@@ -46,8 +46,82 @@ namespace Base {
 				delete components;
 			}
 		}
+	private: bool Changing_FullName() {
+		if (!(FullName->Text->CompareTo(""))) {
+			Edit->Enabled = false;
+			if (!Error->Text->CompareTo(""))
+				Error->Text = "Поле \"ФИО\" не может быть пустым!";
+			return false;
+		}
+		else {
+			Edit->Enabled = true;
+			Error->Text = "";
+			return true;
+		}
+	}
+	private: bool Changing_Number() {
+		if (maskedTextBox1_Phone->Text->Length != 10) {
+			if (!Error->Text->CompareTo(""))
+				Error->Text = "В поле \"Телефонный номер\" номер введен не полностью!";
+			Edit->Enabled = false;
+			return false;
+		}
+		else {
+			Error->Text = "";
+			Edit->Enabled = true;
+			return true;
+		}
+	}
+	private: bool Changing_Year() {
+		if (maskedTextBox2_Year->Text->CompareTo("")) {
+			if ((Int32::Parse(maskedTextBox2_Year->Text) > DateTime::Now.Year) ||
+				(Int32::Parse(maskedTextBox2_Year->Text) < (DateTime::Now.Year - 150))) {
+				if (!Error->Text->CompareTo(""))
+					Error->Text = "В поле \"Год\" год введен неверно!";
+				Edit->Enabled = false;
+				return false;
+			}
+			else {
+				Error->Text = "";
+				Edit->Enabled = true;
+				return true;
+			}
+		}
+		else {
+			if (!Error->Text->CompareTo(""))
+				Error->Text = "В поле \"Год\" год введен неверно!";
+			Edit->Enabled = false;
+			return false;
+		}
+	}
+	private: bool Changing_Type() {
+		if (!comboBox1->Text->CompareTo("")) {
+			if (!Error->Text->CompareTo(""))
+				Error->Text = "Тип оплаты не выбран!";
+			Edit->Enabled = false;
+			return false;
+		}
+		else {
+			Error->Text = "";
+			Edit->Enabled = true;
+			return true;
+		}
+	}
+	private: bool Changing_Address() {
+		if (!Address->Text->CompareTo("")) {
+			if (!Error->Text->CompareTo(""))
+				Error->Text = "Поле \"Адрес\" не может быть пустым";
+			Edit->Enabled = false;
+			return false;
+		}
+		else {
+			Error->Text = "";
+			Edit->Enabled = true;
+			return true;
+		}
+	}
+
 	private: System::Windows::Forms::ComboBox^  comboBox1;
-	protected:
 	private: System::Windows::Forms::MaskedTextBox^  maskedTextBox2_Year;
 	private: System::Windows::Forms::MaskedTextBox^  maskedTextBox1_Phone;
 	private: System::Windows::Forms::TextBox^  Address;
@@ -61,6 +135,7 @@ namespace Base {
 	private: System::Windows::Forms::Button^  Edit;
 
 	private: System::Windows::Forms::Label^  Info;
+	private: System::Windows::Forms::Label^  Error;
 
 	private:
 		/// <summary>
@@ -88,6 +163,7 @@ namespace Base {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->Edit = (gcnew System::Windows::Forms::Button());
 			this->Info = (gcnew System::Windows::Forms::Label());
+			this->Error = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// comboBox1
@@ -99,6 +175,7 @@ namespace Base {
 			this->comboBox1->Name = L"comboBox1";
 			this->comboBox1->Size = System::Drawing::Size(57, 21);
 			this->comboBox1->TabIndex = 39;
+			this->comboBox1->TextChanged += gcnew System::EventHandler(this, &EditingForm::comboBox1_TextChanged);
 			// 
 			// maskedTextBox2_Year
 			// 
@@ -108,6 +185,7 @@ namespace Base {
 			this->maskedTextBox2_Year->Size = System::Drawing::Size(57, 20);
 			this->maskedTextBox2_Year->TabIndex = 37;
 			this->maskedTextBox2_Year->ValidatingType = System::DateTime::typeid;
+			this->maskedTextBox2_Year->TextChanged += gcnew System::EventHandler(this, &EditingForm::maskedTextBox2_Year_TextChanged);
 			// 
 			// maskedTextBox1_Phone
 			// 
@@ -116,6 +194,7 @@ namespace Base {
 			this->maskedTextBox1_Phone->Name = L"maskedTextBox1_Phone";
 			this->maskedTextBox1_Phone->Size = System::Drawing::Size(113, 20);
 			this->maskedTextBox1_Phone->TabIndex = 38;
+			this->maskedTextBox1_Phone->TextChanged += gcnew System::EventHandler(this, &EditingForm::maskedTextBox1_Phone_TextChanged);
 			// 
 			// Address
 			// 
@@ -123,6 +202,7 @@ namespace Base {
 			this->Address->Name = L"Address";
 			this->Address->Size = System::Drawing::Size(175, 20);
 			this->Address->TabIndex = 35;
+			this->Address->TextChanged += gcnew System::EventHandler(this, &EditingForm::Address_TextChanged);
 			// 
 			// FullName
 			// 
@@ -130,6 +210,7 @@ namespace Base {
 			this->FullName->Name = L"FullName";
 			this->FullName->Size = System::Drawing::Size(175, 20);
 			this->FullName->TabIndex = 36;
+			this->FullName->TextChanged += gcnew System::EventHandler(this, &EditingForm::FullName_TextChanged);
 			// 
 			// label6
 			// 
@@ -204,11 +285,21 @@ namespace Base {
 			this->Info->TabIndex = 27;
 			this->Info->Text = L"Введите параметры записи:";
 			// 
+			// Error
+			// 
+			this->Error->AutoSize = true;
+			this->Error->ForeColor = System::Drawing::Color::Red;
+			this->Error->Location = System::Drawing::Point(12, 93);
+			this->Error->Name = L"Error";
+			this->Error->Size = System::Drawing::Size(0, 13);
+			this->Error->TabIndex = 40;
+			// 
 			// EditingForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(628, 128);
+			this->Controls->Add(this->Error);
 			this->Controls->Add(this->comboBox1);
 			this->Controls->Add(this->maskedTextBox2_Year);
 			this->Controls->Add(this->maskedTextBox1_Phone);
@@ -230,15 +321,31 @@ namespace Base {
 		}
 #pragma endregion
 		array <String^>^ tempRow;
-	private: System::Void AddNew_Click(System::Object^  sender, System::EventArgs^  e) {
+private: System::Void AddNew_Click(System::Object^  sender, System::EventArgs^  e) {
+		if (Changing_FullName() && Changing_Number() && Changing_Year() && Changing_Type() && Changing_Address()) {
+			tempRow[0] = FullName->Text;
+			tempRow[1] = maskedTextBox1_Phone->Text;
+			tempRow[2] = maskedTextBox2_Year->Text;
+			tempRow[3] = comboBox1->Text;
+			tempRow[4] = Address->Text;
 
-		tempRow[0] = FullName->Text;
-		tempRow[1] = maskedTextBox1_Phone->Text;
-		tempRow[2] = maskedTextBox2_Year->Text;
-		tempRow[3] = comboBox1->Text;
-		tempRow[4] = Address->Text;
-
-		this->DialogResult = System::Windows::Forms::DialogResult::OK;
+			this->DialogResult = System::Windows::Forms::DialogResult::OK;
+		}
 	}
+private: System::Void FullName_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+	Changing_FullName();
+}
+private: System::Void maskedTextBox1_Phone_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+	Changing_Number();
+}
+private: System::Void maskedTextBox2_Year_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+	Changing_Year();
+}
+private: System::Void comboBox1_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+	Changing_Type();
+}
+private: System::Void Address_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+	Changing_Address();
+}
 };
 }
