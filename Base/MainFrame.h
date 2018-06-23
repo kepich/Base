@@ -93,7 +93,7 @@ namespace Base {
 
 	private: System::Windows::Forms::Label^  TypeOfAccount;
 	private: System::Windows::Forms::Label^  User;
-	private: System::Windows::Forms::Label^  label1;
+
 	private: System::Windows::Forms::ToolStripMenuItem^  SaveToolStripMenuItem;
 
 	protected:
@@ -138,7 +138,6 @@ namespace Base {
 			this->AboutInToolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->TypeOfAccount = (gcnew System::Windows::Forms::Label());
 			this->User = (gcnew System::Windows::Forms::Label());
-			this->label1 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->menuStrip1->SuspendLayout();
 			this->SuspendLayout();
@@ -348,23 +347,11 @@ namespace Base {
 			this->User->TabIndex = 2;
 			this->User->Text = L"Гость";
 			// 
-			// label1
-			// 
-			this->label1->AutoSize = true;
-			this->label1->ForeColor = System::Drawing::SystemColors::HotTrack;
-			this->label1->Location = System::Drawing::Point(533, 7);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(86, 13);
-			this->label1->TabIndex = 3;
-			this->label1->Text = L"Администратор";
-			this->label1->Visible = false;
-			// 
 			// MainFrame
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(655, 351);
-			this->Controls->Add(this->label1);
 			this->Controls->Add(this->User);
 			this->Controls->Add(this->TypeOfAccount);
 			this->Controls->Add(this->dataGridView1);

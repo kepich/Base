@@ -68,14 +68,14 @@ namespace Base {
 			// 
 			// textBox_Access_Login
 			// 
-			this->textBox_Access_Login->Location = System::Drawing::Point(81, 55);
+			this->textBox_Access_Login->Location = System::Drawing::Point(74, 45);
 			this->textBox_Access_Login->Name = L"textBox_Access_Login";
 			this->textBox_Access_Login->Size = System::Drawing::Size(179, 20);
 			this->textBox_Access_Login->TabIndex = 0;
 			// 
 			// textBox_Access_Password
 			// 
-			this->textBox_Access_Password->Location = System::Drawing::Point(81, 81);
+			this->textBox_Access_Password->Location = System::Drawing::Point(74, 71);
 			this->textBox_Access_Password->Name = L"textBox_Access_Password";
 			this->textBox_Access_Password->Size = System::Drawing::Size(179, 20);
 			this->textBox_Access_Password->TabIndex = 0;
@@ -83,7 +83,7 @@ namespace Base {
 			// 
 			// button_Access_Enter
 			// 
-			this->button_Access_Enter->Location = System::Drawing::Point(131, 116);
+			this->button_Access_Enter->Location = System::Drawing::Point(124, 106);
 			this->button_Access_Enter->Name = L"button_Access_Enter";
 			this->button_Access_Enter->Size = System::Drawing::Size(75, 23);
 			this->button_Access_Enter->TabIndex = 1;
@@ -94,7 +94,7 @@ namespace Base {
 			// label1_Access_Login
 			// 
 			this->label1_Access_Login->AutoSize = true;
-			this->label1_Access_Login->Location = System::Drawing::Point(18, 58);
+			this->label1_Access_Login->Location = System::Drawing::Point(11, 48);
 			this->label1_Access_Login->Name = L"label1_Access_Login";
 			this->label1_Access_Login->Size = System::Drawing::Size(41, 13);
 			this->label1_Access_Login->TabIndex = 2;
@@ -103,7 +103,7 @@ namespace Base {
 			// label_Access_Password
 			// 
 			this->label_Access_Password->AutoSize = true;
-			this->label_Access_Password->Location = System::Drawing::Point(18, 84);
+			this->label_Access_Password->Location = System::Drawing::Point(11, 74);
 			this->label_Access_Password->Name = L"label_Access_Password";
 			this->label_Access_Password->Size = System::Drawing::Size(48, 13);
 			this->label_Access_Password->TabIndex = 2;
@@ -112,7 +112,7 @@ namespace Base {
 			// label_Access_Description
 			// 
 			this->label_Access_Description->AutoSize = true;
-			this->label_Access_Description->Location = System::Drawing::Point(36, 19);
+			this->label_Access_Description->Location = System::Drawing::Point(29, 9);
 			this->label_Access_Description->Name = L"label_Access_Description";
 			this->label_Access_Description->Size = System::Drawing::Size(236, 13);
 			this->label_Access_Description->TabIndex = 3;
@@ -122,7 +122,7 @@ namespace Base {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(299, 163);
+			this->ClientSize = System::Drawing::Size(300, 139);
 			this->Controls->Add(this->label_Access_Description);
 			this->Controls->Add(this->label_Access_Password);
 			this->Controls->Add(this->label1_Access_Login);
@@ -136,14 +136,15 @@ namespace Base {
 
 		}
 #pragma endregion
-		/*
-			- Проверка логина и пароля
-			- Если такого нет, то вывод сообщения об ошибке		
-			- Иначе реализация доступа для администратора и для рядового пользователя
-			- 
-		*/
 	private: System::Void button_Access_Enter_Click(System::Object^  sender, System::EventArgs^  e) {
-
+		array <Char>^ key = { 0,1,2,3,5,7,11,13,17 };
+		array <Char>^ login = textBox_Access_Login->Text->ToCharArray();
+		array <Char>^ password = textBox_Access_Password->Text->ToCharArray();
+		
+		for (int i = 0; i < login->Length; i++) {
+			login[i] ^= key[i];
+			password[i] ^= key[8 - i];
+		}
 	}
 };
 }
