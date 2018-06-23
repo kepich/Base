@@ -35,6 +35,14 @@ namespace Base {
 
 			/*			if(*/access_Window->ShowDialog();/* == System::Windows::Forms::DialogResult::Cancel)*/
 //				MainFrame::Close();
+			if (access_Window->DialogResult == System::Windows::Forms::DialogResult::OK) {
+				if (access_Window->ReturnData() == 2) {
+					this->CreateToolStripMenuItem->Visible = false;
+					this->SaveToolStripMenuItem->Visible = false;
+					this->SaveAsToolStripMenuItem->Visible = false;
+					this->EditionToolStripMenuItem->Visible = false;
+				}
+			}
 		}
 
 	protected:
@@ -60,45 +68,22 @@ namespace Base {
 	private: System::Windows::Forms::ToolStripMenuItem^  OpenToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  SaveAsToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  RequestToolStripMenuItem;
-
 	private: System::Windows::Forms::ToolStripMenuItem^  MakeRequestЗапросToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  EditionToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  gameToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  AboutToolStripMenuItem;
-
-
-
-
-
-
-
-
-
-
 	private: System::Windows::Forms::ToolStripMenuItem^  ChangeAccToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  ExitToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  DeliteToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  PlayToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  AboutInToolStripMenuItem1;
-
-
-
-
-
 	private: System::Windows::Forms::ToolStripMenuItem^  AddNewToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^  EditToolStripMenuItem;
-
-
-
-
 	private: System::Windows::Forms::Label^  TypeOfAccount;
 	private: System::Windows::Forms::Label^  User;
-
 	private: System::Windows::Forms::ToolStripMenuItem^  SaveToolStripMenuItem;
 
 	protected:
-
-
 	private:
 		/// <summary>
 		/// Обязательная переменная конструктора.

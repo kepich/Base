@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClCompile Include="Access.cpp" />
     <ClCompile Include="AddingForm.cpp" />
+    <ClCompile Include="CreateNewAccount.cpp" />
     <ClCompile Include="EditingForm.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="Request.cpp" />
@@ -144,6 +145,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="AddingForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="CreateNewAccount.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="EditingForm.h">
@@ -162,6 +166,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddingForm.resx">
       <DependentUpon>AddingForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateNewAccount.resx">
+      <DependentUpon>CreateNewAccount.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditingForm.resx">
       <DependentUpon>EditingForm.h</DependentUpon>

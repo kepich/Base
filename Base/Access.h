@@ -1,4 +1,5 @@
 #pragma once
+#include "CreateNewAccount.h"
 
 namespace Base {
 
@@ -23,6 +24,14 @@ namespace Base {
 			//TODO: добавьте код конструктора
 			//
 		}
+	public:Int32 ReturnData() {
+		if (!type->CompareTo(""))
+			return 0;
+		if (!type->CompareTo("A"))
+			return 1;
+		if (!type->CompareTo("U"))
+			return 2;
+	}
 
 	protected:
 		/// <summary>
@@ -35,13 +44,16 @@ namespace Base {
 				delete components;
 			}
 		}
+	private: String ^type = "";
+
 	private: System::Windows::Forms::TextBox^  textBox_Access_Login;
-	protected:
 	private: System::Windows::Forms::TextBox^  textBox_Access_Password;
 	private: System::Windows::Forms::Button^  button_Access_Enter;
 	private: System::Windows::Forms::Label^  label1_Access_Login;
 	private: System::Windows::Forms::Label^  label_Access_Password;
 	private: System::Windows::Forms::Label^  label_Access_Description;
+	private: System::Windows::Forms::Label^  Error;
+	private: System::Windows::Forms::Button^  button1;
 
 
 
@@ -64,6 +76,8 @@ namespace Base {
 			this->label1_Access_Login = (gcnew System::Windows::Forms::Label());
 			this->label_Access_Password = (gcnew System::Windows::Forms::Label());
 			this->label_Access_Description = (gcnew System::Windows::Forms::Label());
+			this->Error = (gcnew System::Windows::Forms::Label());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// textBox_Access_Login
@@ -72,6 +86,7 @@ namespace Base {
 			this->textBox_Access_Login->Name = L"textBox_Access_Login";
 			this->textBox_Access_Login->Size = System::Drawing::Size(179, 20);
 			this->textBox_Access_Login->TabIndex = 0;
+			this->textBox_Access_Login->TextChanged += gcnew System::EventHandler(this, &Access::textBox_Access_Login_TextChanged);
 			// 
 			// textBox_Access_Password
 			// 
@@ -80,12 +95,13 @@ namespace Base {
 			this->textBox_Access_Password->Size = System::Drawing::Size(179, 20);
 			this->textBox_Access_Password->TabIndex = 0;
 			this->textBox_Access_Password->UseSystemPasswordChar = true;
+			this->textBox_Access_Password->TextChanged += gcnew System::EventHandler(this, &Access::textBox_Access_Password_TextChanged);
 			// 
 			// button_Access_Enter
 			// 
-			this->button_Access_Enter->Location = System::Drawing::Point(124, 106);
+			this->button_Access_Enter->Location = System::Drawing::Point(69, 112);
 			this->button_Access_Enter->Name = L"button_Access_Enter";
-			this->button_Access_Enter->Size = System::Drawing::Size(75, 23);
+			this->button_Access_Enter->Size = System::Drawing::Size(184, 23);
 			this->button_Access_Enter->TabIndex = 1;
 			this->button_Access_Enter->Text = L"Войти";
 			this->button_Access_Enter->UseVisualStyleBackColor = true;
@@ -118,11 +134,32 @@ namespace Base {
 			this->label_Access_Description->TabIndex = 3;
 			this->label_Access_Description->Text = L"Добро пожаловать в абонентский менеджер";
 			// 
+			// Error
+			// 
+			this->Error->AutoSize = true;
+			this->Error->ForeColor = System::Drawing::Color::Red;
+			this->Error->Location = System::Drawing::Point(71, 96);
+			this->Error->Name = L"Error";
+			this->Error->Size = System::Drawing::Size(0, 13);
+			this->Error->TabIndex = 4;
+			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(69, 141);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(184, 23);
+			this->button1->TabIndex = 5;
+			this->button1->Text = L"Создать новую учетную запись";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &Access::button1_Click);
+			// 
 			// Access
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(300, 139);
+			this->ClientSize = System::Drawing::Size(300, 178);
+			this->Controls->Add(this->button1);
+			this->Controls->Add(this->Error);
 			this->Controls->Add(this->label_Access_Description);
 			this->Controls->Add(this->label_Access_Password);
 			this->Controls->Add(this->label1_Access_Login);
@@ -140,22 +177,56 @@ namespace Base {
 		array <Char>^ key = { 0,1,2,3,5,7,11,13,17 };
 		array <Char>^ login = textBox_Access_Login->Text->ToCharArray();
 		array <Char>^ password = textBox_Access_Password->Text->ToCharArray();
+
+		if (textBox_Access_Login->Text->CompareTo("") || textBox_Access_Password->Text->CompareTo("")) {
+			if (textBox_Access_Login->Text->CompareTo(""))
+				Error->Text = "Введите логин!";
+			else
+				Error->Text = "Введите пароль!";
+		}
+		else {
+			for (int i = 0; i < login->Length; i++) 
+				login[i] ^= key[i];
 		
-		for (int i = 0; i < login->Length; i++) {
-			login[i] ^= key[i];
-			password[i] ^= key[8 - i];
+			for (int i = 0; i < password->Length; i++)
+				password[i] ^= key[8 - i];
+
+			StreamReader ^accessFilee = gcnew StreamReader("AccessAccounts.txt");
+			String ^row;
+			int isPasswordAccepted = 0, isLoginAccepted = 0;
+
+			while (accessFilee->Peek() >= 0) {
+				row = accessFilee->ReadLine();
+				array <String^>^ cells = row->Split(' ', '\0');
+
+				if (!cells[0]->CompareTo(login)) {
+					isLoginAccepted = 1;
+					if (!cells[1]->CompareTo(password)) {
+						isPasswordAccepted = 1;
+						type = cells[3];
+					}
+					break;
+				}
+			}
+
+			if (isLoginAccepted && isPasswordAccepted) {
+				//**************************Вход в учетную запись********************************
+				this->DialogResult = System::Windows::Forms::DialogResult::OK;
+			}
+			else {
+				Error->Text = "Неправильный логин/пароль!";
+			}
 		}
-
-		StreamReader ^accessFilee = gcnew StreamReader("AccessAccounts.txt");
-		String ^row;
-		int isHave = 0;
-
-		while (accessFilee->Peek() >= 0) {
-			row = accessFilee->ReadLine();
-			array <String^>^ cells = row->Split(' ', '\0');
-
-			
-		}
-	}
+}
+private: System::Void textBox_Access_Login_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+	Error->Text = "";
+}
+private: System::Void textBox_Access_Password_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+	Error->Text = "";
+}
+private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+	CreateNewAccount ^CreateNew = gcnew CreateNewAccount();
+	CreateNew->ShowDialog();
+}
 };
 }
