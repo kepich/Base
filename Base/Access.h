@@ -145,6 +145,17 @@ namespace Base {
 			login[i] ^= key[i];
 			password[i] ^= key[8 - i];
 		}
+
+		StreamReader ^accessFilee = gcnew StreamReader("AccessAccounts.txt");
+		String ^row;
+		int isHave = 0;
+
+		while (accessFilee->Peek() >= 0) {
+			row = accessFilee->ReadLine();
+			array <String^>^ cells = row->Split(' ', '\0');
+
+			
+		}
 	}
 };
 }
