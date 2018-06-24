@@ -170,6 +170,7 @@ namespace Base {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(Request::typeid));
 			this->Rules = (gcnew System::Windows::Forms::Label());
 			this->FullName = (gcnew System::Windows::Forms::TextBox());
 			this->Address = (gcnew System::Windows::Forms::TextBox());
@@ -215,7 +216,7 @@ namespace Base {
 			this->FullName->Location = System::Drawing::Point(26, 65);
 			this->FullName->Name = L"FullName";
 			this->FullName->Size = System::Drawing::Size(175, 20);
-			this->FullName->TabIndex = 1;
+			this->FullName->TabIndex = 0;
 			this->FullName->TextChanged += gcnew System::EventHandler(this, &Request::FullName_TextChanged);
 			// 
 			// Address
@@ -224,7 +225,7 @@ namespace Base {
 			this->Address->Location = System::Drawing::Point(452, 65);
 			this->Address->Name = L"Address";
 			this->Address->Size = System::Drawing::Size(175, 20);
-			this->Address->TabIndex = 1;
+			this->Address->TabIndex = 4;
 			this->Address->TextChanged += gcnew System::EventHandler(this, &Request::Address_TextChanged);
 			// 
 			// label1
@@ -297,7 +298,7 @@ namespace Base {
 			this->CreateRequest->Location = System::Drawing::Point(507, 114);
 			this->CreateRequest->Name = L"CreateRequest";
 			this->CreateRequest->Size = System::Drawing::Size(120, 23);
-			this->CreateRequest->TabIndex = 2;
+			this->CreateRequest->TabIndex = 5;
 			this->CreateRequest->Text = L"Выполнить запрос";
 			this->CreateRequest->UseVisualStyleBackColor = true;
 			this->CreateRequest->Click += gcnew System::EventHandler(this, &Request::CreateRequest_Click);
@@ -355,7 +356,7 @@ namespace Base {
 			this->ResetRequest->Location = System::Drawing::Point(381, 114);
 			this->ResetRequest->Name = L"ResetRequest";
 			this->ResetRequest->Size = System::Drawing::Size(120, 23);
-			this->ResetRequest->TabIndex = 2;
+			this->ResetRequest->TabIndex = 11;
 			this->ResetRequest->Text = L"Сбросить запрос";
 			this->ResetRequest->UseVisualStyleBackColor = true;
 			this->ResetRequest->Click += gcnew System::EventHandler(this, &Request::ResetRequest_Click);
@@ -366,7 +367,7 @@ namespace Base {
 			this->checkBox1_FIO->Location = System::Drawing::Point(106, 92);
 			this->checkBox1_FIO->Name = L"checkBox1_FIO";
 			this->checkBox1_FIO->Size = System::Drawing::Size(15, 14);
-			this->checkBox1_FIO->TabIndex = 4;
+			this->checkBox1_FIO->TabIndex = 6;
 			this->checkBox1_FIO->UseVisualStyleBackColor = true;
 			this->checkBox1_FIO->CheckedChanged += gcnew System::EventHandler(this, &Request::checkBox1_FIO_CheckedChanged);
 			// 
@@ -376,7 +377,7 @@ namespace Base {
 			this->checkBox2_Phone->Location = System::Drawing::Point(259, 91);
 			this->checkBox2_Phone->Name = L"checkBox2_Phone";
 			this->checkBox2_Phone->Size = System::Drawing::Size(15, 14);
-			this->checkBox2_Phone->TabIndex = 4;
+			this->checkBox2_Phone->TabIndex = 7;
 			this->checkBox2_Phone->UseVisualStyleBackColor = true;
 			this->checkBox2_Phone->CheckedChanged += gcnew System::EventHandler(this, &Request::checkBox2_Phone_CheckedChanged);
 			// 
@@ -386,7 +387,7 @@ namespace Base {
 			this->checkBox3_Year->Location = System::Drawing::Point(350, 91);
 			this->checkBox3_Year->Name = L"checkBox3_Year";
 			this->checkBox3_Year->Size = System::Drawing::Size(15, 14);
-			this->checkBox3_Year->TabIndex = 4;
+			this->checkBox3_Year->TabIndex = 8;
 			this->checkBox3_Year->UseVisualStyleBackColor = true;
 			this->checkBox3_Year->CheckedChanged += gcnew System::EventHandler(this, &Request::checkBox3_Year_CheckedChanged);
 			// 
@@ -396,7 +397,7 @@ namespace Base {
 			this->checkBox4_Type->Location = System::Drawing::Point(411, 91);
 			this->checkBox4_Type->Name = L"checkBox4_Type";
 			this->checkBox4_Type->Size = System::Drawing::Size(15, 14);
-			this->checkBox4_Type->TabIndex = 4;
+			this->checkBox4_Type->TabIndex = 9;
 			this->checkBox4_Type->UseVisualStyleBackColor = true;
 			this->checkBox4_Type->CheckedChanged += gcnew System::EventHandler(this, &Request::checkBox4_Type_CheckedChanged);
 			// 
@@ -406,7 +407,7 @@ namespace Base {
 			this->checkBox5_Address->Location = System::Drawing::Point(531, 91);
 			this->checkBox5_Address->Name = L"checkBox5_Address";
 			this->checkBox5_Address->Size = System::Drawing::Size(15, 14);
-			this->checkBox5_Address->TabIndex = 4;
+			this->checkBox5_Address->TabIndex = 10;
 			this->checkBox5_Address->UseVisualStyleBackColor = true;
 			this->checkBox5_Address->CheckedChanged += gcnew System::EventHandler(this, &Request::checkBox5_Address_CheckedChanged);
 			// 
@@ -417,7 +418,7 @@ namespace Base {
 			this->maskedTextBox1_Phone->Mask = L"(99)-99-99";
 			this->maskedTextBox1_Phone->Name = L"maskedTextBox1_Phone";
 			this->maskedTextBox1_Phone->Size = System::Drawing::Size(113, 20);
-			this->maskedTextBox1_Phone->TabIndex = 5;
+			this->maskedTextBox1_Phone->TabIndex = 1;
 			this->maskedTextBox1_Phone->TextChanged += gcnew System::EventHandler(this, &Request::maskedTextBox1_Phone_TextChanged);
 			// 
 			// maskedTextBox2_Year
@@ -427,7 +428,7 @@ namespace Base {
 			this->maskedTextBox2_Year->Mask = L"9999";
 			this->maskedTextBox2_Year->Name = L"maskedTextBox2_Year";
 			this->maskedTextBox2_Year->Size = System::Drawing::Size(57, 20);
-			this->maskedTextBox2_Year->TabIndex = 5;
+			this->maskedTextBox2_Year->TabIndex = 2;
 			this->maskedTextBox2_Year->ValidatingType = System::DateTime::typeid;
 			this->maskedTextBox2_Year->TextChanged += gcnew System::EventHandler(this, &Request::maskedTextBox2_Year_TextChanged);
 			// 
@@ -439,7 +440,7 @@ namespace Base {
 			this->comboBox1->Location = System::Drawing::Point(389, 65);
 			this->comboBox1->Name = L"comboBox1";
 			this->comboBox1->Size = System::Drawing::Size(57, 21);
-			this->comboBox1->TabIndex = 6;
+			this->comboBox1->TabIndex = 3;
 			this->comboBox1->TextChanged += gcnew System::EventHandler(this, &Request::comboBox1_TextChanged);
 			// 
 			// Error
@@ -478,6 +479,8 @@ namespace Base {
 			this->Controls->Add(this->Error);
 			this->Controls->Add(this->Errors);
 			this->Controls->Add(this->Rules);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedDialog;
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"Request";
 			this->Text = L"Запрос";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();

@@ -133,6 +133,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="About.cpp" />
     <ClCompile Include="Access.cpp" />
     <ClCompile Include="AddingForm.cpp" />
     <ClCompile Include="CreateNewAccount.cpp" />
@@ -141,6 +142,9 @@
     <ClCompile Include="Request.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="About.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Access.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -161,6 +165,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="About.resx">
+      <DependentUpon>About.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Access.resx">
       <DependentUpon>Access.h</DependentUpon>
     </EmbeddedResource>

@@ -68,6 +68,7 @@ namespace Base {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(CreateNewAccount::typeid));
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
@@ -132,7 +133,7 @@ namespace Base {
 			this->textBox2_Password->Location = System::Drawing::Point(117, 89);
 			this->textBox2_Password->Name = L"textBox2_Password";
 			this->textBox2_Password->Size = System::Drawing::Size(162, 20);
-			this->textBox2_Password->TabIndex = 2;
+			this->textBox2_Password->TabIndex = 4;
 			this->textBox2_Password->UseSystemPasswordChar = true;
 			// 
 			// ErrorLogin
@@ -160,7 +161,7 @@ namespace Base {
 			this->radioButton1->Location = System::Drawing::Point(5, 3);
 			this->radioButton1->Name = L"radioButton1";
 			this->radioButton1->Size = System::Drawing::Size(166, 17);
-			this->radioButton1->TabIndex = 4;
+			this->radioButton1->TabIndex = 6;
 			this->radioButton1->TabStop = true;
 			this->radioButton1->Text = L"Стандартный пользователь";
 			this->radioButton1->UseVisualStyleBackColor = true;
@@ -171,7 +172,7 @@ namespace Base {
 			this->radioButton2->Location = System::Drawing::Point(5, 23);
 			this->radioButton2->Name = L"radioButton2";
 			this->radioButton2->Size = System::Drawing::Size(104, 17);
-			this->radioButton2->TabIndex = 4;
+			this->radioButton2->TabIndex = 8;
 			this->radioButton2->Text = L"Администратор";
 			this->radioButton2->UseVisualStyleBackColor = true;
 			// 
@@ -189,7 +190,7 @@ namespace Base {
 			this->CreateAccount->Location = System::Drawing::Point(117, 193);
 			this->CreateAccount->Name = L"CreateAccount";
 			this->CreateAccount->Size = System::Drawing::Size(75, 23);
-			this->CreateAccount->TabIndex = 6;
+			this->CreateAccount->TabIndex = 10;
 			this->CreateAccount->Text = L"Создать аккаунт";
 			this->CreateAccount->UseVisualStyleBackColor = true;
 			this->CreateAccount->Click += gcnew System::EventHandler(this, &CreateNewAccount::CreateAccount_Click);
@@ -210,7 +211,7 @@ namespace Base {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(325, 231);
+			this->ClientSize = System::Drawing::Size(335, 231);
 			this->Controls->Add(this->CreateAccount);
 			this->Controls->Add(this->panel1);
 			this->Controls->Add(this->ErrorPassword);
@@ -223,6 +224,8 @@ namespace Base {
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->label1);
 			this->Enabled = false;
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedDialog;
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"CreateNewAccount";
 			this->Text = L"Создать новый аккаунт";
 			this->panel1->ResumeLayout(false);

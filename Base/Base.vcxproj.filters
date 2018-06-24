@@ -33,6 +33,9 @@
     <ClCompile Include="CreateNewAccount.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="About.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainFrame.h">
@@ -53,6 +56,9 @@
     <ClInclude Include="CreateNewAccount.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="About.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MainFrame.resx">
@@ -68,6 +74,9 @@
       <Filter>Файлы ресурсов</Filter>
     </EmbeddedResource>
     <EmbeddedResource Include="EditingForm.resx">
+      <Filter>Файлы ресурсов</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateNewAccount.resx">
       <Filter>Файлы ресурсов</Filter>
     </EmbeddedResource>
   </ItemGroup>

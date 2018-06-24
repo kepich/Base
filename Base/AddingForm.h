@@ -141,6 +141,7 @@ namespace Base {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(AddingForm::typeid));
 			this->Info = (gcnew System::Windows::Forms::Label());
 			this->AddNew = (gcnew System::Windows::Forms::Button());
 			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
@@ -171,7 +172,7 @@ namespace Base {
 			this->AddNew->Location = System::Drawing::Point(509, 86);
 			this->AddNew->Name = L"AddNew";
 			this->AddNew->Size = System::Drawing::Size(120, 23);
-			this->AddNew->TabIndex = 15;
+			this->AddNew->TabIndex = 5;
 			this->AddNew->Text = L"Добавить запись";
 			this->AddNew->UseVisualStyleBackColor = true;
 			this->AddNew->Click += gcnew System::EventHandler(this, &AddingForm::AddNew_Click);
@@ -184,7 +185,7 @@ namespace Base {
 			this->comboBox1->Location = System::Drawing::Point(391, 47);
 			this->comboBox1->Name = L"comboBox1";
 			this->comboBox1->Size = System::Drawing::Size(57, 21);
-			this->comboBox1->TabIndex = 26;
+			this->comboBox1->TabIndex = 3;
 			this->comboBox1->TextChanged += gcnew System::EventHandler(this, &AddingForm::comboBox1_TextChanged);
 			// 
 			// maskedTextBox2_Year
@@ -193,7 +194,7 @@ namespace Base {
 			this->maskedTextBox2_Year->Mask = L"9999";
 			this->maskedTextBox2_Year->Name = L"maskedTextBox2_Year";
 			this->maskedTextBox2_Year->Size = System::Drawing::Size(57, 20);
-			this->maskedTextBox2_Year->TabIndex = 24;
+			this->maskedTextBox2_Year->TabIndex = 2;
 			this->maskedTextBox2_Year->ValidatingType = System::DateTime::typeid;
 			this->maskedTextBox2_Year->TextChanged += gcnew System::EventHandler(this, &AddingForm::maskedTextBox2_Year_TextChanged);
 			// 
@@ -203,7 +204,7 @@ namespace Base {
 			this->maskedTextBox1_Phone->Mask = L"(99)-99-99";
 			this->maskedTextBox1_Phone->Name = L"maskedTextBox1_Phone";
 			this->maskedTextBox1_Phone->Size = System::Drawing::Size(113, 20);
-			this->maskedTextBox1_Phone->TabIndex = 25;
+			this->maskedTextBox1_Phone->TabIndex = 1;
 			this->maskedTextBox1_Phone->TextChanged += gcnew System::EventHandler(this, &AddingForm::maskedTextBox1_Phone_TextChanged);
 			// 
 			// Address
@@ -211,7 +212,7 @@ namespace Base {
 			this->Address->Location = System::Drawing::Point(454, 47);
 			this->Address->Name = L"Address";
 			this->Address->Size = System::Drawing::Size(175, 20);
-			this->Address->TabIndex = 22;
+			this->Address->TabIndex = 4;
 			this->Address->TextChanged += gcnew System::EventHandler(this, &AddingForm::Address_TextChanged);
 			// 
 			// FullName
@@ -219,7 +220,7 @@ namespace Base {
 			this->FullName->Location = System::Drawing::Point(28, 47);
 			this->FullName->Name = L"FullName";
 			this->FullName->Size = System::Drawing::Size(175, 20);
-			this->FullName->TabIndex = 23;
+			this->FullName->TabIndex = 0;
 			this->FullName->TextChanged += gcnew System::EventHandler(this, &AddingForm::FullName_TextChanged);
 			// 
 			// label6
@@ -304,6 +305,8 @@ namespace Base {
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->AddNew);
 			this->Controls->Add(this->Info);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedDialog;
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"AddingForm";
 			this->Text = L"Добавление новой записи";
 			this->ResumeLayout(false);

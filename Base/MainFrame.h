@@ -4,6 +4,7 @@
 #include "Request.h"
 #include "AddingForm.h"
 #include "EditingForm.h"
+#include "About.h"
 
 namespace Base {
 
@@ -109,6 +110,7 @@ namespace Base {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(MainFrame::typeid));
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->fio = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->PhoneNumber = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
@@ -197,7 +199,7 @@ namespace Base {
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(655, 24);
+			this->menuStrip1->Size = System::Drawing::Size(642, 24);
 			this->menuStrip1->TabIndex = 1;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
@@ -321,8 +323,9 @@ namespace Base {
 			// AboutInToolStripMenuItem1
 			// 
 			this->AboutInToolStripMenuItem1->Name = L"AboutInToolStripMenuItem1";
-			this->AboutInToolStripMenuItem1->Size = System::Drawing::Size(149, 22);
+			this->AboutInToolStripMenuItem1->Size = System::Drawing::Size(152, 22);
 			this->AboutInToolStripMenuItem1->Text = L"О программе";
+			this->AboutInToolStripMenuItem1->Click += gcnew System::EventHandler(this, &MainFrame::AboutInToolStripMenuItem1_Click);
 			// 
 			// TypeOfAccount
 			// 
@@ -348,11 +351,13 @@ namespace Base {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(655, 351);
+			this->ClientSize = System::Drawing::Size(642, 351);
 			this->Controls->Add(this->User);
 			this->Controls->Add(this->TypeOfAccount);
 			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->menuStrip1);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedDialog;
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->MainMenuStrip = this->menuStrip1;
 			this->Name = L"MainFrame";
 			this->Text = L"Абонентский менеджер";
@@ -575,11 +580,15 @@ private: System::Void редактироватьToolStripMenuItem_Click(System::Object^  send
 }
 private: System::Void удалитьToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 	
-	if (MessageBox::Show("Вы верены, что хотите удалить эту запись?", "Base",
+	if (MessageBox::Show("Вы верены, что хотите удалить эту запись?", "",
 		MessageBoxButtons::YesNo, MessageBoxIcon::Warning) == System::Windows::Forms::DialogResult::Yes) {
 		dataGridView1->Rows->RemoveAt(dataGridView1->CurrentRow->Index);
 		dataGridView1->Refresh();
 	}
+}
+private: System::Void AboutInToolStripMenuItem1_Click(System::Object^  sender, System::EventArgs^  e) {
+	About ^AboutBase = gcnew About();
+	AboutBase->ShowDialog();
 }
 };
 }

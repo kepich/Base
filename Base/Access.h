@@ -70,6 +70,7 @@ namespace Base {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(Access::typeid));
 			this->textBox_Access_Login = (gcnew System::Windows::Forms::TextBox());
 			this->textBox_Access_Password = (gcnew System::Windows::Forms::TextBox());
 			this->button_Access_Enter = (gcnew System::Windows::Forms::Button());
@@ -93,7 +94,7 @@ namespace Base {
 			this->textBox_Access_Password->Location = System::Drawing::Point(74, 71);
 			this->textBox_Access_Password->Name = L"textBox_Access_Password";
 			this->textBox_Access_Password->Size = System::Drawing::Size(179, 20);
-			this->textBox_Access_Password->TabIndex = 0;
+			this->textBox_Access_Password->TabIndex = 2;
 			this->textBox_Access_Password->UseSystemPasswordChar = true;
 			this->textBox_Access_Password->TextChanged += gcnew System::EventHandler(this, &Access::textBox_Access_Password_TextChanged);
 			// 
@@ -102,7 +103,7 @@ namespace Base {
 			this->button_Access_Enter->Location = System::Drawing::Point(69, 112);
 			this->button_Access_Enter->Name = L"button_Access_Enter";
 			this->button_Access_Enter->Size = System::Drawing::Size(184, 23);
-			this->button_Access_Enter->TabIndex = 1;
+			this->button_Access_Enter->TabIndex = 4;
 			this->button_Access_Enter->Text = L"Войти";
 			this->button_Access_Enter->UseVisualStyleBackColor = true;
 			this->button_Access_Enter->Click += gcnew System::EventHandler(this, &Access::button_Access_Enter_Click);
@@ -148,7 +149,7 @@ namespace Base {
 			this->button1->Location = System::Drawing::Point(69, 141);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(184, 23);
-			this->button1->TabIndex = 5;
+			this->button1->TabIndex = 6;
 			this->button1->Text = L"Создать новую учетную запись";
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &Access::button1_Click);
@@ -166,6 +167,8 @@ namespace Base {
 			this->Controls->Add(this->button_Access_Enter);
 			this->Controls->Add(this->textBox_Access_Password);
 			this->Controls->Add(this->textBox_Access_Login);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedDialog;
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"Access";
 			this->Text = L"Вход в учетную запись";
 			this->ResumeLayout(false);

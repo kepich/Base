@@ -150,6 +150,7 @@ namespace Base {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(EditingForm::typeid));
 			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
 			this->maskedTextBox2_Year = (gcnew System::Windows::Forms::MaskedTextBox());
 			this->maskedTextBox1_Phone = (gcnew System::Windows::Forms::MaskedTextBox());
@@ -174,7 +175,7 @@ namespace Base {
 			this->comboBox1->Location = System::Drawing::Point(375, 49);
 			this->comboBox1->Name = L"comboBox1";
 			this->comboBox1->Size = System::Drawing::Size(57, 21);
-			this->comboBox1->TabIndex = 39;
+			this->comboBox1->TabIndex = 3;
 			this->comboBox1->TextChanged += gcnew System::EventHandler(this, &EditingForm::comboBox1_TextChanged);
 			// 
 			// maskedTextBox2_Year
@@ -183,7 +184,7 @@ namespace Base {
 			this->maskedTextBox2_Year->Mask = L"9999";
 			this->maskedTextBox2_Year->Name = L"maskedTextBox2_Year";
 			this->maskedTextBox2_Year->Size = System::Drawing::Size(57, 20);
-			this->maskedTextBox2_Year->TabIndex = 37;
+			this->maskedTextBox2_Year->TabIndex = 2;
 			this->maskedTextBox2_Year->ValidatingType = System::DateTime::typeid;
 			this->maskedTextBox2_Year->TextChanged += gcnew System::EventHandler(this, &EditingForm::maskedTextBox2_Year_TextChanged);
 			// 
@@ -193,7 +194,7 @@ namespace Base {
 			this->maskedTextBox1_Phone->Mask = L"(99)-99-99";
 			this->maskedTextBox1_Phone->Name = L"maskedTextBox1_Phone";
 			this->maskedTextBox1_Phone->Size = System::Drawing::Size(113, 20);
-			this->maskedTextBox1_Phone->TabIndex = 38;
+			this->maskedTextBox1_Phone->TabIndex = 1;
 			this->maskedTextBox1_Phone->TextChanged += gcnew System::EventHandler(this, &EditingForm::maskedTextBox1_Phone_TextChanged);
 			// 
 			// Address
@@ -201,7 +202,7 @@ namespace Base {
 			this->Address->Location = System::Drawing::Point(438, 49);
 			this->Address->Name = L"Address";
 			this->Address->Size = System::Drawing::Size(175, 20);
-			this->Address->TabIndex = 35;
+			this->Address->TabIndex = 4;
 			this->Address->TextChanged += gcnew System::EventHandler(this, &EditingForm::Address_TextChanged);
 			// 
 			// FullName
@@ -209,7 +210,7 @@ namespace Base {
 			this->FullName->Location = System::Drawing::Point(12, 49);
 			this->FullName->Name = L"FullName";
 			this->FullName->Size = System::Drawing::Size(175, 20);
-			this->FullName->TabIndex = 36;
+			this->FullName->TabIndex = 0;
 			this->FullName->TextChanged += gcnew System::EventHandler(this, &EditingForm::FullName_TextChanged);
 			// 
 			// label6
@@ -271,7 +272,7 @@ namespace Base {
 			this->Edit->Location = System::Drawing::Point(493, 88);
 			this->Edit->Name = L"Edit";
 			this->Edit->Size = System::Drawing::Size(120, 23);
-			this->Edit->TabIndex = 28;
+			this->Edit->TabIndex = 5;
 			this->Edit->Text = L"Изменить";
 			this->Edit->UseVisualStyleBackColor = true;
 			this->Edit->Click += gcnew System::EventHandler(this, &EditingForm::AddNew_Click);
@@ -313,6 +314,8 @@ namespace Base {
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->Edit);
 			this->Controls->Add(this->Info);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedDialog;
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"EditingForm";
 			this->Text = L"Изменение записи";
 			this->ResumeLayout(false);
