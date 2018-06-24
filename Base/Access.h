@@ -83,7 +83,7 @@ namespace Base {
 			// 
 			// textBox_Access_Login
 			// 
-			this->textBox_Access_Login->Location = System::Drawing::Point(74, 45);
+			this->textBox_Access_Login->Location = System::Drawing::Point(69, 34);
 			this->textBox_Access_Login->Name = L"textBox_Access_Login";
 			this->textBox_Access_Login->Size = System::Drawing::Size(179, 20);
 			this->textBox_Access_Login->TabIndex = 0;
@@ -91,7 +91,7 @@ namespace Base {
 			// 
 			// textBox_Access_Password
 			// 
-			this->textBox_Access_Password->Location = System::Drawing::Point(74, 71);
+			this->textBox_Access_Password->Location = System::Drawing::Point(69, 60);
 			this->textBox_Access_Password->Name = L"textBox_Access_Password";
 			this->textBox_Access_Password->Size = System::Drawing::Size(179, 20);
 			this->textBox_Access_Password->TabIndex = 2;
@@ -100,7 +100,7 @@ namespace Base {
 			// 
 			// button_Access_Enter
 			// 
-			this->button_Access_Enter->Location = System::Drawing::Point(69, 112);
+			this->button_Access_Enter->Location = System::Drawing::Point(64, 101);
 			this->button_Access_Enter->Name = L"button_Access_Enter";
 			this->button_Access_Enter->Size = System::Drawing::Size(184, 23);
 			this->button_Access_Enter->TabIndex = 4;
@@ -111,7 +111,7 @@ namespace Base {
 			// label1_Access_Login
 			// 
 			this->label1_Access_Login->AutoSize = true;
-			this->label1_Access_Login->Location = System::Drawing::Point(11, 48);
+			this->label1_Access_Login->Location = System::Drawing::Point(6, 37);
 			this->label1_Access_Login->Name = L"label1_Access_Login";
 			this->label1_Access_Login->Size = System::Drawing::Size(41, 13);
 			this->label1_Access_Login->TabIndex = 2;
@@ -120,7 +120,7 @@ namespace Base {
 			// label_Access_Password
 			// 
 			this->label_Access_Password->AutoSize = true;
-			this->label_Access_Password->Location = System::Drawing::Point(11, 74);
+			this->label_Access_Password->Location = System::Drawing::Point(6, 63);
 			this->label_Access_Password->Name = L"label_Access_Password";
 			this->label_Access_Password->Size = System::Drawing::Size(48, 13);
 			this->label_Access_Password->TabIndex = 2;
@@ -129,7 +129,7 @@ namespace Base {
 			// label_Access_Description
 			// 
 			this->label_Access_Description->AutoSize = true;
-			this->label_Access_Description->Location = System::Drawing::Point(29, 9);
+			this->label_Access_Description->Location = System::Drawing::Point(12, 9);
 			this->label_Access_Description->Name = L"label_Access_Description";
 			this->label_Access_Description->Size = System::Drawing::Size(236, 13);
 			this->label_Access_Description->TabIndex = 3;
@@ -139,14 +139,14 @@ namespace Base {
 			// 
 			this->Error->AutoSize = true;
 			this->Error->ForeColor = System::Drawing::Color::Red;
-			this->Error->Location = System::Drawing::Point(71, 96);
+			this->Error->Location = System::Drawing::Point(66, 85);
 			this->Error->Name = L"Error";
 			this->Error->Size = System::Drawing::Size(0, 13);
 			this->Error->TabIndex = 4;
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(69, 141);
+			this->button1->Location = System::Drawing::Point(64, 130);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(184, 23);
 			this->button1->TabIndex = 6;
@@ -158,7 +158,7 @@ namespace Base {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(300, 178);
+			this->ClientSize = System::Drawing::Size(263, 160);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->Error);
 			this->Controls->Add(this->label_Access_Description);

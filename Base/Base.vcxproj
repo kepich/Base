@@ -138,6 +138,7 @@
     <ClCompile Include="AddingForm.cpp" />
     <ClCompile Include="CreateNewAccount.cpp" />
     <ClCompile Include="EditingForm.cpp" />
+    <ClCompile Include="GameMetalSmith.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="Request.cpp" />
   </ItemGroup>
@@ -155,6 +156,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="EditingForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="GameMetalSmith.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="MainFrame.h">

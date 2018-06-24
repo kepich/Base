@@ -269,7 +269,7 @@ namespace Base {
 			// 
 			// Edit
 			// 
-			this->Edit->Location = System::Drawing::Point(493, 88);
+			this->Edit->Location = System::Drawing::Point(493, 75);
 			this->Edit->Name = L"Edit";
 			this->Edit->Size = System::Drawing::Size(120, 23);
 			this->Edit->TabIndex = 5;
@@ -299,7 +299,7 @@ namespace Base {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(628, 128);
+			this->ClientSize = System::Drawing::Size(628, 109);
 			this->Controls->Add(this->Error);
 			this->Controls->Add(this->comboBox1);
 			this->Controls->Add(this->maskedTextBox2_Year);

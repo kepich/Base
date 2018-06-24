@@ -88,7 +88,7 @@ namespace Base {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(81, 9);
+			this->label1->Location = System::Drawing::Point(57, 9);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(167, 13);
 			this->label1->TabIndex = 0;
@@ -97,7 +97,7 @@ namespace Base {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(31, 53);
+			this->label2->Location = System::Drawing::Point(7, 41);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(41, 13);
 			this->label2->TabIndex = 1;
@@ -106,7 +106,7 @@ namespace Base {
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(31, 92);
+			this->label3->Location = System::Drawing::Point(7, 80);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(48, 13);
 			this->label3->TabIndex = 1;
@@ -115,7 +115,7 @@ namespace Base {
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(31, 148);
+			this->label4->Location = System::Drawing::Point(6, 130);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(78, 13);
 			this->label4->TabIndex = 1;
@@ -123,14 +123,14 @@ namespace Base {
 			// 
 			// textBox1_Login
 			// 
-			this->textBox1_Login->Location = System::Drawing::Point(117, 50);
+			this->textBox1_Login->Location = System::Drawing::Point(93, 38);
 			this->textBox1_Login->Name = L"textBox1_Login";
 			this->textBox1_Login->Size = System::Drawing::Size(162, 20);
 			this->textBox1_Login->TabIndex = 2;
 			// 
 			// textBox2_Password
 			// 
-			this->textBox2_Password->Location = System::Drawing::Point(117, 89);
+			this->textBox2_Password->Location = System::Drawing::Point(93, 77);
 			this->textBox2_Password->Name = L"textBox2_Password";
 			this->textBox2_Password->Size = System::Drawing::Size(162, 20);
 			this->textBox2_Password->TabIndex = 4;
@@ -140,7 +140,7 @@ namespace Base {
 			// 
 			this->ErrorLogin->AutoSize = true;
 			this->ErrorLogin->ForeColor = System::Drawing::Color::Red;
-			this->ErrorLogin->Location = System::Drawing::Point(117, 73);
+			this->ErrorLogin->Location = System::Drawing::Point(93, 61);
 			this->ErrorLogin->Name = L"ErrorLogin";
 			this->ErrorLogin->Size = System::Drawing::Size(0, 13);
 			this->ErrorLogin->TabIndex = 3;
@@ -149,7 +149,7 @@ namespace Base {
 			// 
 			this->ErrorPassword->AutoSize = true;
 			this->ErrorPassword->ForeColor = System::Drawing::Color::Red;
-			this->ErrorPassword->Location = System::Drawing::Point(117, 112);
+			this->ErrorPassword->Location = System::Drawing::Point(93, 100);
 			this->ErrorPassword->Name = L"ErrorPassword";
 			this->ErrorPassword->Size = System::Drawing::Size(0, 13);
 			this->ErrorPassword->TabIndex = 3;
@@ -180,14 +180,14 @@ namespace Base {
 			// 
 			this->panel1->Controls->Add(this->radioButton1);
 			this->panel1->Controls->Add(this->radioButton2);
-			this->panel1->Location = System::Drawing::Point(117, 134);
+			this->panel1->Location = System::Drawing::Point(92, 116);
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(174, 43);
 			this->panel1->TabIndex = 5;
 			// 
 			// CreateAccount
 			// 
-			this->CreateAccount->Location = System::Drawing::Point(117, 193);
+			this->CreateAccount->Location = System::Drawing::Point(92, 165);
 			this->CreateAccount->Name = L"CreateAccount";
 			this->CreateAccount->Size = System::Drawing::Size(75, 23);
 			this->CreateAccount->TabIndex = 10;
@@ -201,7 +201,7 @@ namespace Base {
 			this->label5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Underline, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->label5->ForeColor = System::Drawing::SystemColors::ControlDark;
-			this->label5->Location = System::Drawing::Point(37, 22);
+			this->label5->Location = System::Drawing::Point(13, 22);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(254, 13);
 			this->label5->TabIndex = 0;
@@ -211,7 +211,7 @@ namespace Base {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(335, 231);
+			this->ClientSize = System::Drawing::Size(278, 194);
 			this->Controls->Add(this->CreateAccount);
 			this->Controls->Add(this->panel1);
 			this->Controls->Add(this->ErrorPassword);

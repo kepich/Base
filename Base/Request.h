@@ -204,7 +204,7 @@ namespace Base {
 			// Rules
 			// 
 			this->Rules->AutoSize = true;
-			this->Rules->Location = System::Drawing::Point(23, 18);
+			this->Rules->Location = System::Drawing::Point(1, 9);
 			this->Rules->Name = L"Rules";
 			this->Rules->Size = System::Drawing::Size(180, 13);
 			this->Rules->TabIndex = 0;
@@ -213,7 +213,7 @@ namespace Base {
 			// FullName
 			// 
 			this->FullName->Enabled = false;
-			this->FullName->Location = System::Drawing::Point(26, 65);
+			this->FullName->Location = System::Drawing::Point(8, 44);
 			this->FullName->Name = L"FullName";
 			this->FullName->Size = System::Drawing::Size(175, 20);
 			this->FullName->TabIndex = 0;
@@ -222,7 +222,7 @@ namespace Base {
 			// Address
 			// 
 			this->Address->Enabled = false;
-			this->Address->Location = System::Drawing::Point(452, 65);
+			this->Address->Location = System::Drawing::Point(434, 44);
 			this->Address->Name = L"Address";
 			this->Address->Size = System::Drawing::Size(175, 20);
 			this->Address->TabIndex = 4;
@@ -231,7 +231,7 @@ namespace Base {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(23, 49);
+			this->label1->Location = System::Drawing::Point(5, 28);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(34, 13);
 			this->label1->TabIndex = 0;
@@ -240,7 +240,7 @@ namespace Base {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(204, 49);
+			this->label2->Location = System::Drawing::Point(186, 28);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(107, 13);
 			this->label2->TabIndex = 0;
@@ -249,7 +249,7 @@ namespace Base {
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(323, 49);
+			this->label3->Location = System::Drawing::Point(305, 28);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(25, 13);
 			this->label3->TabIndex = 0;
@@ -258,7 +258,7 @@ namespace Base {
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(386, 49);
+			this->label4->Location = System::Drawing::Point(368, 28);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(66, 13);
 			this->label4->TabIndex = 0;
@@ -267,7 +267,7 @@ namespace Base {
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(323, 49);
+			this->label5->Location = System::Drawing::Point(305, 28);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(25, 13);
 			this->label5->TabIndex = 0;
@@ -276,7 +276,7 @@ namespace Base {
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(449, 49);
+			this->label6->Location = System::Drawing::Point(431, 28);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(95, 13);
 			this->label6->TabIndex = 0;
@@ -286,7 +286,7 @@ namespace Base {
 			// 
 			this->Errors->AutoSize = true;
 			this->Errors->ForeColor = System::Drawing::SystemColors::HotTrack;
-			this->Errors->Location = System::Drawing::Point(23, 139);
+			this->Errors->Location = System::Drawing::Point(12, 119);
 			this->Errors->Name = L"Errors";
 			this->Errors->Size = System::Drawing::Size(302, 13);
 			this->Errors->TabIndex = 0;
@@ -295,7 +295,7 @@ namespace Base {
 			// CreateRequest
 			// 
 			this->CreateRequest->Enabled = false;
-			this->CreateRequest->Location = System::Drawing::Point(507, 114);
+			this->CreateRequest->Location = System::Drawing::Point(487, 88);
 			this->CreateRequest->Name = L"CreateRequest";
 			this->CreateRequest->Size = System::Drawing::Size(120, 23);
 			this->CreateRequest->TabIndex = 5;
@@ -311,10 +311,10 @@ namespace Base {
 				this->fio, this->PhoneNumber,
 					this->dataGridViewTextBoxColumn1, this->TypeOfPaying, this->Adress
 			});
-			this->dataGridView1->Location = System::Drawing::Point(26, 155);
+			this->dataGridView1->Location = System::Drawing::Point(15, 135);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->ReadOnly = true;
-			this->dataGridView1->Size = System::Drawing::Size(595, 290);
+			this->dataGridView1->Size = System::Drawing::Size(595, 329);
 			this->dataGridView1->TabIndex = 3;
 			// 
 			// fio
@@ -353,7 +353,7 @@ namespace Base {
 			// 
 			// ResetRequest
 			// 
-			this->ResetRequest->Location = System::Drawing::Point(381, 114);
+			this->ResetRequest->Location = System::Drawing::Point(361, 88);
 			this->ResetRequest->Name = L"ResetRequest";
 			this->ResetRequest->Size = System::Drawing::Size(120, 23);
 			this->ResetRequest->TabIndex = 11;
@@ -364,7 +364,7 @@ namespace Base {
 			// checkBox1_FIO
 			// 
 			this->checkBox1_FIO->AutoSize = true;
-			this->checkBox1_FIO->Location = System::Drawing::Point(106, 92);
+			this->checkBox1_FIO->Location = System::Drawing::Point(88, 71);
 			this->checkBox1_FIO->Name = L"checkBox1_FIO";
 			this->checkBox1_FIO->Size = System::Drawing::Size(15, 14);
 			this->checkBox1_FIO->TabIndex = 6;
@@ -374,7 +374,7 @@ namespace Base {
 			// checkBox2_Phone
 			// 
 			this->checkBox2_Phone->AutoSize = true;
-			this->checkBox2_Phone->Location = System::Drawing::Point(259, 91);
+			this->checkBox2_Phone->Location = System::Drawing::Point(241, 70);
 			this->checkBox2_Phone->Name = L"checkBox2_Phone";
 			this->checkBox2_Phone->Size = System::Drawing::Size(15, 14);
 			this->checkBox2_Phone->TabIndex = 7;
@@ -384,7 +384,7 @@ namespace Base {
 			// checkBox3_Year
 			// 
 			this->checkBox3_Year->AutoSize = true;
-			this->checkBox3_Year->Location = System::Drawing::Point(350, 91);
+			this->checkBox3_Year->Location = System::Drawing::Point(332, 70);
 			this->checkBox3_Year->Name = L"checkBox3_Year";
 			this->checkBox3_Year->Size = System::Drawing::Size(15, 14);
 			this->checkBox3_Year->TabIndex = 8;
@@ -394,7 +394,7 @@ namespace Base {
 			// checkBox4_Type
 			// 
 			this->checkBox4_Type->AutoSize = true;
-			this->checkBox4_Type->Location = System::Drawing::Point(411, 91);
+			this->checkBox4_Type->Location = System::Drawing::Point(393, 70);
 			this->checkBox4_Type->Name = L"checkBox4_Type";
 			this->checkBox4_Type->Size = System::Drawing::Size(15, 14);
 			this->checkBox4_Type->TabIndex = 9;
@@ -404,7 +404,7 @@ namespace Base {
 			// checkBox5_Address
 			// 
 			this->checkBox5_Address->AutoSize = true;
-			this->checkBox5_Address->Location = System::Drawing::Point(531, 91);
+			this->checkBox5_Address->Location = System::Drawing::Point(513, 70);
 			this->checkBox5_Address->Name = L"checkBox5_Address";
 			this->checkBox5_Address->Size = System::Drawing::Size(15, 14);
 			this->checkBox5_Address->TabIndex = 10;
@@ -414,7 +414,7 @@ namespace Base {
 			// maskedTextBox1_Phone
 			// 
 			this->maskedTextBox1_Phone->Enabled = false;
-			this->maskedTextBox1_Phone->Location = System::Drawing::Point(207, 65);
+			this->maskedTextBox1_Phone->Location = System::Drawing::Point(189, 44);
 			this->maskedTextBox1_Phone->Mask = L"(99)-99-99";
 			this->maskedTextBox1_Phone->Name = L"maskedTextBox1_Phone";
 			this->maskedTextBox1_Phone->Size = System::Drawing::Size(113, 20);
@@ -424,7 +424,7 @@ namespace Base {
 			// maskedTextBox2_Year
 			// 
 			this->maskedTextBox2_Year->Enabled = false;
-			this->maskedTextBox2_Year->Location = System::Drawing::Point(326, 65);
+			this->maskedTextBox2_Year->Location = System::Drawing::Point(308, 44);
 			this->maskedTextBox2_Year->Mask = L"9999";
 			this->maskedTextBox2_Year->Name = L"maskedTextBox2_Year";
 			this->maskedTextBox2_Year->Size = System::Drawing::Size(57, 20);
@@ -437,7 +437,7 @@ namespace Base {
 			this->comboBox1->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->comboBox1->FormattingEnabled = true;
 			this->comboBox1->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"NAL", L"CAR" });
-			this->comboBox1->Location = System::Drawing::Point(389, 65);
+			this->comboBox1->Location = System::Drawing::Point(371, 44);
 			this->comboBox1->Name = L"comboBox1";
 			this->comboBox1->Size = System::Drawing::Size(57, 21);
 			this->comboBox1->TabIndex = 3;
@@ -447,7 +447,7 @@ namespace Base {
 			// 
 			this->Error->AutoSize = true;
 			this->Error->ForeColor = System::Drawing::Color::Red;
-			this->Error->Location = System::Drawing::Point(23, 119);
+			this->Error->Location = System::Drawing::Point(5, 98);
 			this->Error->Name = L"Error";
 			this->Error->Size = System::Drawing::Size(0, 13);
 			this->Error->TabIndex = 0;
@@ -456,7 +456,7 @@ namespace Base {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(657, 476);
+			this->ClientSize = System::Drawing::Size(618, 476);
 			this->Controls->Add(this->comboBox1);
 			this->Controls->Add(this->maskedTextBox2_Year);
 			this->Controls->Add(this->maskedTextBox1_Phone);

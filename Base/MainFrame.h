@@ -150,11 +150,11 @@ namespace Base {
 					this->Year, this->TypeOfPaying, this->Adress
 			});
 			this->dataGridView1->ImeMode = System::Windows::Forms::ImeMode::NoControl;
-			this->dataGridView1->Location = System::Drawing::Point(24, 37);
+			this->dataGridView1->Location = System::Drawing::Point(12, 27);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->ReadOnly = true;
 			this->dataGridView1->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-			this->dataGridView1->Size = System::Drawing::Size(595, 290);
+			this->dataGridView1->Size = System::Drawing::Size(595, 377);
 			this->dataGridView1->TabIndex = 0;
 			// 
 			// fio
@@ -199,7 +199,7 @@ namespace Base {
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(642, 24);
+			this->menuStrip1->Size = System::Drawing::Size(617, 24);
 			this->menuStrip1->TabIndex = 1;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
@@ -310,8 +310,9 @@ namespace Base {
 			// PlayToolStripMenuItem
 			// 
 			this->PlayToolStripMenuItem->Name = L"PlayToolStripMenuItem";
-			this->PlayToolStripMenuItem->Size = System::Drawing::Size(112, 22);
+			this->PlayToolStripMenuItem->Size = System::Drawing::Size(152, 22);
 			this->PlayToolStripMenuItem->Text = L"Èãðàòü";
+			this->PlayToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainFrame::PlayToolStripMenuItem_Click);
 			// 
 			// AboutToolStripMenuItem
 			// 
@@ -351,7 +352,7 @@ namespace Base {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(642, 351);
+			this->ClientSize = System::Drawing::Size(617, 416);
 			this->Controls->Add(this->User);
 			this->Controls->Add(this->TypeOfAccount);
 			this->Controls->Add(this->dataGridView1);
@@ -589,6 +590,9 @@ private: System::Void óäàëèòüToolStripMenuItem_Click(System::Object^  sender, Sy
 private: System::Void AboutInToolStripMenuItem1_Click(System::Object^  sender, System::EventArgs^  e) {
 	About ^AboutBase = gcnew About();
 	AboutBase->ShowDialog();
+}
+private: System::Void PlayToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+
 }
 };
 }

@@ -63,7 +63,7 @@ namespace Base {
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Underline)),
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
-			this->label1->Location = System::Drawing::Point(13, 16);
+			this->label1->Location = System::Drawing::Point(6, 6);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(150, 25);
 			this->label1->TabIndex = 0;
@@ -71,7 +71,7 @@ namespace Base {
 			// 
 			// richTextBox1
 			// 
-			this->richTextBox1->Location = System::Drawing::Point(19, 50);
+			this->richTextBox1->Location = System::Drawing::Point(12, 40);
 			this->richTextBox1->Name = L"richTextBox1";
 			this->richTextBox1->ReadOnly = true;
 			this->richTextBox1->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::Vertical;
@@ -84,7 +84,7 @@ namespace Base {
 			this->label2->AutoSize = true;
 			this->label2->Cursor = System::Windows::Forms::Cursors::Default;
 			this->label2->ForeColor = System::Drawing::SystemColors::HotTrack;
-			this->label2->Location = System::Drawing::Point(16, 369);
+			this->label2->Location = System::Drawing::Point(8, 347);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(183, 13);
 			this->label2->TabIndex = 2;
@@ -94,7 +94,7 @@ namespace Base {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(429, 391);
+			this->ClientSize = System::Drawing::Size(419, 374);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->richTextBox1);
 			this->Controls->Add(this->label1);
