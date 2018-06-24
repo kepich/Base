@@ -184,6 +184,9 @@
     <EmbeddedResource Include="EditingForm.resx">
       <DependentUpon>EditingForm.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GameMetalSmith.resx">
+      <DependentUpon>GameMetalSmith.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainFrame.resx">
       <DependentUpon>MainFrame.h</DependentUpon>
     </EmbeddedResource>

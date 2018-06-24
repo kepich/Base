@@ -5,6 +5,7 @@
 #include "AddingForm.h"
 #include "EditingForm.h"
 #include "About.h"
+#include "GameMetalSmith.h"
 
 namespace Base {
 
@@ -35,7 +36,7 @@ namespace Base {
 			this->EditionToolStripMenuItem->Enabled = false;
 			User->Text = "";
 
-			if(access_Window->ShowDialog() == System::Windows::Forms::DialogResult::Cancel)
+			if(TypeOf = access_Window->ShowDialog() == System::Windows::Forms::DialogResult::Cancel)
 				MainFrame::Close();
 			if (access_Window->DialogResult == System::Windows::Forms::DialogResult::OK) {
 				if (access_Window->ReturnData() == 2) {
@@ -70,6 +71,8 @@ namespace Base {
 			}
 		}
 	public: System::Windows::Forms::DataGridView^  dataGridView1;
+	public:	String ^NameOfFile;
+	private: int TypeOf;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  fio;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  PhoneNumber;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Year;
@@ -310,7 +313,7 @@ namespace Base {
 			// PlayToolStripMenuItem
 			// 
 			this->PlayToolStripMenuItem->Name = L"PlayToolStripMenuItem";
-			this->PlayToolStripMenuItem->Size = System::Drawing::Size(152, 22);
+			this->PlayToolStripMenuItem->Size = System::Drawing::Size(112, 22);
 			this->PlayToolStripMenuItem->Text = L"Играть";
 			this->PlayToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainFrame::PlayToolStripMenuItem_Click);
 			// 
@@ -324,7 +327,7 @@ namespace Base {
 			// AboutInToolStripMenuItem1
 			// 
 			this->AboutInToolStripMenuItem1->Name = L"AboutInToolStripMenuItem1";
-			this->AboutInToolStripMenuItem1->Size = System::Drawing::Size(152, 22);
+			this->AboutInToolStripMenuItem1->Size = System::Drawing::Size(149, 22);
 			this->AboutInToolStripMenuItem1->Text = L"О программе";
 			this->AboutInToolStripMenuItem1->Click += gcnew System::EventHandler(this, &MainFrame::AboutInToolStripMenuItem1_Click);
 			// 
@@ -362,6 +365,7 @@ namespace Base {
 			this->MainMenuStrip = this->menuStrip1;
 			this->Name = L"MainFrame";
 			this->Text = L"Абонентский менеджер";
+			this->FormClosing += gcnew System::Windows::Forms::FormClosingEventHandler(this, &MainFrame::MainFrame_FormClosing);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
@@ -369,9 +373,7 @@ namespace Base {
 			this->PerformLayout();
 
 		}
-#pragma endregion
-
-public:	String ^NameOfFile;																							// Имя файла
+#pragma endregion																					// Имя файла
 	
 private: System::Void сменитьУчетнюЗаписьToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 	Access ^changeAccount = gcnew Access;
@@ -581,7 +583,7 @@ private: System::Void редактироватьToolStripMenuItem_Click(System::Object^  send
 }
 private: System::Void удалитьToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 	
-	if (MessageBox::Show("Вы верены, что хотите удалить эту запись?", "",
+	if (MessageBox::Show("Вы уверены, что хотите удалить эту запись?", "",
 		MessageBoxButtons::YesNo, MessageBoxIcon::Warning) == System::Windows::Forms::DialogResult::Yes) {
 		dataGridView1->Rows->RemoveAt(dataGridView1->CurrentRow->Index);
 		dataGridView1->Refresh();
@@ -592,7 +594,17 @@ private: System::Void AboutInToolStripMenuItem1_Click(System::Object^  sender, S
 	AboutBase->ShowDialog();
 }
 private: System::Void PlayToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+	GameMetalSmith ^game = gcnew GameMetalSmith();
 
+	game->Show();
+}
+private: System::Void MainFrame_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e) {
+	if ((TypeOf == 0) && (NameOfFile != __nullptr)) {
+		if (MessageBox::Show("Вы хотите закрыть текущий файл без сохранения?", "",
+			MessageBoxButtons::YesNo, MessageBoxIcon::Warning) == System::Windows::Forms::DialogResult::No) {
+			e->Cancel = true;
+		}
+	}
 }
 };
 }

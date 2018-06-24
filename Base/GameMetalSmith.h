@@ -34,6 +34,9 @@ namespace Base {
 				delete components;
 			}
 		}
+	private: System::Windows::Forms::GroupBox^  groupBox1;
+	protected:
+	private: System::Windows::Forms::TrackBar^  trackBar1;
 
 	private:
 		/// <summary>
@@ -48,11 +51,40 @@ namespace Base {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->components = gcnew System::ComponentModel::Container();
-			this->Size = System::Drawing::Size(300,300);
-			this->Text = L"GameMetalSmith";
-			this->Padding = System::Windows::Forms::Padding(0);
+			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+			this->trackBar1 = (gcnew System::Windows::Forms::TrackBar());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar1))->BeginInit();
+			this->SuspendLayout();
+			// 
+			// groupBox1
+			// 
+			this->groupBox1->Location = System::Drawing::Point(95, 11);
+			this->groupBox1->Name = L"groupBox1";
+			this->groupBox1->Size = System::Drawing::Size(208, 144);
+			this->groupBox1->TabIndex = 0;
+			this->groupBox1->TabStop = false;
+			this->groupBox1->Text = L"groupBox1";
+			// 
+			// trackBar1
+			// 
+			this->trackBar1->Location = System::Drawing::Point(12, 172);
+			this->trackBar1->Name = L"trackBar1";
+			this->trackBar1->Size = System::Drawing::Size(385, 45);
+			this->trackBar1->TabIndex = 1;
+			// 
+			// GameMetalSmith
+			// 
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->ClientSize = System::Drawing::Size(416, 231);
+			this->Controls->Add(this->trackBar1);
+			this->Controls->Add(this->groupBox1);
+			this->Name = L"GameMetalSmith";
+			this->Text = L"Blacksmith";
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar1))->EndInit();
+			this->ResumeLayout(false);
+			this->PerformLayout();
+
 		}
 #pragma endregion
 	};
