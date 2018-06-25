@@ -54,6 +54,7 @@ namespace Base {
 	private: System::Windows::Forms::Panel^  panel1;
 	private: System::Windows::Forms::Button^  CreateAccount;
 	private: System::Windows::Forms::Label^  label5;
+	private: System::Windows::Forms::Label^  label6;
 
 	private:
 		/// <summary>
@@ -82,6 +83,7 @@ namespace Base {
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->CreateAccount = (gcnew System::Windows::Forms::Button());
 			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->panel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -207,11 +209,27 @@ namespace Base {
 			this->label5->TabIndex = 0;
 			this->label5->Text = L"(Наведите, чтобы получить больше информации)";
 			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->label6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label6->ForeColor = System::Drawing::SystemColors::HotTrack;
+			this->label6->Location = System::Drawing::Point(6, 93);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(57, 13);
+			this->label6->TabIndex = 11;
+			this->label6->Text = L"(показать)";
+			this->label6->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &CreateNewAccount::label6_MouseDown);
+			this->label6->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &CreateNewAccount::label6_MouseUp);
+			// 
 			// CreateNewAccount
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(278, 194);
+			this->Controls->Add(this->label6);
 			this->Controls->Add(this->CreateAccount);
 			this->Controls->Add(this->panel1);
 			this->Controls->Add(this->ErrorPassword);
@@ -294,5 +312,11 @@ namespace Base {
 			this->DialogResult = System::Windows::Forms::DialogResult::OK;
 		}
 	}
+private: System::Void label6_MouseDown(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+	textBox2_Password->UseSystemPasswordChar = false;
+}
+private: System::Void label6_MouseUp(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+	textBox2_Password->UseSystemPasswordChar = true;
+}
 };
 }

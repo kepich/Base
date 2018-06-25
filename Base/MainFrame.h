@@ -407,12 +407,8 @@ private: System::Void ñîçäàòüÇàïğîñToolStripMenuItem_Click(System::Object^  send
 	newRequest->ShowDialog();
 }
 private: System::Void äîáàâòüÇàïèñüToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
-	AddingForm ^newLine = gcnew AddingForm();
+	AddingForm ^newLine = gcnew AddingForm(dataGridView1);
 	newLine->ShowDialog();
-
-	if (newLine->DialogResult == System::Windows::Forms::DialogResult::OK) {
-		dataGridView1->Rows->Add((newLine->returnData())->Split(' '));
-	}
 }
 private: System::Void îòêğûòüToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 	OpenFileDialog ^openedFile = gcnew OpenFileDialog;
@@ -568,18 +564,8 @@ private: System::Void ğåäàêòèğîâàòüToolStripMenuItem_Click(System::Object^  send
 								 (dataGridView1->Rows[dataGridView1->CurrentRow->Index]->Cells[4]->Value)->ToString() };
 	
 
-	EditingForm ^addNew = gcnew EditingForm(tempRow);
+	EditingForm ^addNew = gcnew EditingForm(dataGridView1);
 	addNew->ShowDialog();
-
-	if (addNew->DialogResult == System::Windows::Forms::DialogResult::OK) {
-		tempRow = addNew->returnData();
-	}
-
-	dataGridView1->Rows[dataGridView1->CurrentRow->Index]->Cells[0]->Value = tempRow[0];
-	dataGridView1->Rows[dataGridView1->CurrentRow->Index]->Cells[1]->Value = tempRow[1];
-	dataGridView1->Rows[dataGridView1->CurrentRow->Index]->Cells[2]->Value = tempRow[2];
-	dataGridView1->Rows[dataGridView1->CurrentRow->Index]->Cells[3]->Value = tempRow[3];
-	dataGridView1->Rows[dataGridView1->CurrentRow->Index]->Cells[4]->Value = tempRow[4];
 }
 private: System::Void óäàëèòüToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 	

@@ -15,25 +15,22 @@ namespace Base {
 	public ref class EditingForm : public System::Windows::Forms::Form
 	{
 	public:
-		EditingForm(array <String^>^ OldRow)
+		DataGridView ^old;
+		EditingForm(DataGridView ^last)
 		{
 			InitializeComponent();
 
-			tempRow = OldRow;
+			old = last;
 
-			FullName->Text = tempRow[0];
-			maskedTextBox1_Phone->Text = tempRow[1];
-			maskedTextBox2_Year->Text = tempRow[2];
-			comboBox1->Text = tempRow[3];
-			Address->Text = tempRow[4];
+			FullName->Text = (old->Rows[old->CurrentRow->Index]->Cells[0]->Value)->ToString();
+			maskedTextBox1_Phone->Text = (old->Rows[old->CurrentRow->Index]->Cells[1]->Value)->ToString();
+			maskedTextBox2_Year->Text = (old->Rows[old->CurrentRow->Index]->Cells[2]->Value)->ToString();
+			comboBox1->Text = (old->Rows[old->CurrentRow->Index]->Cells[3]->Value)->ToString();
+			Address->Text = (old->Rows[old->CurrentRow->Index]->Cells[4]->Value)->ToString();
 			//
 			//TODO: добавьте код конструктора
 			//
 		}
-
-	public: array <String^>^ returnData() {
-		return tempRow;
-	}
 
 	protected:
 		/// <summary>
@@ -326,13 +323,11 @@ namespace Base {
 		array <String^>^ tempRow;
 private: System::Void AddNew_Click(System::Object^  sender, System::EventArgs^  e) {
 		if (Changing_FullName() && Changing_Number() && Changing_Year() && Changing_Type() && Changing_Address()) {
-			tempRow[0] = FullName->Text;
-			tempRow[1] = maskedTextBox1_Phone->Text;
-			tempRow[2] = maskedTextBox2_Year->Text;
-			tempRow[3] = comboBox1->Text;
-			tempRow[4] = Address->Text;
-
-			this->DialogResult = System::Windows::Forms::DialogResult::OK;
+			old->Rows[old->CurrentRow->Index]->Cells[0]->Value = FullName->Text;
+			old->Rows[old->CurrentRow->Index]->Cells[1]->Value = maskedTextBox1_Phone->Text;
+			old->Rows[old->CurrentRow->Index]->Cells[2]->Value = maskedTextBox2_Year->Text;
+			old->Rows[old->CurrentRow->Index]->Cells[3]->Value = comboBox1->Text;
+			old->Rows[old->CurrentRow->Index]->Cells[4]->Value = Address->Text;
 		}
 	}
 private: System::Void FullName_TextChanged(System::Object^  sender, System::EventArgs^  e) {

@@ -14,6 +14,7 @@ namespace Base {
 	/// </summary>
 	public ref class AddingForm : public System::Windows::Forms::Form
 	{
+		DataGridView ^last;
 	public:
 		AddingForm()
 		{
@@ -23,9 +24,14 @@ namespace Base {
 			//TODO: добавьте код конструктора
 			//
 		}
-	public: String^ returnData() {
-		return newLine;
-	}
+		AddingForm(DataGridView ^old)
+		{
+			InitializeComponent();
+			last = old;
+			//
+			//TODO: добавьте код конструктора
+			//
+		}
 
 	protected:
 		/// <summary>
@@ -318,10 +324,7 @@ namespace Base {
 
 private: System::Void AddNew_Click(System::Object^  sender, System::EventArgs^  e) {
 	if (Changing_FullName() && Changing_Number() && Changing_Year() && Changing_Type() && Changing_Address())
-	{
-		newLine = FullName->Text + " " + maskedTextBox1_Phone->Text + " " + maskedTextBox2_Year->Text + " " + comboBox1->SelectedItem->ToString() + " " + Address->Text + "\n";
-		this->DialogResult = System::Windows::Forms::DialogResult::OK;
-	}
+		last->Rows->Add((FullName->Text + " " + maskedTextBox1_Phone->Text + " " + maskedTextBox2_Year->Text + " " + comboBox1->SelectedItem->ToString() + " " + Address->Text + "\n")->Split(' '));
 }
 private: System::Void FullName_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 	Changing_FullName();
