@@ -250,7 +250,7 @@ namespace Base {
 				break;
 			}
 			for (int i = 0; i < login->Length; i++) {
-				if (login[i] < '0' || login[i] > '9' || login[i] < 'A' || login[i] > 'Z' || login[i] < 'a' || login[i] > 'z') {
+				if (!((login[i] > '0' && login[i] < '9') || (login[i] < 'Z' && login[i] > 'A') || (login[i] < 'z' && login[i] > 'a'))) {
 					ErrorLogin->Text = "*Логин содержит недопустимые символы";
 					isCorrect = 0;
 					break;
@@ -264,7 +264,7 @@ namespace Base {
 					break;
 				}
 				for (int i = 0; i < password->Length; i++) {
-					if (password[i] < '0' || password[i] > '9' || password[i] < 'A' || password[i] > 'Z' || password[i] < 'a' || password[i] > 'z') {
+					if (!((password[i] > '0' && password[i] < '9') || (password[i] < 'Z' && password[i] > 'A') || (password[i] < 'z' && password[i] > 'a'))) {
 						ErrorPassword->Text = "*Логин содержит недопустимые символы";
 						isCorrect = 0;
 						break;
