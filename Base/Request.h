@@ -29,12 +29,13 @@ namespace Base {
 				if(cells[0]->CompareTo(""))
 					dataGridView1->Rows->Add(cells);
 			}
-
-			
-			//
-			//TODO: добавьте код конструктора
-			//
 		}
+
+		Request() {
+			InitializeComponent();
+		}
+
+		String ^nameOfFile;
 
 
 	protected:
@@ -120,7 +121,6 @@ namespace Base {
 
 	private: System::Windows::Forms::Label^  Rules;
 	private: System::Windows::Forms::TextBox^  FullName;
-
 	private: System::Windows::Forms::TextBox^  Address;
 	private: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::Label^  label2;
@@ -129,7 +129,6 @@ namespace Base {
 	private: System::Windows::Forms::Label^  label5;
 	private: System::Windows::Forms::Label^  label6;
 	private: System::Windows::Forms::Label^  Errors;
-
 	private: System::Windows::Forms::Button^  CreateRequest;
 	private: System::Windows::Forms::DataGridView^  dataGridView1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  fio;
@@ -147,13 +146,6 @@ namespace Base {
 	private: System::Windows::Forms::MaskedTextBox^  maskedTextBox2_Year;
 	private: System::Windows::Forms::ComboBox^  comboBox1;
 	private: System::Windows::Forms::Label^  Error;
-
-
-
-
-
-
-
 
 	protected:
 
@@ -489,7 +481,7 @@ namespace Base {
 
 		}
 #pragma endregion
-		String ^nameOfFile;
+		
 private: System::Void checkBox1_FIO_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
 	if (checkBox1_FIO->Checked) {
 		FullName->Enabled =  true;

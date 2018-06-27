@@ -14,25 +14,19 @@ namespace Base {
 	/// </summary>
 	public ref class AddingForm : public System::Windows::Forms::Form
 	{
-		DataGridView ^last;
+
 	public:
 		AddingForm()
 		{
 			InitializeComponent();
-
-			//
-			//TODO: добавьте код конструктора
-			//
 		}
 		AddingForm(DataGridView ^old)
 		{
 			InitializeComponent();
 			last = old;
-			//
-			//TODO: добавьте код конструктора
-			//
 		}
-
+	
+	DataGridView ^last;
 	protected:
 		/// <summary>
 		/// Освободить все используемые ресурсы.
@@ -320,7 +314,6 @@ namespace Base {
 
 		}
 #pragma endregion
-	String ^newLine;
 
 private: System::Void AddNew_Click(System::Object^  sender, System::EventArgs^  e) {
 	if (Changing_FullName() && Changing_Number() && Changing_Year() && Changing_Type() && Changing_Address())

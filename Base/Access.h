@@ -17,13 +17,9 @@ namespace Base {
 	public ref class Access : public System::Windows::Forms::Form
 	{
 	public:
-		Access(void)
+		Access()
 		{
 			InitializeComponent();
-
-			//
-			//TODO: добавьте код конструктора
-			//
 		}
 	public:Int32 ReturnData() {
 		if (type == 'A')
@@ -176,7 +172,7 @@ namespace Base {
 
 		}
 #pragma endregion
-	private: System::Void button_Access_Enter_Click(System::Object^  sender, System::EventArgs^  e) {
+private: System::Void button_Access_Enter_Click(System::Object^  sender, System::EventArgs^  e) {
 		array <Char>^ key = { 1,2,3,4,5,6,7,8,9 };
 		array <Char>^ login = textBox_Access_Login->Text->ToCharArray();
 		array <Char>^ password = textBox_Access_Password->Text->ToCharArray();

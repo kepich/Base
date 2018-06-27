@@ -23,7 +23,7 @@ namespace Base {
 	public ref class MainFrame : public System::Windows::Forms::Form
 	{
 	public:
-		MainFrame(void)
+		MainFrame()
 		{
 			InitializeComponent();
 
@@ -70,9 +70,10 @@ namespace Base {
 				delete components;
 			}
 		}
-	public: System::Windows::Forms::DataGridView^  dataGridView1;
 	public:	String ^NameOfFile;
 	private: int TypeOfUser;
+
+	public: System::Windows::Forms::DataGridView^  dataGridView1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  fio;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  PhoneNumber;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Year;
@@ -327,7 +328,7 @@ namespace Base {
 			// AboutInToolStripMenuItem1
 			// 
 			this->AboutInToolStripMenuItem1->Name = L"AboutInToolStripMenuItem1";
-			this->AboutInToolStripMenuItem1->Size = System::Drawing::Size(149, 22);
+			this->AboutInToolStripMenuItem1->Size = System::Drawing::Size(152, 22);
 			this->AboutInToolStripMenuItem1->Text = L"О программе";
 			this->AboutInToolStripMenuItem1->Click += gcnew System::EventHandler(this, &MainFrame::AboutInToolStripMenuItem1_Click);
 			// 
@@ -373,7 +374,7 @@ namespace Base {
 			this->PerformLayout();
 
 		}
-#pragma endregion																					// Имя файла
+#pragma endregion
 	
 private: System::Void сменитьУчетнюЗаписьToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
 	Access ^changeAccount = gcnew Access;

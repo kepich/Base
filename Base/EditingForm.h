@@ -15,7 +15,7 @@ namespace Base {
 	public ref class EditingForm : public System::Windows::Forms::Form
 	{
 	public:
-		DataGridView ^old;
+	
 		EditingForm(DataGridView ^last)
 		{
 			InitializeComponent();
@@ -27,10 +27,13 @@ namespace Base {
 			maskedTextBox2_Year->Text = (old->Rows[old->CurrentRow->Index]->Cells[2]->Value)->ToString();
 			comboBox1->Text = (old->Rows[old->CurrentRow->Index]->Cells[3]->Value)->ToString();
 			Address->Text = (old->Rows[old->CurrentRow->Index]->Cells[4]->Value)->ToString();
-			//
-			//TODO: добавьте код конструктора
-			//
 		}
+
+		EditingForm() {
+			InitializeComponent();
+		}
+
+	DataGridView ^old;				// ”казатель на datagridView из главной формы
 
 	protected:
 		/// <summary>
@@ -130,7 +133,6 @@ namespace Base {
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::Button^  Edit;
-
 	private: System::Windows::Forms::Label^  Info;
 	private: System::Windows::Forms::Label^  Error;
 
@@ -320,7 +322,7 @@ namespace Base {
 
 		}
 #pragma endregion
-		array <String^>^ tempRow;
+
 private: System::Void AddNew_Click(System::Object^  sender, System::EventArgs^  e) {
 		if (Changing_FullName() && Changing_Number() && Changing_Year() && Changing_Type() && Changing_Address()) {
 			old->Rows[old->CurrentRow->Index]->Cells[0]->Value = FullName->Text;

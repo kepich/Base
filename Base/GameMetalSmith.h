@@ -20,10 +20,6 @@ namespace Base {
 		GameMetalSmith(void)
 		{
 			InitializeComponent();
-			
-			//
-			//TODO: добавьте код конструктора
-			//
 		}
 
 	protected:
@@ -38,13 +34,10 @@ namespace Base {
 			}
 		}
 
-
-	protected:
 	private: static array <Int32>^ last = gcnew array <Int32> (3);
 	private: static array <Int32>^ punches = gcnew array <Int32> { 20, 75, 160, 210, -20, -75, -160, -210 };
 	private: static Int32 streak = 0;
 	private: static Int32 round = 1;
-
 	public: static array <String^> ^punchesImages = gcnew  array <String^>(8) {
 		"C:\\Users\\Павел\\Source\\Repos\\Base\\Base\\GameTextures\\Punch1.png",
 			"C:\\Users\\Павел\\Source\\Repos\\Base\\Base\\GameTextures\\Punch2.png",
@@ -55,51 +48,35 @@ namespace Base {
 			"C:\\Users\\Павел\\Source\\Repos\\Base\\Base\\GameTextures\\Roll3.png",
 			"C:\\Users\\Павел\\Source\\Repos\\Base\\Base\\GameTextures\\Roll4.png"
 	};
-	
+
+	protected:
 	private: System::Windows::Forms::TrackBar^  trackBar1;
 	private: System::Windows::Forms::ProgressBar^  progressBar1;
 	private: System::Windows::Forms::TrackBar^  trackBar2;
 	private: System::Windows::Forms::Button^  Punch1;
 	private: System::Windows::Forms::Button^  Punch2;
 	private: System::Windows::Forms::Button^  Roll1;
-
-
-
-
 	private: System::Windows::Forms::Button^  Punch3;
 	private: System::Windows::Forms::Button^  Punch4;
 	private: System::Windows::Forms::Button^  Roll3;
-
-
-
 	private: System::Windows::Forms::Panel^  panel1;
 	private: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::Timer^  timer1;
 	private: System::Windows::Forms::Label^  label2;
-
 	private: System::Windows::Forms::Panel^  panel5;
 	private: System::Windows::Forms::Button^  Roll2;
 	private: System::Windows::Forms::Button^  Roll4;
-
-
 	private: System::Windows::Forms::Panel^  panel3Ex;
-
 	private: System::Windows::Forms::Panel^  panel2Ex;
-
 	private: System::Windows::Forms::Panel^  panel1Ex;
 	private: System::Windows::Forms::Button^  NextLevel;
-
-
 	private: System::Windows::Forms::CheckBox^  checkBox3;
 	private: System::Windows::Forms::CheckBox^  checkBox2;
 	private: System::Windows::Forms::CheckBox^  checkBox1;
 	private: System::Windows::Forms::Panel^  panel3New;
-
 	private: System::Windows::Forms::Panel^  panel2New;
-
 	private: System::Windows::Forms::Panel^  panel1New;
 	private: System::Windows::Forms::Label^  label3;
-
 	private: System::ComponentModel::IContainer^  components;
 
 	private:

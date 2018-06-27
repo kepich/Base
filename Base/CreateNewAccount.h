@@ -16,15 +16,12 @@ namespace Base {
 	public ref class CreateNewAccount : public System::Windows::Forms::Form
 	{
 	public:
-		CreateNewAccount(void)
+		CreateNewAccount()
 		{
 			InitializeComponent();
 			ToolTip ^About = gcnew ToolTip;
 			About->SetToolTip(this->label5, "Логин и пароль могут содержать только цифры и буквы \nлатинского алфавита и быть длиной от 2 до 8 символов.\n ");
 			About->InitialDelay = 50;
-			//
-			//TODO: добавьте код конструктора
-			//
 		}
 
 	protected:
@@ -38,15 +35,13 @@ namespace Base {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Label^  label1;
 	protected:
+	private: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::Label^  label3;
 	private: System::Windows::Forms::Label^  label4;
 	private: System::Windows::Forms::TextBox^  textBox1_Login;
 	private: System::Windows::Forms::TextBox^  textBox2_Password;
-
-
 	private: System::Windows::Forms::Label^  ErrorLogin;
 	private: System::Windows::Forms::Label^  ErrorPassword;
 	private: System::Windows::Forms::RadioButton^  radioButton1;
@@ -253,7 +248,8 @@ namespace Base {
 
 		}
 #pragma endregion
-	private: System::Void CreateAccount_Click(System::Object^  sender, System::EventArgs^  e) {
+
+private: System::Void CreateAccount_Click(System::Object^  sender, System::EventArgs^  e) {
 		array <Char>^ key = { 1,2,3,4,5,6,7,8,9 };
 		array <Char>^ login = textBox1_Login->Text->ToCharArray();
 		array <Char>^ password = textBox2_Password->Text->ToCharArray();

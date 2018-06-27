@@ -18,9 +18,6 @@ namespace Base {
 		About(void)
 		{
 			InitializeComponent();
-			//
-			//TODO: добавьте код конструктора
-			//
 		}
 
 	protected:
@@ -34,8 +31,9 @@ namespace Base {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Label^  label1;
 	protected:
+	
+	private: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::RichTextBox^  richTextBox1;
 	private: System::Windows::Forms::Label^  label2;
 
