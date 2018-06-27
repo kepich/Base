@@ -36,7 +36,7 @@ namespace Base {
 			this->EditionToolStripMenuItem->Enabled = false;
 			User->Text = "";
 
-			if(TypeOf = access_Window->ShowDialog() == System::Windows::Forms::DialogResult::Cancel)
+			if(TypeOfUser = access_Window->ShowDialog() == System::Windows::Forms::DialogResult::Cancel)
 				MainFrame::Close();
 			if (access_Window->DialogResult == System::Windows::Forms::DialogResult::OK) {
 				if (access_Window->ReturnData() == 2) {
@@ -72,7 +72,7 @@ namespace Base {
 		}
 	public: System::Windows::Forms::DataGridView^  dataGridView1;
 	public:	String ^NameOfFile;
-	private: int TypeOf;
+	private: int TypeOfUser;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  fio;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  PhoneNumber;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Year;
@@ -585,7 +585,7 @@ private: System::Void PlayToolStripMenuItem_Click(System::Object^  sender, Syste
 	game->Show();
 }
 private: System::Void MainFrame_FormClosing(System::Object^  sender, System::Windows::Forms::FormClosingEventArgs^  e) {
-	if ((TypeOf == 0) && (NameOfFile != __nullptr)) {
+	if ((TypeOfUser == 0) && (NameOfFile != __nullptr)) {
 		if (MessageBox::Show("Вы хотите закрыть текущий файл без сохранения?", "",
 			MessageBoxButtons::YesNo, MessageBoxIcon::Warning) == System::Windows::Forms::DialogResult::No) {
 			e->Cancel = true;

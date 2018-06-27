@@ -20,6 +20,7 @@ namespace Base {
 		GameMetalSmith(void)
 		{
 			InitializeComponent();
+			
 			//
 			//TODO: добавьте код конструктора
 			//
@@ -126,6 +127,7 @@ namespace Base {
 			this->Punch4 = (gcnew System::Windows::Forms::Button());
 			this->Roll3 = (gcnew System::Windows::Forms::Button());
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->checkBox3 = (gcnew System::Windows::Forms::CheckBox());
 			this->checkBox2 = (gcnew System::Windows::Forms::CheckBox());
 			this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
@@ -142,7 +144,6 @@ namespace Base {
 			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->NextLevel = (gcnew System::Windows::Forms::Button());
-			this->label3 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar2))->BeginInit();
 			this->panel1->SuspendLayout();
@@ -250,6 +251,7 @@ namespace Base {
 			// 
 			// panel1
 			// 
+			this->panel1->Controls->Add(this->label3);
 			this->panel1->Controls->Add(this->checkBox3);
 			this->panel1->Controls->Add(this->checkBox2);
 			this->panel1->Controls->Add(this->checkBox1);
@@ -264,6 +266,18 @@ namespace Base {
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(379, 248);
 			this->panel1->TabIndex = 4;
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->BackColor = System::Drawing::Color::DarkRed;
+			this->label3->Font = (gcnew System::Drawing::Font(L"Arial Black", 30, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label3->ForeColor = System::Drawing::Color::Gold;
+			this->label3->Location = System::Drawing::Point(15, 150);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(0, 56);
+			this->label3->TabIndex = 7;
 			// 
 			// checkBox3
 			// 
@@ -298,7 +312,6 @@ namespace Base {
 			// 
 			// panel5
 			// 
-			this->panel5->Controls->Add(this->label3);
 			this->panel5->Controls->Add(this->Punch1);
 			this->panel5->Controls->Add(this->Punch4);
 			this->panel5->Controls->Add(this->Roll1);
@@ -414,17 +427,6 @@ namespace Base {
 			this->NextLevel->UseVisualStyleBackColor = true;
 			this->NextLevel->Click += gcnew System::EventHandler(this, &GameMetalSmith::button9_Click);
 			// 
-			// label3
-			// 
-			this->label3->AutoSize = true;
-			this->label3->Font = (gcnew System::Drawing::Font(L"Arial Black", 15, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->label3->ForeColor = System::Drawing::Color::Gold;
-			this->label3->Location = System::Drawing::Point(23, 40);
-			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(0, 28);
-			this->label3->TabIndex = 7;
-			// 
 			// GameMetalSmith
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -445,7 +447,6 @@ namespace Base {
 			this->panel1->ResumeLayout(false);
 			this->panel1->PerformLayout();
 			this->panel5->ResumeLayout(false);
-			this->panel5->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -460,6 +461,7 @@ private: System::Void timer1_Tick(System::Object^  sender, System::EventArgs^  e
 			NextLevel->Enabled = true;
 			round = 1;
 			label1->Text = "";
+			(gcnew System::Media::SoundPlayer("C:\\Users\\Павел\\Source\\Repos\\Base\\Base\\wavs\\zhil_do_konsta.wav"))->Play();;
 		}
 	}
 private: System::Void button9_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -509,6 +511,7 @@ private: System::Void button9_Click(System::Object^  sender, System::EventArgs^ 
 }
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 	int i = 0;
+	(gcnew System::Media::SoundPlayer("C:\\Users\\Павел\\Source\\Repos\\Base\\Base\\wavs\\1p.wav"))->Play();
 	if ((trackBar2->Value + punches[i] <= trackBar2->Maximum) && (trackBar2->Value + punches[i] >= trackBar2->Minimum)) {
 		trackBar2->Value += punches[i];
 		panel3New->BackgroundImage = panel2New->BackgroundImage;
@@ -536,6 +539,7 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 				streak++;
 				checkBox2->Checked = true;
 				checkBox1->Checked = false;
+				(gcnew System::Media::SoundPlayer("C:\\Users\\Павел\\Source\\Repos\\Base\\Base\\wavs\\ay_ay_ay.wav"))->Play();
 			}
 			else {
 				checkBox3->Checked = false;
@@ -550,6 +554,7 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 				checkBox1->Checked = true;
 			}
 			else {
+				(gcnew System::Media::SoundPlayer("C:\\Users\\Павел\\Source\\Repos\\Base\\Base\\wavs\\bozhe_kak_eto_bolno.wav"))->Play();
 				checkBox3->Checked = false;
 				checkBox2->Checked = false;
 				checkBox1->Checked = false;
@@ -561,6 +566,7 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 }
 private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
 	int i = 1;
+	(gcnew System::Media::SoundPlayer("C:\\Users\\Павел\\Source\\Repos\\Base\\Base\\wavs\\1p.wav"))->Play();
 	if ((trackBar2->Value + punches[i] <= trackBar2->Maximum) && (trackBar2->Value + punches[i] >= trackBar2->Minimum)) {
 		trackBar2->Value += punches[i];
 		panel3New->BackgroundImage = panel2New->BackgroundImage;
@@ -588,6 +594,7 @@ private: System::Void button2_Click(System::Object^  sender, System::EventArgs^ 
 				streak++;
 				checkBox2->Checked = true;
 				checkBox1->Checked = false;
+				(gcnew System::Media::SoundPlayer("C:\\Users\\Павел\\Source\\Repos\\Base\\Base\\wavs\\ay_ay_ay.wav"))->Play();
 			}
 			else {
 				checkBox3->Checked = false;
@@ -605,6 +612,7 @@ private: System::Void button2_Click(System::Object^  sender, System::EventArgs^ 
 				checkBox3->Checked = false;
 				checkBox2->Checked = false;
 				checkBox1->Checked = false;
+				(gcnew System::Media::SoundPlayer("C:\\Users\\Павел\\Source\\Repos\\Base\\Base\\wavs\\bozhe_kak_eto_bolno.wav"))->Play();
 				streak = 0;
 			}
 			break;
@@ -613,6 +621,7 @@ private: System::Void button2_Click(System::Object^  sender, System::EventArgs^ 
 }
 private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) {
 	int i = 2;
+	(gcnew System::Media::SoundPlayer("C:\\Users\\Павел\\Source\\Repos\\Base\\Base\\wavs\\1p.wav"))->Play();
 	if ((trackBar2->Value + punches[i] <= trackBar2->Maximum) && (trackBar2->Value + punches[i] >= trackBar2->Minimum)) {
 		trackBar2->Value += punches[i];
 		panel3New->BackgroundImage = panel2New->BackgroundImage;
@@ -640,6 +649,7 @@ private: System::Void button4_Click(System::Object^  sender, System::EventArgs^ 
 				streak++;
 				checkBox2->Checked = true;
 				checkBox1->Checked = false;
+				(gcnew System::Media::SoundPlayer("C:\\Users\\Павел\\Source\\Repos\\Base\\Base\\wavs\\ay_ay_ay.wav"))->Play();
 			}
 			else {
 				checkBox3->Checked = false;
@@ -657,6 +667,7 @@ private: System::Void button4_Click(System::Object^  sender, System::EventArgs^ 
 				checkBox3->Checked = false;
 				checkBox2->Checked = false;
 				checkBox1->Checked = false;
+				(gcnew System::Media::SoundPlayer("C:\\Users\\Павел\\Source\\Repos\\Base\\Base\\wavs\\bozhe_kak_eto_bolno.wav"))->Play();
 				streak = 0;
 			}
 			break;
@@ -665,6 +676,7 @@ private: System::Void button4_Click(System::Object^  sender, System::EventArgs^ 
 }
 private: System::Void button5_Click(System::Object^  sender, System::EventArgs^  e) {
 	int i = 3;
+	(gcnew System::Media::SoundPlayer("C:\\Users\\Павел\\Source\\Repos\\Base\\Base\\wavs\\1p.wav"))->Play();
 	if ((trackBar2->Value + punches[i] <= trackBar2->Maximum) && (trackBar2->Value + punches[i] >= trackBar2->Minimum)) {
 		trackBar2->Value += punches[i];
 		panel3New->BackgroundImage = panel2New->BackgroundImage;
@@ -691,6 +703,7 @@ private: System::Void button5_Click(System::Object^  sender, System::EventArgs^ 
 				checkBox2->Checked = true;
 				checkBox2->Checked = false;
 				checkBox1->Checked = false;
+				(gcnew System::Media::SoundPlayer("C:\\Users\\Павел\\Source\\Repos\\Base\\Base\\wavs\\ay_ay_ay.wav"))->Play();
 			}
 			else {
 				checkBox3->Checked = false;
@@ -710,6 +723,7 @@ private: System::Void button5_Click(System::Object^  sender, System::EventArgs^ 
 				checkBox2->Checked = false;
 				checkBox1->Checked = false;
 				streak = 0;
+				(gcnew System::Media::SoundPlayer("C:\\Users\\Павел\\Source\\Repos\\Base\\Base\\wavs\\bozhe_kak_eto_bolno.wav"))->Play();
 			}
 			break;
 		}
@@ -717,6 +731,7 @@ private: System::Void button5_Click(System::Object^  sender, System::EventArgs^ 
 }
 private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
 	int i = 4;
+	(gcnew System::Media::SoundPlayer("C:\\Users\\Павел\\Source\\Repos\\Base\\Base\\wavs\\1p.wav"))->Play();
 	if ((trackBar2->Value + punches[i] <= trackBar2->Maximum) && (trackBar2->Value + punches[i] >= trackBar2->Minimum)) {
 		trackBar2->Value += punches[i];
 		panel3New->BackgroundImage = panel2New->BackgroundImage;
@@ -744,6 +759,7 @@ private: System::Void button3_Click(System::Object^  sender, System::EventArgs^ 
 				streak++;
 				checkBox2->Checked = true;
 				checkBox1->Checked = false;
+				(gcnew System::Media::SoundPlayer("C:\\Users\\Павел\\Source\\Repos\\Base\\Base\\wavs\\ay_ay_ay.wav"))->Play();
 			}
 			else {
 				checkBox3->Checked = false;
@@ -762,6 +778,7 @@ private: System::Void button3_Click(System::Object^  sender, System::EventArgs^ 
 				checkBox2->Checked = false;
 				checkBox1->Checked = false;
 				streak = 0;
+				(gcnew System::Media::SoundPlayer("C:\\Users\\Павел\\Source\\Repos\\Base\\Base\\wavs\\bozhe_kak_eto_bolno.wav"))->Play();
 			}
 			break;
 		}
@@ -769,6 +786,7 @@ private: System::Void button3_Click(System::Object^  sender, System::EventArgs^ 
 }
 private: System::Void button7_Click(System::Object^  sender, System::EventArgs^  e) {
 	int i = 5;
+	(gcnew System::Media::SoundPlayer("C:\\Users\\Павел\\Source\\Repos\\Base\\Base\\wavs\\1p.wav"))->Play();
 	if ((trackBar2->Value + punches[i] <= trackBar2->Maximum) && (trackBar2->Value + punches[i] >= trackBar2->Minimum)) {
 		trackBar2->Value += punches[i];
 		panel3New->BackgroundImage = panel2New->BackgroundImage;
@@ -796,6 +814,7 @@ private: System::Void button7_Click(System::Object^  sender, System::EventArgs^ 
 				streak++;
 				checkBox2->Checked = true;
 				checkBox1->Checked = false;
+				(gcnew System::Media::SoundPlayer("C:\\Users\\Павел\\Source\\Repos\\Base\\Base\\wavs\\ay_ay_ay.wav"))->Play();
 			}
 			else {
 				checkBox3->Checked = false;
@@ -814,6 +833,7 @@ private: System::Void button7_Click(System::Object^  sender, System::EventArgs^ 
 				checkBox2->Checked = false;
 				checkBox1->Checked = false;
 				streak = 0;
+				(gcnew System::Media::SoundPlayer("C:\\Users\\Павел\\Source\\Repos\\Base\\Base\\wavs\\bozhe_kak_eto_bolno.wav"))->Play();
 			}
 			break;
 		}
@@ -821,6 +841,7 @@ private: System::Void button7_Click(System::Object^  sender, System::EventArgs^ 
 }
 private: System::Void button6_Click(System::Object^  sender, System::EventArgs^  e) {
 	int i = 6;
+	(gcnew System::Media::SoundPlayer("C:\\Users\\Павел\\Source\\Repos\\Base\\Base\\wavs\\1p.wav"))->Play();
 	if ((trackBar2->Value + punches[i] <= trackBar2->Maximum) && (trackBar2->Value + punches[i] >= trackBar2->Minimum)) {
 		trackBar2->Value += punches[i];
 		panel3New->BackgroundImage = panel2New->BackgroundImage;
@@ -848,6 +869,7 @@ private: System::Void button6_Click(System::Object^  sender, System::EventArgs^ 
 				streak++;
 				checkBox2->Checked = true;
 				checkBox1->Checked = false;
+				(gcnew System::Media::SoundPlayer("C:\\Users\\Павел\\Source\\Repos\\Base\\Base\\wavs\\ay_ay_ay.wav"))->Play();
 			}
 			else {
 				checkBox3->Checked = false;
@@ -866,6 +888,7 @@ private: System::Void button6_Click(System::Object^  sender, System::EventArgs^ 
 				checkBox2->Checked = false;
 				checkBox1->Checked = false;
 				streak = 0;
+				(gcnew System::Media::SoundPlayer("C:\\Users\\Павел\\Source\\Repos\\Base\\Base\\wavs\\bozhe_kak_eto_bolno.wav"))->Play();
 			}
 			break;
 		}
@@ -873,6 +896,7 @@ private: System::Void button6_Click(System::Object^  sender, System::EventArgs^ 
 }
 private: System::Void button8_Click(System::Object^  sender, System::EventArgs^  e) {
 	int i = 7;
+	(gcnew System::Media::SoundPlayer("C:\\Users\\Павел\\Source\\Repos\\Base\\Base\\wavs\\1p.wav"))->Play();
 	if ((trackBar2->Value + punches[i] <= trackBar2->Maximum) && (trackBar2->Value + punches[i] >= trackBar2->Minimum)) {
 		trackBar2->Value += punches[i];
 		panel3New->BackgroundImage = panel2New->BackgroundImage;
@@ -900,6 +924,8 @@ private: System::Void button8_Click(System::Object^  sender, System::EventArgs^ 
 				streak++;
 				checkBox2->Checked = true;
 				checkBox1->Checked = false;
+				(gcnew System::Media::SoundPlayer("C:\\Users\\Павел\\Source\\Repos\\Base\\Base\\wavs\\ay_ay_ay.wav"))->Play();
+
 			}
 			else {
 				checkBox3->Checked = false;
@@ -918,6 +944,7 @@ private: System::Void button8_Click(System::Object^  sender, System::EventArgs^ 
 				checkBox2->Checked = false;
 				checkBox1->Checked = false;
 				streak = 0;
+				(gcnew System::Media::SoundPlayer("C:\\Users\\Павел\\Source\\Repos\\Base\\Base\\wavs\\bozhe_kak_eto_bolno.wav"))->Play();
 			}
 			break;
 		}
@@ -929,9 +956,11 @@ private: System::Void checkBox1_CheckedChanged(System::Object^  sender, System::
 		timer1->Enabled = false;
 		NextLevel->Enabled = true;
 		progressBar1->Value = progressBar1->Maximum;
+		(gcnew System::Media::SoundPlayer("C:\\Users\\Павел\\Source\\Repos\\Base\\Base\\wavs\\krasavchik.wav"))->Play();
 	}
 	else {
 		streak = 0;
+		(gcnew System::Media::SoundPlayer("C:\\Users\\Павел\\Source\\Repos\\Base\\Base\\wavs\\eto_nenormalno.wav"))->Play();
 	}
 }
 };

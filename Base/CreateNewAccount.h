@@ -268,7 +268,7 @@ namespace Base {
 				break;
 			}
 			for (int i = 0; i < login->Length; i++) {
-				if (!((login[i] > '0' && login[i] < '9') || (login[i] < 'Z' && login[i] > 'A') || (login[i] < 'z' && login[i] > 'a'))) {
+				if (!((login[i] >= '0' && login[i] <= '9') || (login[i] <= 'Z' && login[i] >= 'A') || (login[i] <= 'z' && login[i] >= 'a'))) {
 					ErrorLogin->Text = "*Логин содержит недопустимые символы";
 					isCorrect = 0;
 					break;
@@ -282,14 +282,47 @@ namespace Base {
 					break;
 				}
 				for (int i = 0; i < password->Length; i++) {
-					if (!((password[i] > '0' && password[i] < '9') || (password[i] < 'Z' && password[i] > 'A') || (password[i] < 'z' && password[i] > 'a'))) {
-						ErrorPassword->Text = "*Логин содержит недопустимые символы";
+					if (!((password[i] >= '0' && password[i] <= '9') || (password[i] <= 'Z' && password[i] >= 'A') || (password[i] <= 'z' && password[i] >= 'a'))) {
+						ErrorPassword->Text = "*Пароль содержит недопустимые символы";
 						isCorrect = 0;
 						break;
 					}
 				}
 			}
+
+			StreamReader ^checking = gcnew StreamReader("AccessAccounts.txt");
+
+			String ^row;
+
+			for (int i = 0; i < login->Length; i++)
+				login[i] ^= key[i];
+
+			while (checking->Peek() >= 0) {
+				row = checking->ReadLine();
+				array <String^>^ cells = row->Split(' ', '\0');
+				array <Char>^ loginNew = cells[0]->ToCharArray();
+				Int32 isLoginAccepted = 1;
+
+				if (login->Length == loginNew->Length) {
+					for (int i = 0; i < login->Length; i++)
+						if (login[i] != loginNew[i]) {
+							isLoginAccepted = 0;
+							break;
+						}
+				}
+
+				if (!isLoginAccepted) {
+					ErrorLogin->Text = "Логин уже используется";
+					isCorrect = 0;
+					break;
+				}
+
+			}
+			checking->Close();
+
 		} while (false);
+
+		
 
 		if (isCorrect) {
 			StreamWriter ^write = gcnew StreamWriter("AccessAccounts.txt", true);

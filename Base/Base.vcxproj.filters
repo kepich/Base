@@ -88,6 +88,9 @@
     <EmbeddedResource Include="About.resx">
       <Filter>Файлы ресурсов</Filter>
     </EmbeddedResource>
+    <EmbeddedResource Include="GameMetalSmith.resx">
+      <Filter>Файлы ресурсов</Filter>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Text Include="AccessAccounts.txt">
